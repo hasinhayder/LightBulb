@@ -9,7 +9,7 @@ $.fn.LightBulb.photos = {
         if(!type) type="normal";
         if(!privacy) privacy="everyone";
         if(accessToken){
-            
+            //create the album
         }else{
             throw "User must be logged in";
         }
