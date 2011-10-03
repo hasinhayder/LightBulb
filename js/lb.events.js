@@ -32,7 +32,7 @@ $.fn.LightBulb.events = {
                 if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
-            throw "User must be logged in";
+            throw LIGHTBULB_NO_TOKEN ;
         }
 
     },
@@ -65,7 +65,7 @@ $.fn.LightBulb.events = {
                 if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
-            throw "User must be logged in";
+            throw LIGHTBULB_NO_TOKEN ;
         }
     },
     /**
@@ -87,7 +87,7 @@ $.fn.LightBulb.events = {
                 if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
-            throw "User must be logged in";
+            throw LIGHTBULB_NO_TOKEN ;
         }
     },
     /**
@@ -109,7 +109,7 @@ $.fn.LightBulb.events = {
                 if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
-            throw "User must be logged in";
+            throw LIGHTBULB_NO_TOKEN ;
         }
     },
     /**
@@ -133,7 +133,7 @@ $.fn.LightBulb.events = {
                 if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
-            throw "User must be logged in";
+            throw LIGHTBULB_NO_TOKEN ;
         }
     },
     /**
@@ -155,7 +155,7 @@ $.fn.LightBulb.events = {
                 if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
-            throw "User must be logged in";
+            throw LIGHTBULB_NO_TOKEN ;
         }
     },
     /**
@@ -175,7 +175,7 @@ $.fn.LightBulb.events = {
                 if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
-            throw "User must be logged in";
+            throw LIGHTBULB_NO_TOKEN ;
         }
     },
     /**
@@ -197,7 +197,7 @@ $.fn.LightBulb.events = {
                 if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
-            throw "User must be logged in";
+            throw LIGHTBULB_NO_TOKEN ;
         }
     },
     /**
@@ -219,7 +219,7 @@ $.fn.LightBulb.events = {
                 if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
-            throw "User must be logged in";
+            throw LIGHTBULB_NO_TOKEN ;
         }
     },
 

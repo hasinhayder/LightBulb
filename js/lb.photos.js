@@ -8,5 +8,10 @@ $.fn.LightBulb.photos = {
         var accessToken = userData.accessToken;
         if(!type) type="normal";
         if(!privacy) privacy="everyone";
+        if(accessToken){
+            
+        }else{
+            throw "User must be logged in";
+        }
     }
 }
