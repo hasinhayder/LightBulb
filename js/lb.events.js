@@ -3,32 +3,49 @@
  */
 
 $.fn.LightBulb.events = {
-    create: function(name,location, startTime, endTime, description){
+    create: function(user, name, location, startTime, endTime, description, privacy, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
-    },
-    update:function(eventId, name,location, startTime, endTime, description){
+        if (accessToken) {
+            var eventData = {
+                "access_token": accessToken,
+                "start_time" : startTime,
+                "end_time":endTime,
+                "location" : location,
+                "name" : name,
+                "description":description,
+                "privacy":privacy
+            }
+            FB.api("/"+user+"/events", 'post', eventData, function(response) {
+                if(jQuery.isFunction(opts.callback)) opts.callback(response);
+            })
+        }else{
+            //throw exception
+        }
 
     },
-    updateName:function(eventId, name){
-        
-    },
-    updateLocation:function(eventId, location){
+    update:function(eventId, name, location, startTime, endTime, description) {
 
     },
-    updateTime:function(eventId, startTime,endTime){
+    updateName:function(eventId, name) {
 
     },
-    updateDescription:function(eventId,description){
+    updateLocation:function(eventId, location) {
 
     },
-    delete:function(eventId){
+    updateTime:function(eventId, startTime, endTime) {
 
     },
-    invite:function(eventId, friends){
+    updateDescription:function(eventId, description) {
 
     },
-    updateRSVP:function(eventId, friends, rsvp){
+    delete:function(eventId) {
+
+    },
+    invite:function(eventId, friends) {
+
+    },
+    updateRSVP:function(eventId, friends, rsvp) {
 
     }
 };
