@@ -36,7 +36,19 @@ $.fn.LightBulb.events = {
         }
 
     },
-    update:function(eventId, name, location, startTime, endTime, description, privacy) {
+    /**
+     * Update all parameters of a Facebook Event
+     * @author Hasin Hayder
+     * @param eventId
+     * @param name Name of the event
+     * @param location Location of the event
+     * @param startTime Start time of the event in either unix timestamp or in m/d/Y H:i format
+     * @param endTime End time of the event in either unix timestamp or in m/d/Y H:i format
+     * @param description Destiption of the event
+     * @param privacy Privacy of the event
+     * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
+     */
+    update:function(eventId, name, location, startTime, endTime, description, privacy, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
@@ -56,7 +68,14 @@ $.fn.LightBulb.events = {
             throw "User must be logged in";
         }
     },
-    updateName:function(eventId, name) {
+    /**
+     * Update the name of an event
+     * @author Hasin Hayder
+     * @param eventId
+     * @param name
+     * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
+     */
+    updateName:function(eventId, name, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
@@ -71,7 +90,14 @@ $.fn.LightBulb.events = {
             throw "User must be logged in";
         }
     },
-    updateLocation:function(eventId, location) {
+    /**
+     * Update the location of an event
+     * @author Hasin Hayder
+     * @param eventId
+     * @param location
+     * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
+     */
+    updateLocation:function(eventId, location, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
@@ -86,7 +112,15 @@ $.fn.LightBulb.events = {
             throw "User must be logged in";
         }
     },
-    updateTime:function(eventId, startTime, endTime) {
+    /**
+     * Update the start time and end time of an event
+     * @author Hasin Hayder
+     * @param eventId
+     * @param startTime Start time of the event in either unix timestamp or in m/d/Y H:i format
+     * @param endTime End time of the event in either unix timestamp or in m/d/Y H:i format
+     * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
+     */
+    updateTime:function(eventId, startTime, endTime, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
@@ -102,7 +136,14 @@ $.fn.LightBulb.events = {
             throw "User must be logged in";
         }
     },
-    updateDescription:function(eventId, description) {
+    /**
+     * Update the description of an event
+     * @author Hasin Hayder
+     * @param eventId
+     * @param description String
+     * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
+     */
+    updateDescription:function(eventId, description, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
@@ -117,7 +158,13 @@ $.fn.LightBulb.events = {
             throw "User must be logged in";
         }
     },
-    delete:function(eventId) {
+    /**
+     * delete a event
+     * @author Hasin Hayder
+     * @param eventId
+     * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
+     */
+    del:function(eventId, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
@@ -131,7 +178,14 @@ $.fn.LightBulb.events = {
             throw "User must be logged in";
         }
     },
-    invite:function(eventId, friends) {
+    /**
+     * invite a friend or a group of friends to an event
+     * @author Hasin Hayder
+     * @param eventId
+     * @param friends Array of Facebook user ids
+     * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
+     */
+    invite:function(eventId, friends, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
@@ -147,12 +201,14 @@ $.fn.LightBulb.events = {
         }
     },
     /**
-     *
+     * update the RSVP status of any facebook user (friend) to an event
+     * @author Hasin Hayder
      * @param eventId
      * @param friend Facebook User Id
      * @param rsvp String mentioning the users RSVP status, either "attending","maybe","declined" or "noreply'
+     * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
-    updateRSVP:function(eventId, friend, rsvp) {
+    updateRSVP:function(eventId, friend, rsvp, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
