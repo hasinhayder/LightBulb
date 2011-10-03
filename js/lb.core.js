@@ -14,6 +14,7 @@
             permissions:"",
             cookie:true,
             xfbml:true,
+            forcedPermission:false,
             callback:function(){}
         };
         opts = $.extend(defaults, options);
@@ -28,7 +29,9 @@
         });
 
         FB.getLoginStatus(function(response) {
-            if (response.session) {
+            if(opts.forcedPermission)
+                $.fn.LightBulb.login();
+            else if (response.session) {
                 var session = FB.getSession();
                 fbdata.accessToken = session.access_token;
                 fbdata.facebookUserId = session.uid;

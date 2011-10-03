@@ -23,10 +23,15 @@
 $(document).ready(function() {
     $(document).LightBulb({
         apikey:"288048857874241",
-        permissions:'publish_stream'
+        permissions:'publish_stream, create_event',
+        callback:function(data){
+            /*$().LightBulb.events.create("me","LightBulb Event","Dhaka","12 Nov, 2011","13 Nov, 2011","Some freaking event information","OPEN",function(resp){
+                alert(resp.toSource());
+            })*/
+        }
     });
 
-    $().LightBulb.events.create();
+
     //$().LightBulb.logout();
 });
 </script>
