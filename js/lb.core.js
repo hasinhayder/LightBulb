@@ -1,4 +1,5 @@
 /**
+ * @author Hasin Hayder
  * LightBulb is a wrapper on top of Facebook JS-SDK for Graph API
  * LightBulb makes performing the most common tasks even easier.
  * @version: 1.00
@@ -45,6 +46,10 @@
 
     }
 
+    /**
+     * @author Hasin Hayder
+     * Perform a Facebook login and prompt the authentication dialog
+     */
     $.fn.LightBulb.login = function() {
         alert("Calling Auth");
         FB.login(function(response) {
@@ -57,6 +62,10 @@
         }, {perms:opts.permissions});
     }
 
+    /**
+     * @author Hasin Hayder
+     * Log out the currently active user from Facebook
+     */
     $.fn.LightBulb.logout = function() {
         FB.logout(function(response) {
             if (response) {
@@ -66,14 +75,26 @@
         });
     }
 
+    /**
+     * @author Hasin Hayder
+     * Return the parameters which was passed to this plugin while initializing
+     */
     $.fn.LightBulb._getOptins = function() {
         return opts;
     }
 
+    /**
+     * @author Hasin Hayder
+     * Return the currently authenticated and logged in users access token and Facebook user id
+     */
     $.fn.LightBulb._getFacebookData = function() {
         return fbdata;
     }
 
+    /**
+     * @author Hasin Hayder
+     * Return true if there is currently any active user logged in with this application
+     */
     $.fn.LightBulb.isLoggedIn = function() {
         return fbdata.facebookUserId;
     }
