@@ -13,7 +13,8 @@
             login:"true",
             permissions:"",
             cookie:true,
-            xfbml:true
+            xfbml:true,
+            callback:function(){}
         };
         opts = $.extend(defaults, options);
         //if (!$("#fb-root")) $("<div/>").attr("id", "fb-root").appendTo("body");
@@ -31,6 +32,7 @@
                 var session = FB.getSession();
                 fbdata.fbtoken = session.access_token;
                 fbdata.facebookUserId = session.uid;
+                if(jQuery.isFunction(opts.callback)) opts.callback(fbdata);
             }
             else {
                 if (opts.login)
@@ -47,6 +49,7 @@
                 var session = FB.getSession();
                 fbdata.fbtoken = session.access_token;
                 fbdata.facebookUserId = session.uid;
+                if(jQuery.isFunction(opts.callback)) opts.callback(fbdata);
             }
         }, {perms:opts.permissions});
     }
