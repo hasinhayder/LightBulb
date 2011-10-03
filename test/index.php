@@ -21,10 +21,10 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $(document).LightBulb({
-        apikey:"224818724242243",
+        apikey:"288048857874241",
         permissions:'publish_stream'
     });
-    //$().jQFB.logout();
+    //$().LightBulb.logout();
 });
 </script>
 </body>
