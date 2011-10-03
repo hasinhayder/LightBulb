@@ -1,1 +1,17 @@
 Project LightBulb is a wrapper on top of Facebook's own JS-SDK to simply developing applications using Graph API. You dont need to worry about underlying objects, structures, workflows. Just use it and shout "Light Bulb" :)
+
+
+To Start testing, create a virtual host in your local machine "lb.appstep.net" and point it to 127.0.0.1
+
+<VirtualHost *:80>
+ServerName lb.appstep.net
+ServerAlias lb.appstep.net
+DocumentRoot /Applications/MAMP/htdocs/lb
+DirectoryIndex index.html index.htm index.php index.php4 index.php5
+<Directory /Applications/MAMP/htdocs/lb>
+Options -Indexes +IncludesNOEXEC +FollowSymLinks
+allow from all
+AllowOverride All
+</Directory>
+
+And point your browser to http://lb.appstep.net/test/
