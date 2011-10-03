@@ -29,7 +29,7 @@ $.fn.LightBulb.events = {
                 "privacy":privacy
             }
             FB.api("/"+user+"/events", 'post', eventData, function(response) {
-                if(jQuery.isFunction(opts.callback)) opts.callback(response);
+                if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
             throw "User must be logged in";
@@ -62,7 +62,7 @@ $.fn.LightBulb.events = {
                 "privacy":privacy
             }
             FB.api("/"+eventId+"", 'post', eventData, function(response) {
-                if(jQuery.isFunction(opts.callback)) opts.callback(response);
+                if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
             throw "User must be logged in";
@@ -84,7 +84,7 @@ $.fn.LightBulb.events = {
                 "name" : name
             }
             FB.api("/"+eventId+"", 'post', eventData, function(response) {
-                if(jQuery.isFunction(opts.callback)) opts.callback(response);
+                if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
             throw "User must be logged in";
@@ -106,7 +106,7 @@ $.fn.LightBulb.events = {
                 "location" : location
             }
             FB.api("/"+eventId+"", 'post', eventData, function(response) {
-                if(jQuery.isFunction(opts.callback)) opts.callback(response);
+                if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
             throw "User must be logged in";
@@ -130,7 +130,7 @@ $.fn.LightBulb.events = {
                 "end_time":endTime
             }
             FB.api("/"+eventId+"", 'post', eventData, function(response) {
-                if(jQuery.isFunction(opts.callback)) opts.callback(response);
+                if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
             throw "User must be logged in";
@@ -152,7 +152,7 @@ $.fn.LightBulb.events = {
                 "description" : description
             }
             FB.api("/"+eventId+"", 'post', eventData, function(response) {
-                if(jQuery.isFunction(opts.callback)) opts.callback(response);
+                if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
             throw "User must be logged in";
@@ -172,7 +172,7 @@ $.fn.LightBulb.events = {
                 "access_token": accessToken
             }
             FB.api("/"+eventId+"", 'delete', eventData, function(response) {
-                if(jQuery.isFunction(opts.callback)) opts.callback(response);
+                if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
             throw "User must be logged in";
@@ -194,7 +194,7 @@ $.fn.LightBulb.events = {
                 "users":friends.join(",")
             }
             FB.api("/"+eventId+"/invite", 'post', eventData, function(response) {
-                if(jQuery.isFunction(opts.callback)) opts.callback(response);
+                if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
             throw "User must be logged in";
@@ -216,7 +216,7 @@ $.fn.LightBulb.events = {
                 "access_token": accessTokens
             }
             FB.api("/"+eventId+"/"+rsvp+"/"+friend, 'post', eventData, function(response) {
-                if(jQuery.isFunction(opts.callback)) opts.callback(response);
+                if(jQuery.isFunction(callback)) callback.call(this, response);
             })
         }else{
             throw "User must be logged in";
