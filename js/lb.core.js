@@ -22,7 +22,7 @@
         FB.Event.subscribe('auth.sessionChange', function(response) {
             if (response.session) {
                 var session = FB.getSession();
-                fbdata.fbtoken = session.access_token;
+                fbdata.accessToken = session.access_token;
                 fbdata.facebookUserId = session.uid;
             }
         });
@@ -30,7 +30,7 @@
         FB.getLoginStatus(function(response) {
             if (response.session) {
                 var session = FB.getSession();
-                fbdata.fbtoken = session.access_token;
+                fbdata.accessToken = session.access_token;
                 fbdata.facebookUserId = session.uid;
                 if(jQuery.isFunction(opts.callback)) opts.callback(fbdata);
             }
@@ -47,7 +47,7 @@
         FB.login(function(response) {
             if (response.session) {
                 var session = FB.getSession();
-                fbdata.fbtoken = session.access_token;
+                fbdata.accessToken = session.access_token;
                 fbdata.facebookUserId = session.uid;
                 if(jQuery.isFunction(opts.callback)) opts.callback(fbdata);
             }
@@ -57,7 +57,7 @@
     $.fn.LightBulb.logout = function() {
         FB.logout(function(response) {
             if (response) {
-                fbdata.fbtoken = 0;
+                fbdata.accessToken = 0;
                 fbdata.facebookUserId = 0;
             }
         });

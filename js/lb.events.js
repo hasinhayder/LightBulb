@@ -4,8 +4,8 @@
 
 $.fn.LightBulb.events = {
     create: function(name,location, startTime, endTime, description){
-        var opts = $.fn.LightBulb._getOptins();
-        alert(opts.toSource());
+        var userData = $.fn.LightBulb._getFacebookData();
+        var accessToken = userData.accessToken;
     },
     update:function(eventId, name,location, startTime, endTime, description){
 
