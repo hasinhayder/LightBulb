@@ -4,7 +4,8 @@
 
 $.fn.LightBulb.events = {
     create: function(name,location, startTime, endTime, description){
-        
+        var opts = $.fn.LightBulb._getOptins();
+        alert(opts.toSource());
     },
     update:function(eventId, name,location, startTime, endTime, description){
 

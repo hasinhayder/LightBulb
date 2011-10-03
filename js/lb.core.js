@@ -59,4 +59,16 @@
             }
         });
     }
+
+    $.fn.LightBulb._getOptins = function() {
+        return opts;
+    }
+
+    $.fn.LightBulb._getFacebookData = function() {
+        return fbdata;
+    }
+
+    $.fn.LightBulb.isLoggedIn = function() {
+        return fbdata.facebookUserId;
+    }
 })(jQuery);

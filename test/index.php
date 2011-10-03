@@ -18,12 +18,15 @@
 <div id="fb-root"></div>
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
 <script type="text/javascript" src="../js/lb.core.js?<?php echo time();?>   "></script>
+<script type="text/javascript" src="../js/lb.events.js?<?php echo time();?>   "></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $(document).LightBulb({
         apikey:"288048857874241",
         permissions:'publish_stream'
     });
+
+    $().LightBulb.events.create();
     //$().LightBulb.logout();
 });
 </script>
