@@ -28,11 +28,11 @@ $.fn.LightBulb.events = {
                 "description":description,
                 "privacy":privacy
             }
-            FB.api("/"+user+"/events", 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
+            FB.api("/" + user + "/events", 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             })
-        }else{
-            throw LIGHTBULB_NO_TOKEN ;
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
         }
 
     },
@@ -61,11 +61,11 @@ $.fn.LightBulb.events = {
                 "description":description,
                 "privacy":privacy
             }
-            FB.api("/"+eventId+"", 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
+            FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             })
-        }else{
-            throw LIGHTBULB_NO_TOKEN ;
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
         }
     },
     /**
@@ -83,11 +83,11 @@ $.fn.LightBulb.events = {
                 "access_token": accessToken,
                 "name" : name
             }
-            FB.api("/"+eventId+"", 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
+            FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             })
-        }else{
-            throw LIGHTBULB_NO_TOKEN ;
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
         }
     },
     /**
@@ -105,11 +105,11 @@ $.fn.LightBulb.events = {
                 "access_token": accessToken,
                 "location" : location
             }
-            FB.api("/"+eventId+"", 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
+            FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             })
-        }else{
-            throw LIGHTBULB_NO_TOKEN ;
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
         }
     },
     /**
@@ -129,11 +129,11 @@ $.fn.LightBulb.events = {
                 "start_time" : startTime,
                 "end_time":endTime
             }
-            FB.api("/"+eventId+"", 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
+            FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             })
-        }else{
-            throw LIGHTBULB_NO_TOKEN ;
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
         }
     },
     /**
@@ -151,11 +151,11 @@ $.fn.LightBulb.events = {
                 "access_token": accessToken,
                 "description" : description
             }
-            FB.api("/"+eventId+"", 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
+            FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             })
-        }else{
-            throw LIGHTBULB_NO_TOKEN ;
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
         }
     },
     /**
@@ -171,11 +171,11 @@ $.fn.LightBulb.events = {
             var eventData = {
                 "access_token": accessToken
             }
-            FB.api("/"+eventId+"", 'delete', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
+            FB.api("/" + eventId + "", 'delete', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             })
-        }else{
-            throw LIGHTBULB_NO_TOKEN ;
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
         }
     },
     /**
@@ -193,11 +193,11 @@ $.fn.LightBulb.events = {
                 "access_token": accessToken,
                 "users":friends.join(",")
             }
-            FB.api("/"+eventId+"/invite", 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
+            FB.api("/" + eventId + "/invite", 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             })
-        }else{
-            throw LIGHTBULB_NO_TOKEN ;
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
         }
     },
     /**
@@ -215,11 +215,11 @@ $.fn.LightBulb.events = {
             var eventData = {
                 "access_token": accessTokens
             }
-            FB.api("/"+eventId+"/"+rsvp+"/"+friend, 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
+            FB.api("/" + eventId + "/" + rsvp + "/" + friend, 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             })
-        }else{
-            throw LIGHTBULB_NO_TOKEN ;
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
         }
     },
 
@@ -229,19 +229,20 @@ $.fn.LightBulb.events = {
      * @param eventId
      * @param callback
      */
-    get: function(eventId, callback){
+    get: function(eventId, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
                 "access_token": accessTokens
             }
-            FB.api("/"+eventId, 'get', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
-            })
-        }else{
-            //throw "User must be logged in";
+        } else {
+            eventData = {};
         }
+        FB.api("/" + eventId, 'get', eventData, function(response) {
+            if (jQuery.isFunction(callback)) callback.call(this, response);
+        })
+
     }
 
 

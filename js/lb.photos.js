@@ -3,14 +3,14 @@
  */
 
 $.fn.LightBulb.photos = {
-    createAlbum:function(user,creator, name,description, location,privacy, type){
+    createAlbum:function(user, creator, name, description, location, privacy, type) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userdata.facebookUserId;
-        if(creator=="") creator = userId;
-        if(!type) type="normal";
-        if(!privacy) privacy="everyone";
-        if(accessToken){
+        if (creator == "") creator = userId;
+        if (!type) type = "normal";
+        if (!privacy) privacy = "everyone";
+        if (accessToken) {
             //create the album
             var eventData = {
                 "access_token": accessToken,
@@ -21,43 +21,64 @@ $.fn.LightBulb.photos = {
                 "type":type,
                 "privacy":privacy
             }
-            FB.api("/"+user+"/albums", 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
+            FB.api("/" + user + "/albums", 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             })
         } else {
             throw LIGHTBULB_NO_TOKEN;
         }
     },
-    get:function(albumId){
+    get:function(albumId) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userdata.facebookUserId;
-        if(accessToken){
+        if (accessToken) {
             var eventData = {
-                "access_token": accessToken
+                "access_token": accessTokens
             }
-            FB.api("/"+albumId, 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
-            })
+        } else {
+            eventData = {};
         }
-        else{
-            throw LIGHTBULB_NO_TOKEN;
-        }
+        FB.api("/" + albumId, 'post', eventData, function(response) {
+            if (jQuery.isFunction(callback)) callback.call(this, response);
+        })
     },
-    getMeta:function(albumId){
+    /**
+     * Return Album without comments. This is particularly useful when you need to access only
+     * meta information of the
+     * @param albumId
+     */
+    getMeta:function(albumId) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userdata.facebookUserId;
-        if(accessToken){
+        if (accessToken) {
             var eventData = {
-                "access_token": accessToken
+                "access_token": accessTokens
             }
-            FB.api("/"+albumId, 'post', eventData, function(response) {
-                if(jQuery.isFunction(callback)) callback.call(this, response);
-            })
+        } else {
+            eventData = {};
         }
-        else{
-            throw LIGHTBULB_NO_TOKEN;
+        FB.api("/" + albumId + "?fields=id,name,from,description, location, link, cover_photo, privacy,count,type,created_time,updated_time", 'get', eventData, function(response) {
+            response.comments = {};
+            if (jQuery.isFunction(callback)) callback.call(this, response);
+        })
+
+    },
+    getPhotos:function(albumId) {
+        var userData = $.fn.LightBulb._getFacebookData();
+        var accessToken = userData.accessToken;
+        var userId = userdata.facebookUserId;
+        if (accessToken) {
+            var eventData = {
+                "access_token": accessTokens
+            }
+        } else {
+            eventData = {};
         }
+        FB.api("/" + albumId + "/photos?fields=id,from,picture,source,images,height,width,created_time", 'get', eventData, function(response) {
+            if (jQuery.isFunction(callback)) callback.call(this, response);
+        })
+
     }
 }
