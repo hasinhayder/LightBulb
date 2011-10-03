@@ -32,7 +32,7 @@
                 var session = FB.getSession();
                 fbdata.accessToken = session.access_token;
                 fbdata.facebookUserId = session.uid;
-                if(jQuery.isFunction(opts.callback)) opts.callback(fbdata);
+                if(jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
             }
             else {
                 if (opts.login)
@@ -49,7 +49,7 @@
                 var session = FB.getSession();
                 fbdata.accessToken = session.access_token;
                 fbdata.facebookUserId = session.uid;
-                if(jQuery.isFunction(opts.callback)) opts.callback(fbdata);
+                if(jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
             }
         }, {perms:opts.permissions});
     }
