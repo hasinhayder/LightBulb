@@ -1,6 +1,6 @@
 /**
- * jQFB is a wrapper on top of Facebook JS-SDK for Graph API
- * jQFB makes performing the most common tasks even easier.
+ * LightBulb is a wrapper on top of Facebook JS-SDK for Graph API
+ * LightBulb makes performing the most common tasks even easier.
  * @version: 1.00
  */
 (function($) {
@@ -41,7 +41,7 @@
     }
 
     $.fn.LightBulb.login = function() {
-        alert("Called");
+        alert("Calling Auth");
         FB.login(function(response) {
             if (response.session) {
                 var session = FB.getSession();
