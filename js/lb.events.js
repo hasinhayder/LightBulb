@@ -221,5 +221,28 @@ $.fn.LightBulb.events = {
         }else{
             throw "User must be logged in";
         }
+    },
+
+    /**
+     * @author: Hasin Hayder
+     * Return detail information about a Facebook event
+     * @param eventId
+     * @param callback
+     */
+    get: function(eventId, callback){
+        var userData = $.fn.LightBulb._getFacebookData();
+        var accessToken = userData.accessToken;
+        if (accessToken) {
+            var eventData = {
+                "access_token": accessTokens
+            }
+            FB.api("/"+eventId, 'get', eventData, function(response) {
+                if(jQuery.isFunction(callback)) callback.call(this, response);
+            })
+        }else{
+            //throw "User must be logged in";
+        }
     }
+
+
 };
