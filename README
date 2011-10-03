@@ -1,0 +1,1 @@
+Project LightBulb is a wrapper on top of Facebook's own JS-SDK to simply developing applications using Graph API. You dont need to worry about underlying objects, structures, workflows. Just use it and shout "Light Bulb" :)
