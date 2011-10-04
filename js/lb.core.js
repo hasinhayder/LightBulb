@@ -51,7 +51,7 @@
      * Perform a Facebook login and prompt the authentication dialog
      */
     $.fn.LightBulb.login = function() {
-        alert("Calling Auth");
+        //alert("Calling Auth");
         FB.login(function(response) {
             if (response.session) {
                 var session = FB.getSession();
