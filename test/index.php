@@ -25,6 +25,7 @@
 <h3>Albums</h3>
 
 <p>Ask for permissions <input type="button" value="Permission for Events" onclick="askForPermission('user_photos')"/>
+<p>Create an album <input type="button" value="Create Album" onclick="createAlbum()"/>
 </p>
 
 <div id="fb-root"></div>
