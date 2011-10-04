@@ -24,8 +24,9 @@
 
 <h3>Albums</h3>
 
-<p>Ask for permissions <input type="button" value="Permission for Events" onclick="askForPermission('user_photos')"/>
+<p>Ask for permissions <input type="button" value="Permission for Events" onclick="askForPermission('user_photos, publish_stream')"/>
 <p>Create an album <input type="button" value="Create Album" onclick="createAlbum()"/>
+<p>Edit Album <input type="button" value="Create Album" onclick="createAlbum()"/>
 </p>
 
 <div id="fb-root"></div>
@@ -33,7 +34,7 @@
 <script type="text/javascript" src="../js/lb.lang.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.core.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.events.js?<?php echo time();?>   "></script>
-<script type="text/javascript" src="../js/lb.photos.js?<?php echo time();?>   "></script>
+<script type="text/javascript" src="../js/lb.albums.js?<?php echo time();?>   "></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $(document).LightBulb({
@@ -68,7 +69,7 @@
     }
 
     function createAlbum() {
-        $().LightBulb.photos.createAlbum("me","","My Test Album 2","Some Album Description","Dhaka","","",function(resp){
+        $().LightBulb.albums.createAlbum("me","","My Test Album 2","Some Album Description","Dhaka","","",function(resp){
             console.log(resp);
             alert(resp.toSource());
         });

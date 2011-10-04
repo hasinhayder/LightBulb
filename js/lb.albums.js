@@ -6,14 +6,14 @@ var LIGHTBULB_ALBUM_PRIVACY_EVERYONE = "EVERYONE";
 var LIGHTBULB_ALBUM_PRIVACY_ALLFRIENDS = "ALL_FRIENDS";
 var LIGHTBULB_ALBUM_PRIVACY_NETWORKS_FRIENDS = "NETWORKS_FRIENDS";
 var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
-$.fn.LightBulb.photos = {
+$.fn.LightBulb.albums = {
     createAlbum:function(user, creator, name, description, location, privacy, type, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userData.facebookUserId;
         if (creator == "") creator = userId;
-        if (type =="") type = "normal";
-        if (privacy=="") privacyobj = {value:"EVERYONE"}
+        if (type == "") type = "normal";
+        if (privacy == "") privacyobj = {value:"EVERYONE"}
         else privacyobj = {value:privacy}
 
         if (accessToken) {
@@ -41,7 +41,7 @@ $.fn.LightBulb.photos = {
         var userId = userData.facebookUserId;
         if (accessToken) {
             var eventData = {
-                "access_token": accessTokens
+                "access_token": accessToken
             }
         } else {
             eventData = {};
@@ -61,7 +61,7 @@ $.fn.LightBulb.photos = {
         var userId = userData.facebookUserId;
         if (accessToken) {
             var eventData = {
-                "access_token": accessTokens
+                "access_token": accessToken
             }
         } else {
             eventData = {};
@@ -78,7 +78,7 @@ $.fn.LightBulb.photos = {
         var userId = userData.facebookUserId;
         if (accessToken) {
             var eventData = {
-                "access_token": accessTokens
+                "access_token": accessToken
             }
         } else {
             eventData = {};
@@ -87,5 +87,77 @@ $.fn.LightBulb.photos = {
             if (jQuery.isFunction(callback)) callback.call(this, response);
         });
 
+    },
+    likeAlbum: function(albumId) {
+        //you need to obtain publish_stream permission for this
+        var userData = $.fn.LightBulb._getFacebookData();
+        var accessToken = userData.accessToken;
+        var userId = userData.facebookUserId;
+        if (accessToken) {
+            var eventData = {
+                "access_token": accessToken
+            }
+            FB.api("/" + albumId + "/like", 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
+            });
+        } else {
+            throw LIGHTBULB_NO_TOKEN
+        }
+    },
+    unlikeAlbum: function(albumId) {
+        //you need to obtain publish_stream permission for this
+        var userData = $.fn.LightBulb._getFacebookData();
+        var accessToken = userData.accessToken;
+        var userId = userData.facebookUserId;
+        if (accessToken) {
+            var eventData = {
+                "access_token": accessToken
+            }
+            FB.api("/" + albumId + "/like", 'delete', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
+            });
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
+        }
+
+    },
+    addComment:function(albumId, message) {
+        //you need to obtain publish_stream permission for this
+        var userData = $.fn.LightBulb._getFacebookData();
+        var accessToken = userData.accessToken;
+        var userId = userData.facebookUserId;
+        if (accessToken) {
+            var eventData = {
+                "access_token": accessToken,
+                "message":message
+            }
+            FB.api("/" + albumId + "/comments", 'post', eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
+            });
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
+        }
+
+    },
+    addPhoto:function(albumId, source, message) {
+        //you need to obtain publish_stream permission for this
+        var userData = $.fn.LightBulb._getFacebookData();
+        var accessToken = userData.accessToken;
+        var userId = userData.facebookUserId;
+        if (accessToken) {
+            var eventData = {
+                "access_token": accessToken,
+                "source":source,
+                "message":message
+            }
+        } else {
+            eventData = {};
+        }
+        /*FB.api("/" + albumId + "/comments", 'post', eventData, function(response) {
+         if (jQuery.isFunction(callback)) callback.call(this, response);
+         });*/
+        $.post("/photos.php?what=addphoto", eventData, function(resp) {
+            if (jQuery.isFunction(callback)) callback.call(this, response);
+        })
     }
 }
