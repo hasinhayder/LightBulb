@@ -41,7 +41,7 @@ $.fn.LightBulb.photos = {
         }
         FB.api("/" + albumId, 'post', eventData, function(response) {
             if (jQuery.isFunction(callback)) callback.call(this, response);
-        })
+        });
     },
     /**
      * Return Album without comments. This is particularly useful when you need to access only
@@ -62,7 +62,7 @@ $.fn.LightBulb.photos = {
         FB.api("/" + albumId + "?fields=id,name,from,description, location, link, cover_photo, privacy,count,type,created_time,updated_time", 'get', eventData, function(response) {
             response.comments = {};
             if (jQuery.isFunction(callback)) callback.call(this, response);
-        })
+        });
 
     },
     getPhotos:function(albumId) {
@@ -78,7 +78,7 @@ $.fn.LightBulb.photos = {
         }
         FB.api("/" + albumId + "/photos?fields=id,from,picture,source,images,height,width,created_time", 'get', eventData, function(response) {
             if (jQuery.isFunction(callback)) callback.call(this, response);
-        })
+        });
 
     }
 }
