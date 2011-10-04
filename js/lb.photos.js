@@ -3,7 +3,7 @@
  */
 
 $.fn.LightBulb.photos = {
-    createAlbum:function(user, creator, name, description, location, privacy, type) {
+    createAlbum:function(user, creator, name, description, location, privacy, type, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userdata.facebookUserId;
@@ -28,7 +28,7 @@ $.fn.LightBulb.photos = {
             throw LIGHTBULB_NO_TOKEN;
         }
     },
-    get:function(albumId) {
+    get:function(albumId, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userdata.facebookUserId;
@@ -48,7 +48,7 @@ $.fn.LightBulb.photos = {
      * meta information of the
      * @param albumId
      */
-    getMeta:function(albumId) {
+    getMeta:function(albumId, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userdata.facebookUserId;
@@ -65,7 +65,7 @@ $.fn.LightBulb.photos = {
         });
 
     },
-    getPhotos:function(albumId) {
+    getPhotos:function(albumId, callback) {
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userdata.facebookUserId;

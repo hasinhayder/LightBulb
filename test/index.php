@@ -65,6 +65,12 @@
             alert(resp.toSource());
         })
     }
+
+    function createAlbum() {
+        $().LightBulb.photos.createAlbum("me","","My Test Album 2","Some Album Description","Dhaka","","",function(resp){
+            console.log(resp);
+        });
+    }
 </script>
 </body>
 </html>
