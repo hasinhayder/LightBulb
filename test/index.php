@@ -33,7 +33,7 @@
 <script type="text/javascript" src="../js/lb.lang.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.core.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.events.js?<?php echo time();?>   "></script>
-<script type="text/javascript" src="../js/lb.albums.js?<?php echo time();?>   "></script>
+<script type="text/javascript" src="../js/lb.photos.js?<?php echo time();?>   "></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $(document).LightBulb({
@@ -70,6 +70,7 @@
     function createAlbum() {
         $().LightBulb.photos.createAlbum("me","","My Test Album 2","Some Album Description","Dhaka","","",function(resp){
             console.log(resp);
+            alert(resp.toSource());
         });
     }
 </script>
