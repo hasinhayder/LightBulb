@@ -102,6 +102,15 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
+        /**
+         * Send application request to one friend
+         * @author Hasin Hayder
+         * @param friendId
+         * @param message
+         * @param title
+         * @param data
+         * @param callback
+         */
         makeRequestToOneFriend:function(friendId,message,title,data,callback){
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
@@ -121,6 +130,17 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
+        /**
+         * Send application request to multiple friends
+         * @author Hasin Hayder
+         * @param message
+         * @param title
+         * @param filters
+         * @param excludedFriends
+         * @param maxRecipients
+         * @param data
+         * @param callback
+         */
         makeRequestToMultipleFriends:function(message,title,filters,excludedFriends, maxRecipients,data, callback){
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
@@ -159,6 +179,38 @@
                     method: 'friends',
                     id: friendId,
                     redirect_url: redirectUrl
+                }
+                FB.ui(data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            }else{
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        },
+        /**
+         * Prompt a send message dialog to currently logged in user
+         * @author Hasin Hayder
+         * @param friendId
+         * @param link
+         * @param message
+         * @param picture
+         * @param title
+         * @param redirectUrl
+         * @param callback
+         */
+        sendMessage:function(friendId, link, message, picture, title, redirectUrl, callback){
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            var userId = userData.facebookUserId;
+            if (accessToken) {
+                var data = {
+                    method: 'send',
+                    to: friendId,
+                    link:link,
+                    description:message,
+                    picture:picture,
+                    redirect_url: redirectUrl,
+                    name:title
                 }
                 FB.ui(data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
