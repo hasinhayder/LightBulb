@@ -19,7 +19,7 @@
          * @param actionLink Link of the action, optional
          * @param callback
          */
-        publishFeed:function(to, from, name, caption, link, description, picture, video, actionName, actionLink, callback) {
+        publishFeed:function(to, from, name, caption, link, description, picture, video, redirectUrl,actionName, actionLink, callback) {
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
@@ -31,7 +31,7 @@
                     action = [{
                         name:actionName,
                         link:actionLink
-                    }]
+                    }];
                 }
                 var data = {
                     method: 'feed',
@@ -43,7 +43,8 @@
                     to:to,
                     from:from,
                     source: video,
-                    actions:action
+                    actions:action,
+                    redirect_uri:redirectUrl
                 }
                 FB.ui(data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
@@ -80,7 +81,7 @@
                     action = [{
                         name:actionName,
                         link:actionLink
-                    }]
+                    }];
                 }
                 var data = {
                     method: 'feed',
@@ -100,6 +101,7 @@
             }else{
                 throw LIGHTBULB_NO_TOKEN;
             }
-        }
+        },
+        
     }
 })();

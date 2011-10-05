@@ -107,7 +107,7 @@
         
        
         $.LightBulb.group.createStatusesPosts(groupId,message,function(resp){
-            alert(resp);
+            alert(resp.toSource());
         });
        
         
