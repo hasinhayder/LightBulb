@@ -13,7 +13,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
 (function() {
     LightBulb.group = {
         
-        createStatusesPosts : function (groupId,message,callback)
+        postStatus : function (groupId,message,callback)
         {
             var userData = $.LightBulb._getFacebookData();
             var accessToken = userData.accessToken;

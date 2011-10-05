@@ -106,7 +106,7 @@
         var message ='Hello ! Everyone how are you ?.';
         
        
-        $.LightBulb.group.createStatusesPosts(groupId,message,function(resp){
+        $.LightBulb.group.postStatus(groupId,message,function(resp){
             alert(resp.toSource());
         });
        
