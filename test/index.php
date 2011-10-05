@@ -45,6 +45,7 @@
 <script type="text/javascript" src="../js/lb.events.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.albums.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.dialogs.js?<?php echo time();?>   "></script>
+<script type="text/javascript" src="../js/lb.group.js?<?php echo time();?>   "></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $.LightBulb({
@@ -106,7 +107,7 @@
         
        
         $.LightBulb.group.createStatusesPosts(groupId,message,function(resp){
-            alert(resp.id);
+            alert(resp);
         });
        
         
