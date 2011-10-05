@@ -29,12 +29,18 @@
 <p>Upload a picture <input type="button" value="Upload Picture" onclick="uploadPicture()"/>
 </p>
 
+<h3>Dialogs</h3>
+<p>Ask for permissions <input type="button" value="Permission for Feed" onclick="askForPermission('user_photos, publish_stream')"/>
+<p>Publish a feed <input type="button" value="Publish Feed" onclick="publishFeed()"/></p>
+
+
 <div id="fb-root"></div>
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
 <script type="text/javascript" src="../js/lb.lang.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.core.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.events.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.albums.js?<?php echo time();?>   "></script>
+<script type="text/javascript" src="../js/lb.dialogs.js?<?php echo time();?>   "></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $.LightBulb({
@@ -81,6 +87,12 @@
         $.LightBulb.albums.addPhoto(albumId,"http://2.s3.envato.com/files/6413565/0.__large_preview.png","Hellow World",function(resp){
             alert(resp);
         });
+    }
+
+    function publishFeed(){
+        $.LightBulb.dialogs.publishFeed("","","My feed","My Caption","http://google.com","My Description","","","","",function(resp){
+            alert(resp.toSource());
+        })
     }
 </script>
 </body>
