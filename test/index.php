@@ -33,6 +33,10 @@
 <p>Ask for permissions <input type="button" value="Permission for Feed" onclick="askForPermission('user_photos, publish_stream')"/>
 <p>Publish a feed <input type="button" value="Publish Feed" onclick="publishFeed()"/></p>
 
+<h3>Group</h3>
+<p>Ask for permissions <input type="button" value="Permission for Group" onclick="askForPermission('user_groups,friends_groups,publish_stream')"/>
+<p>Post a Message In a group <input type="button" value="Post Message" onclick="postMessageinGroup();"/>
+
 
 <div id="fb-root"></div>
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
@@ -93,6 +97,19 @@
         $.LightBulb.dialogs.publishFeed("","","My feed","My Caption","http://google.com","My Description","","","","",function(resp){
             alert(resp.toSource());
         })
+    }
+     function postMessageinGroup()
+    {
+        
+        var groupId = '132233363545259';
+        var message ='Hello ! Everyone how are you ?.';
+        
+       
+        $.LightBulb.group.createStatusesPosts(groupId,message,function(resp){
+            alert(resp.id);
+        });
+       
+        
     }
 </script>
 </body>
