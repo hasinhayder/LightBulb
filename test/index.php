@@ -33,6 +33,8 @@
 <p>Ask for permissions <input type="button" value="Permission for Feed" onclick="askForPermission('user_photos, publish_stream')"/>
 <p>Publish a feed <input type="button" value="Publish Feed" onclick="publishFeed()"/></p>
 <p>Prompt a friend dialog <input type="button" value="Prompt Friend Dialog" onclick="makeFriend()"/></p>
+<p>Send app request to a friend <input type="button" value="Send Request" onclick="sendRequestToOneFriend()"/></p>
+<p>Send app request to many friends <input type="button" value="Send Requests" onclick="sendRequestToMultipleFriends()"/></p>
 
 <h3>Group</h3>
 <p>Ask for permissions <input type="button" value="Permission for Group" onclick="askForPermission('user_groups,friends_groups,publish_stream')"/>
@@ -112,6 +114,23 @@
     function makeFriend(){
         var friendId = "734961309";
         $.LightBulb.dialogs.makeFriend(friendId,"");
+    }
+
+    function sendRequestToOneFriend(){
+        var friendId = "682334189";
+        var message = "Hey, come and join us";
+        var title = "Come Join Us"
+        $.LightBulb.dialogs.makeRequestToOneFriend(friendId,message,title,"",function(resp){
+            alert(resp.toSource());
+        });
+    }
+    function sendRequestToMultipleFriends(){
+        var friendId = "682334189";
+        var message = "Hey, come and join us";
+        var title = "Come Join Us"
+        $.LightBulb.dialogs.makeRequestToMultipleFriends(message,title,"","",20,"",function(resp){
+            alert(resp.toSource());
+        });
     }
 </script>
 </body>

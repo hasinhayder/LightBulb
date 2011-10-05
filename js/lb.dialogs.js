@@ -102,7 +102,48 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        makePayment:function(){},
+        makeRequestToOneFriend:function(friendId,message,title,data,callback){
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            var userId = userData.facebookUserId;
+            if (accessToken) {
+                var data = {
+                    method: 'apprequests',
+                    to: friendId,
+                    message:message,
+                    title:title,
+                    data:data
+                }
+                FB.ui(data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            }else{
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        },
+        makeRequestToMultipleFriends:function(message,title,filters,excludedFriends, maxRecipients,data, callback){
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            var userId = userData.facebookUserId;
+            if (accessToken) {
+                if(maxRecipients=="") maxRecipients=20;
+                var data = {
+                    method: 'apprequests',
+                    filters: filters,
+                    exclude_ids:excludedFriends,
+                    message:message,
+                    title:title,
+                    max_recipients:maxRecipients,
+                    data:data
+                }
+                FB.ui(data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            }else{
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        },
+
         /**
          * Prompt a make friend dialog
          * @author Hasin Hayder
