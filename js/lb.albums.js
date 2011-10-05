@@ -13,7 +13,7 @@ $.LightBulb.albums = {
         var userId = userData.facebookUserId;
         if (creator == "") creator = userId;
         if (type == "") type = "normal";
-        if (privacy == "") privacyobj = {value:"EVERYONE"}
+        if (privacy == "") privacyobj = {value:LIGHTBULB_ALBUM_PRIVACY_EVERYONE}
         else privacyobj = {value:privacy}
 
         if (accessToken) {
