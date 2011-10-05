@@ -38,6 +38,41 @@ $.fn.LightBulb.events = {
 
     },
     /**
+     * @author Hasin Hayder
+     * @param user Facebook User Id, either string "me" or a particular Facebook User/Page Id
+     * @param name Name of the event
+     * @param location Location of the event
+     * @param startTime Start time of the event in either unix timestamp or in m/d/Y H:i format
+     * @param endTime End time of the event in either unix timestamp or in m/d/Y H:i format
+     * @param description Destiption of the event
+     * @param privacy Privacy of the event
+     * @param picture http url/source of the picture
+     * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
+     */
+    createWithPicture: function(user, name, location, startTime, endTime, description, privacy, picture, callback) {
+        var userData = $.fn.LightBulb._getFacebookData();
+        var accessToken = userData.accessToken;
+        if (accessToken) {
+            var eventData = {
+                "access_token": accessToken,
+                "start_time" : startTime,
+                "end_time":endTime,
+                "location" : location,
+                "name" : name,
+                "description":description,
+                "privacy":privacy,
+                "picture":picture,
+                "user":user
+            }
+            $.post("/helpers/events.php?what=createevent", eventData, function(response) {
+                if (jQuery.isFunction(callback)) callback.call(this, response);
+            })
+        } else {
+            throw LIGHTBULB_NO_TOKEN;
+        }
+
+    },
+    /**
      * Update all parameters of a Facebook Event
      * @author Hasin Hayder
      * @param eventId

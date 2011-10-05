@@ -157,7 +157,7 @@ $.fn.LightBulb.albums = {
         /*FB.api("/" + albumId + "/comments", 'post', eventData, function(response) {
          if (jQuery.isFunction(callback)) callback.call(this, response);
          });*/
-        $.post("/helpers/photos.php?what=addphoto", eventData, function(response) {
+        $.post("/helpers/photos.php?what=addphototoalbum", eventData, function(response) {
             if (jQuery.isFunction(callback)) callback.call(this, response);
         })
     }
