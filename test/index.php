@@ -26,7 +26,7 @@
 
 <p>Ask for permissions <input type="button" value="Permission for Events" onclick="askForPermission('user_photos, publish_stream')"/>
 <p>Create an album <input type="button" value="Create Album" onclick="createAlbum()"/>
-<p>Edit Album <input type="button" value="Create Album" onclick="createAlbum()"/>
+<p>Upload a picture <input type="button" value="Upload Picture" onclick="uploadPicture()"/>
 </p>
 
 <div id="fb-root"></div>
@@ -72,6 +72,14 @@
         $().LightBulb.albums.createAlbum("me","","My Test Album 2","Some Album Description","Dhaka","","",function(resp){
             console.log(resp);
             alert(resp.toSource());
+        });
+    }
+
+
+    function uploadPicture(){
+        var albumId = 224262897633185;
+        $().LightBulb.albums.addPhoto(albumId,"http://2.s3.envato.com/files/6413565/0.__large_preview.png","Hellow World",function(resp){
+            alert(resp);
         });
     }
 </script>

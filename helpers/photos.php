@@ -4,8 +4,9 @@
  * Helper library to help uploading Pictures to Facebook Albums and User Profiles
  * cache folder must have write access
  */
+error_reporting(E_ALL);
 include_once("key.php");
-include_once("fb-sdk/facebook.php");
+include_once("facebook-sdk/facebook.php");
 
 $fb = new Facebook(array(
                         'appId' => FACEBOOOK_APP_ID,

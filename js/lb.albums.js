@@ -139,7 +139,7 @@ $.fn.LightBulb.albums = {
         }
 
     },
-    addPhoto:function(albumId, source, message) {
+    addPhoto:function(albumId, source, message,callback) {
         //you need to obtain publish_stream permission for this
         var userData = $.fn.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
@@ -148,7 +148,8 @@ $.fn.LightBulb.albums = {
             var eventData = {
                 "access_token": accessToken,
                 "source":source,
-                "message":message
+                "message":message,
+                "album_id":albumId
             }
         } else {
             eventData = {};
@@ -156,7 +157,7 @@ $.fn.LightBulb.albums = {
         /*FB.api("/" + albumId + "/comments", 'post', eventData, function(response) {
          if (jQuery.isFunction(callback)) callback.call(this, response);
          });*/
-        $.post("/photos.php?what=addphoto", eventData, function(resp) {
+        $.post("/helpers/photos.php?what=addphoto", eventData, function(response) {
             if (jQuery.isFunction(callback)) callback.call(this, response);
         })
     }
