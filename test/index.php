@@ -37,7 +37,7 @@
 <script type="text/javascript" src="../js/lb.albums.js?<?php echo time();?>   "></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $(document).LightBulb({
+        $.LightBulb({
             apikey:"288048857874241",
             permissions:'publish_stream, create_event',
             callback:function(data) {
@@ -52,7 +52,7 @@
     });
 
     function askForPermission(perms) {
-        $(document).LightBulb({
+        $.LightBulb({
             apikey:"288048857874241",
             permissions:perms,
             forcedPermission:true,
