@@ -6,9 +6,9 @@ var LIGHTBULB_ALBUM_PRIVACY_EVERYONE = "EVERYONE";
 var LIGHTBULB_ALBUM_PRIVACY_ALLFRIENDS = "ALL_FRIENDS";
 var LIGHTBULB_ALBUM_PRIVACY_NETWORKS_FRIENDS = "NETWORKS_FRIENDS";
 var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
-$.fn.LightBulb.albums = {
+$.LightBulb.albums = {
     createAlbum:function(user, creator, name, description, location, privacy, type, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userData.facebookUserId;
         if (creator == "") creator = userId;
@@ -36,7 +36,7 @@ $.fn.LightBulb.albums = {
         }
     },
     get:function(albumId, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userData.facebookUserId;
         if (accessToken) {
@@ -56,7 +56,7 @@ $.fn.LightBulb.albums = {
      * @param albumId
      */
     getMeta:function(albumId, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userData.facebookUserId;
         if (accessToken) {
@@ -73,7 +73,7 @@ $.fn.LightBulb.albums = {
 
     },
     getPhotos:function(albumId, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userData.facebookUserId;
         if (accessToken) {
@@ -90,7 +90,7 @@ $.fn.LightBulb.albums = {
     },
     likeAlbum: function(albumId) {
         //you need to obtain publish_stream permission for this
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userData.facebookUserId;
         if (accessToken) {
@@ -106,7 +106,7 @@ $.fn.LightBulb.albums = {
     },
     unlikeAlbum: function(albumId) {
         //you need to obtain publish_stream permission for this
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userData.facebookUserId;
         if (accessToken) {
@@ -123,7 +123,7 @@ $.fn.LightBulb.albums = {
     },
     addComment:function(albumId, message) {
         //you need to obtain publish_stream permission for this
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userData.facebookUserId;
         if (accessToken) {
@@ -141,7 +141,7 @@ $.fn.LightBulb.albums = {
     },
     addPhoto:function(albumId, source, message,callback) {
         //you need to obtain publish_stream permission for this
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         var userId = userData.facebookUserId;
         if (accessToken) {

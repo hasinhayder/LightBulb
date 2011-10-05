@@ -7,7 +7,7 @@
 (function($) {
     var opts;
     var fbdata = {};
-    $.fn.LightBulb = function(options) {
+    $.LightBulb = function(options) {
         var defaults = {
             apikey:"",
             secret:"",
@@ -31,7 +31,7 @@
 
         FB.getLoginStatus(function(response) {
             if(opts.forcedPermission)
-                $.fn.LightBulb.login();
+                $.LightBulb.login();
             else if (response.session) {
                 var session = FB.getSession();
                 fbdata.accessToken = session.access_token;
@@ -40,7 +40,7 @@
             }
             else {
                 if (opts.login)
-                    $.fn.LightBulb.login();
+                    $.LightBulb.login();
             }
         });
 
@@ -50,7 +50,7 @@
      * @author Hasin Hayder
      * Perform a Facebook login and prompt the authentication dialog
      */
-    $.fn.LightBulb.login = function() {
+    $.LightBulb.login = function() {
         //alert("Calling Auth");
         FB.login(function(response) {
             if (response.session) {
@@ -66,7 +66,7 @@
      * @author Hasin Hayder
      * Log out the currently active user from Facebook
      */
-    $.fn.LightBulb.logout = function() {
+    $.LightBulb.logout = function() {
         FB.logout(function(response) {
             if (response) {
                 fbdata.accessToken = 0;
@@ -79,7 +79,7 @@
      * @author Hasin Hayder
      * Return the parameters which was passed to this plugin while initializing
      */
-    $.fn.LightBulb._getOptins = function() {
+    $.LightBulb._getOptins = function() {
         return opts;
     }
 
@@ -87,7 +87,7 @@
      * @author Hasin Hayder
      * Return the currently authenticated and logged in users access token and Facebook user id
      */
-    $.fn.LightBulb._getFacebookData = function() {
+    $.LightBulb._getFacebookData = function() {
         return fbdata;
     }
 
@@ -95,7 +95,7 @@
      * @author Hasin Hayder
      * Return true if there is currently any active user logged in with this application
      */
-    $.fn.LightBulb.isLoggedIn = function() {
+    $.LightBulb.isLoggedIn = function() {
         return fbdata.facebookUserId;
     }
 })(jQuery);

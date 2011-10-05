@@ -3,7 +3,7 @@
  * Tonu was here
  */
 
-$.fn.LightBulb.events = {
+$.LightBulb.events = {
 
     /**
      * @author Hasin Hayder
@@ -17,7 +17,7 @@ $.fn.LightBulb.events = {
      * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
     create: function(user, name, location, startTime, endTime, description, privacy, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
@@ -50,7 +50,7 @@ $.fn.LightBulb.events = {
      * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
     createWithPicture: function(user, name, location, startTime, endTime, description, privacy, picture, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
@@ -85,7 +85,7 @@ $.fn.LightBulb.events = {
      * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
     update:function(eventId, name, location, startTime, endTime, description, privacy, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
@@ -112,7 +112,7 @@ $.fn.LightBulb.events = {
      * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
     updateName:function(eventId, name, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
@@ -134,7 +134,7 @@ $.fn.LightBulb.events = {
      * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
     updateLocation:function(eventId, location, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
@@ -157,7 +157,7 @@ $.fn.LightBulb.events = {
      * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
     updateTime:function(eventId, startTime, endTime, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
@@ -180,7 +180,7 @@ $.fn.LightBulb.events = {
      * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
     updateDescription:function(eventId, description, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
@@ -201,7 +201,7 @@ $.fn.LightBulb.events = {
      * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
     del:function(eventId, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
@@ -222,7 +222,7 @@ $.fn.LightBulb.events = {
      * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
     invite:function(eventId, friends, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
@@ -245,7 +245,7 @@ $.fn.LightBulb.events = {
      * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
      */
     updateRSVP:function(eventId, friend, rsvp, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {
@@ -266,7 +266,7 @@ $.fn.LightBulb.events = {
      * @param callback
      */
     get: function(eventId, callback) {
-        var userData = $.fn.LightBulb._getFacebookData();
+        var userData = $.LightBulb._getFacebookData();
         var accessToken = userData.accessToken;
         if (accessToken) {
             var eventData = {

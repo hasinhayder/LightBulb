@@ -41,14 +41,14 @@
             apikey:"288048857874241",
             permissions:'publish_stream, create_event',
             callback:function(data) {
-                /*$().LightBulb.events.create("me","LightBulb Event","Dhaka","12 Nov, 2011","13 Nov, 2011","Some freaking event information","OPEN",function(resp){
+                /*$.LightBulb.events.create("me","LightBulb Event","Dhaka","12 Nov, 2011","13 Nov, 2011","Some freaking event information","OPEN",function(resp){
                     alert(resp.toSource());
                 })*/
             }
         });
 
 
-        //$().LightBulb.logout();
+        //$.LightBulb.logout();
     });
 
     function askForPermission(perms) {
@@ -63,13 +63,13 @@
     }
 
     function createEvent() {
-        $().LightBulb.events.create("me", "LightBulb Event", "Dhaka", "12 Nov, 2011", "13 Nov, 2011", "Some freaking event information", "OPEN", function(resp) {
+        $.LightBulb.events.create("me", "LightBulb Event", "Dhaka", "12 Nov, 2011", "13 Nov, 2011", "Some freaking event information", "OPEN", function(resp) {
             alert(resp.toSource());
         })
     }
 
     function createAlbum() {
-        $().LightBulb.albums.createAlbum("me","","My Test Album 2","Some Album Description","Dhaka","","",function(resp){
+        $.LightBulb.albums.createAlbum("me","","My Test Album 2","Some Album Description","Dhaka","","",function(resp){
             console.log(resp);
             alert(resp.toSource());
         });
@@ -78,7 +78,7 @@
 
     function uploadPicture(){
         var albumId = 224262897633185;
-        $().LightBulb.albums.addPhoto(albumId,"http://2.s3.envato.com/files/6413565/0.__large_preview.png","Hellow World",function(resp){
+        $.LightBulb.albums.addPhoto(albumId,"http://2.s3.envato.com/files/6413565/0.__large_preview.png","Hellow World",function(resp){
             alert(resp);
         });
     }
