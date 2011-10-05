@@ -102,6 +102,30 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
+        makePayment:function(){},
+        /**
+         * Prompt a make friend dialog
+         * @author Hasin Hayder
+         * @param friendId Facebook user id of username
+         * @param redirectUrl Url to redirect after user clicks a button
+         */
+        makeFriend:function(friendId,redirectUrl){
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            var userId = userData.facebookUserId;
+            if (accessToken) {
+                var data = {
+                    method: 'friends',
+                    id: friendId,
+                    redirect_url: redirectUrl
+                }
+                FB.ui(data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            }else{
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        }
         
     }
 })();

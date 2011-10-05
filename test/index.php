@@ -32,6 +32,7 @@
 <h3>Dialogs</h3>
 <p>Ask for permissions <input type="button" value="Permission for Feed" onclick="askForPermission('user_photos, publish_stream')"/>
 <p>Publish a feed <input type="button" value="Publish Feed" onclick="publishFeed()"/></p>
+<p>Prompt a friend dialog <input type="button" value="Prompt Friend Dialog" onclick="makeFriend()"/></p>
 
 <h3>Group</h3>
 <p>Ask for permissions <input type="button" value="Permission for Group" onclick="askForPermission('user_groups,friends_groups,publish_stream')"/>
@@ -101,16 +102,16 @@
     }
      function postMessageinGroup()
     {
-        
         var groupId = '132233363545259';
         var message ='Hello ! Everyone how are you ?.';
-        
-       
         $.LightBulb.group.postStatus(groupId,message,function(resp){
             alert(resp.toSource());
         });
-       
-        
+    }
+
+    function makeFriend(){
+        var friendId = "734961309";
+        $.LightBulb.dialogs.makeFriend(friendId,"");
     }
 </script>
 </body>
