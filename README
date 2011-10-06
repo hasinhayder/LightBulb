@@ -16,3 +16,17 @@ AllowOverride All
 </VirtualHost>
 
 And point your browser to http://lb.appstep.net/test/
+
+Documentation instruction for collaborators:
+--------------------------------------------
+a) proper documentation must be added at the top of each wrapper library
+b) each method created must be well documented with following attributes:
+        i.   author
+        ii.  param (if any)
+        iii. return (if any)
+        iv.  description
+        v.   callback description (if applicable)
+        vi.  modified by (if required)
+c) put documented note before each code block inside a method if possible or if essential
+d) camelCase namming style is a must for lib name, method, variale name, param name etc.
+e) lib file name should in lb.libname.js format
