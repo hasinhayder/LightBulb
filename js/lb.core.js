@@ -111,6 +111,22 @@ var LightBulb;
         return (func && typeof(func) == 'function');
     };
 
+    /**
+    * writes to console if console is enabled
+    *
+    * @author M A Hossain Tonu
+    *
+    **/
+    LightBulb.log = function() {
+        var msg = arguments;
+        if (window.console && window.console.log) {
+                window.console.log(msg);
+        }
+        else if (window.opera && window.opera.postError) {
+                window.opera.postError(msg);
+        }
+    };
+
     // Associate this LightBulb as jquery extension
     $.LightBulb = LightBulb;
 })();
