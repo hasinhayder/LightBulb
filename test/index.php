@@ -20,7 +20,7 @@
 <p>Ask for permissions <input type="button" value="Permission for Events" onclick="askForPermission('create_event')"/>
 </p>
 
-<p>Create an event <input type="button" value="Create Event" onclick="createEvent()"/></p>
+<p>Create an event <input type="button" value="Create Event" onclick="createEvent2()"/></p>
 
 <h3>Albums</h3>
 
@@ -77,7 +77,8 @@
         });
     }
 
-    function createEvent() {
+    function createEvent2() {
+        alert("Me");
         $.LightBulb.events.create("me", "LightBulb Event", "Dhaka", "12 Nov, 2011", "13 Nov, 2011", "Some freaking event information", "OPEN", function(resp) {
             alert(resp.toSource());
         })

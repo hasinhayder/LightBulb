@@ -19,6 +19,8 @@
         create: function(user, name, location, startTime, endTime, description, privacy, callback) {
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
+            var userId = userData.facebookUserId;
+            alert(accessToken);
             if (accessToken) {
                 var eventData = {
                     "access_token": accessToken,
@@ -27,7 +29,12 @@
                     "location" : location,
                     "name" : name,
                     "description":description,
-                    "privacy":privacy
+                    "privacy":privacy,
+                    "owner": {
+                        id:userId,
+                        name:""
+                    }
+
                 }
                 FB.api("/" + user + "/events", 'post', eventData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
