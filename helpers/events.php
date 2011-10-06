@@ -4,7 +4,7 @@
  * This is a helper scipt which will help uploading profile picture to events wall
  */
 include_once("key.php");
-include_once("facebook-sdk/facebook.php");
+include_once("fb-sdk/facebook.php");
 
 $fb = new Facebook(array(
                         'appId' => FACEBOOOK_APP_ID,
