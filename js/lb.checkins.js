@@ -70,6 +70,34 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
 
+        },
+        /**
+         * return boolean if writing successfull
+         */
+        like: function(checkinId, callback) {
+            //need to obtain publish_stream permission
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            var userId = userData.facebookUserId;
+
+            if (accessToken) {
+                var eventData = {
+                    "access_token": accessToken
+                }
+                FB.api("/" + checkinId + "/likes", 'post', eventData, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                })
+            } else {
+                throw LIGHTBULB_NO_TOKEN;
+            }
+
+        },
+        /**
+         * return boolean if writing successfull
+         */
+        unlike: function(checkinId, callback) {
+            //need to obtain publish_stream permission
+            LightBulb.checkins.like(checkinId, callback);
         }
     };
 })();
