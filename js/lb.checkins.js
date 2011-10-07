@@ -2,6 +2,9 @@
  * Helper functions to manage Facebook checkins using LightBulb.
  */
 (function() {
+    //publish_checkins
+
+    
     LightBulb.checkins = {
 
         /**
@@ -18,6 +21,7 @@
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
         create: function(user, placeId, latitude, longitude, userIdsCSV, message, link, picture, callback) {
+            //need to obtain publish_checkins permission
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
@@ -34,6 +38,26 @@
                     "message" : message,
                     "link":link,
                     "picture":picture
+
+                }
+                FB.api("/" + user + "/checkins", 'post', eventData, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                })
+            } else {
+                throw LIGHTBULB_NO_TOKEN;
+            }
+
+        },
+        comment: function(user, message, callback) {
+            //need to obtain publish_checkins permission
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            var userId = userData.facebookUserId;
+
+            if (accessToken) {
+                var eventData = {
+                    "access_token": accessToken,
+                    "place" : message
 
                 }
                 FB.api("/" + user + "/checkins", 'post', eventData, function(response) {
