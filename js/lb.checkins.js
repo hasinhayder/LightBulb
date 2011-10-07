@@ -48,8 +48,11 @@
             }
 
         },
-        comment: function(user, message, callback) {
-            //need to obtain publish_checkins permission
+        /**
+         * return with new comment id if writing successfull
+         */
+        comment: function(checkinId, message, callback) {
+            //need to obtain publish_stream permission
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
@@ -60,7 +63,7 @@
                     "place" : message
 
                 }
-                FB.api("/" + user + "/checkins", 'post', eventData, function(response) {
+                FB.api("/" + checkinId + "/comments", 'post', eventData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })
             } else {
