@@ -27,7 +27,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        setPageToken:function(token){
+        setToken:function(token){
             LightBulb.pages.currentToken = token;
             return true;
         },
