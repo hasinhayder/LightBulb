@@ -286,7 +286,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
-                    "access_token": LightBulb.pages.currentToken,
+                    "access_token": LightBulb.pages.currentToken
                 };
                 if(position) data.position = position;
                 if(customName) data.custom_name = customName;
@@ -303,7 +303,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
-                    "access_token": LightBulb.pages.currentToken,
+                    "access_token": LightBulb.pages.currentToken
                 }
                 FB.api("/" + pageId + "/tabs/"+tabId, 'delete', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
@@ -317,7 +317,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
-                    "access_token": LightBulb.pages.currentToken,
+                    "access_token": LightBulb.pages.currentToken
                 }
                 FB.api("/" + pageId + "/admins/"+userId, 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
@@ -331,7 +331,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
-                    "access_token": LightBulb.pages.currentToken,
+                    "access_token": LightBulb.pages.currentToken
                 }
                 FB.api("/" + pageId + "/blocked/"+userId, 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
