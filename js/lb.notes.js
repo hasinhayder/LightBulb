@@ -27,6 +27,7 @@
             LightBulb.notes.currentToken = "";
         },
         getToken:function(){
+            var userData = LightBulb._getFacebookData();
             var token = userData.accessToken;
             if(LightBulb.notes.currentToken) token=LightBulb.notes.currentToken;
             return token;
