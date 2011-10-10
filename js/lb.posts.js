@@ -87,7 +87,7 @@
                 var data = {
                     access_token: accessTokens
                 }
-                FB.api("/" + postId + "/like", 'delete', data, function(response) {
+                FB.api("/" + postId + "/likes", 'delete', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })
             } else {
