@@ -236,6 +236,22 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
+        isFriend: function(user, friendsId, callback){
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            if (accessToken) {
+                var data = {
+                    "access_token": accessToken
+                }
+                var reqUrl = "/"+user+'/friends/'+friendsId;
+
+                FB.api(reqUrl, 'get', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        },
         getGames: function(user, callback){
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
@@ -316,6 +332,7 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
+        //the pages that a User has liked
         getLikes: function(user, callback){
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
@@ -324,6 +341,23 @@
                     "access_token": accessToken
                 }
                 var reqUrl = "/"+user+'/likes';
+
+                FB.api(reqUrl, 'get', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        },
+        //if a User likes a specific page
+        isLiked: function(user, pageId, callback){
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            if (accessToken) {
+                var data = {
+                    "access_token": accessToken
+                }
+                var reqUrl = "/"+user+'/likes/'+pageId;
 
                 FB.api(reqUrl, 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
