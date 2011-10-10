@@ -1,0 +1,1 @@
+coffee -o test/spec -c test/spec_src/*.coffee

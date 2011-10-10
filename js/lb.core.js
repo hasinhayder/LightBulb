@@ -8,12 +8,13 @@ var LightBulb;
 (function() {
     var opts;
     var fbdata = {};
+    var deferred = $.Deferred();
     
     LightBulb = function(options) {
         var defaults = {
             apikey:"",
             secret:"",
-            login:"true",
+            login: "true",
             permissions:"",
             cookie:true,
             xfbml:true,
@@ -29,24 +30,27 @@ var LightBulb;
                 var session = FB.getSession();
                 fbdata.accessToken = session.access_token;
                 fbdata.facebookUserId = session.uid;
+                deferred.resolve(session, fbdata);
             }
         });
 
         FB.getLoginStatus(function(response) {
-            if (opts.forcedPermission)
+            if (opts.forcedPermission) {
                 LightBulb.login();
-            else if (response.session) {
+
+            } else if (response.session) {
                 var session = FB.getSession();
                 fbdata.accessToken = session.access_token;
                 fbdata.facebookUserId = session.uid;
                 if (jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
-            }
-            else {
-                if (opts.login)
+                deferred.resolve(session, fbdata);
+
+            } else {
+                if (opts.login) {
                     LightBulb.login();
+                }
             }
         });
-
     };
 
     /**
@@ -55,14 +59,16 @@ var LightBulb;
      */
     LightBulb.login = function() {
         //alert("Calling Auth");
-        FB.login(function(response) {
-                    if (response.session) {
-                        var session = FB.getSession();
-                        fbdata.accessToken = session.access_token;
-                        fbdata.facebookUserId = session.uid;
-                        if (jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
-                    }
-                }, {perms:opts.permissions});
+      FB.login(function(response) {
+        if (response.session) {
+          var session = FB.getSession();
+          fbdata.accessToken = session.access_token;
+          fbdata.facebookUserId = session.uid;
+          if (jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
+        }
+      }, {perms:opts.permissions});
+
+      return deferred.promise();
     };
 
     /**
@@ -70,19 +76,24 @@ var LightBulb;
      * Log out the currently active user from Facebook
      */
     LightBulb.logout = function() {
+        var dfr = $.Deferred();
         FB.logout(function(response) {
+            LightBulb.log(response);
+
             if (response) {
                 fbdata.accessToken = 0;
                 fbdata.facebookUserId = 0;
+                dfr.resolve(response);
             }
         });
+      return dfr.promise();
     };
 
     /**
      * @author Hasin Hayder
      * Return the parameters which was passed to this plugin while initializing
      */
-    LightBulb._getOptins = function() {
+    LightBulb._getOptions = function() {
         return opts;
     };
 
@@ -99,7 +110,8 @@ var LightBulb;
      * Return true if there is currently any active user logged in with this application
      */
     LightBulb.isLoggedIn = function() {
-        return fbdata.facebookUserId;
+        LightBulb.log('is Logged in - ' + fbdata.facebookUserId);
+        return fbdata.facebookUserId && fbdata.facebookUserId > 0;
     };
 
     /**
@@ -127,6 +139,8 @@ var LightBulb;
         }
     };
 
-    // Associate this LightBulb as jquery extension
-    $.LightBulb = LightBulb;
+    if (typeof($) != 'undefined') {
+      // Associate this LightBulb as jquery extension
+      $.LightBulb = LightBulb;
+    }
 })();

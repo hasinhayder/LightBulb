@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Jsmine test runner</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+
+  <!-- Light Bulb core -->
+  <script type="text/javascript" src="../js/lb.core.js"></script>
+  <script type="text/javascript" src="../js/lb.events.js"></script>
+
+  <!-- Jasmine core -->
+  <script type="text/javascript" src="jasmine-1.1.0/jasmine.js"></script>
+  <script type="text/javascript" src="jasmine-1.1.0/jasmine-html.js"></script>
+  <link rel="stylesheet" type="text/css" href="jasmine-1.1.0/jasmine.css"/>
+
+</head>
+<body>
+
+<!-- Our spec -->
+<script type="text/javascript" src="spec/spec_util.js"></script>
+<script type="text/javascript" src="spec/core_spec.js"></script>
+<!--script type="text/javascript" src="spec/checkins_spec.js"></script-->
+<script type="text/javascript">
+  $(function() {
+    var jasmineEnv = jasmine.getEnv();
+    jasmineEnv.updateInterval = 1000;
+
+    var trivialReporter = new jasmine.TrivialReporter();
+
+    jasmineEnv.addReporter(trivialReporter);
+
+    jasmineEnv.specFilter = function(spec) {
+      return trivialReporter.specFilter(spec);
+    };
+
+    var currentWindowOnload = window.onload;
+
+    window.onload = function() {
+      if (currentWindowOnload) {
+        currentWindowOnload();
+      }
+      execJasmine();
+    };
+
+    function execJasmine() {
+      jasmineEnv.execute();
+    }
+
+  });
+</script>
+
+<div id="fb-root"></div>
+
+</body>
+</html>

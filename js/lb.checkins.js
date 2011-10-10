@@ -21,6 +21,8 @@
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
         create: function(user, placeId, latitude, longitude, userIdsCSV, message, link, picture, callback) {
+            var dfr = $.Deferred();
+
             //need to obtain publish_checkins permission
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
@@ -41,12 +43,18 @@
 
                 }
                 FB.api("/" + user + "/checkins", 'post', eventData, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    dfr.resolve(response);
+
+                    if (jQuery.isFunction(callback)) {
+                      callback.call(this, response);
+                    }
                 })
             } else {
+                dfr.reject(LIGHTBULB_NO_TOKEN);
                 throw LIGHTBULB_NO_TOKEN;
             }
 
+          return dfr.promise();
         },
         /**
          * return with new comment id if writing successfull
