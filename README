@@ -30,3 +30,7 @@ b) each method created must be well documented with following attributes:
 c) put documented note before each code block inside a method if possible or if essential
 d) camelCase namming style is a must for lib name, method, variale name, param name etc.
 e) lib file name should in lb.libname.js format
+
+== How to run Jasmine test.
+
+Before browsing +test/TestRunner.html+ you should set your own facebook app id and secret (with your url) in spec/spec_util.js.
