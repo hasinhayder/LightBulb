@@ -16,20 +16,14 @@ $fb = new Facebook(array(
 
 $token = $_POST['access_token'];
 if ($token) $fb->setAccessToken($token);
-$task = $_GET['what'];
-switch ($task) {
-    case "addphototoalbum":
-        $source = $_POST['source'];
-        $message = $_POST['message'];
-        $albumId = $_POST['album_id'];
-        $filehash = md5($token . time() . $source);
-        file_put_contents("./cache/{$filehash}", file_get_contents($source));
-        $data = array("access_token" => $token, "message" => $message, "source" => "@./cache/{$filehash}");
-        $result = $fb->api("/{$albumId}/photos", "post", $data);
-        $facebookPhotoId = $result['id'];
-        echo $facebookPhotoId;
-        break;
-    default:
-        break;
-}
+$source = $_POST['source'];
+$message = $_POST['message'];
+$sourceId = $_POST['source_id'];
+$filehash = md5($token . time() . $source);
+file_put_contents("./cache/{$filehash}", file_get_contents($source));
+$data = array("access_token" => $token, "message" => $message, "source" => "@./cache/{$filehash}");
+$result = $fb->api("/{$sourceId}/photos", "post", $data);
+$facebookPhotoId = $result['id'];
+echo $facebookPhotoId;
+
 ?>
