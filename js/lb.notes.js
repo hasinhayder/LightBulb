@@ -89,6 +89,60 @@
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
-        }
+        },
+
+        getComments:function(noteId,callback){
+            var accessToken = LightBulb.notes.getToken();
+            if (accessToken) {
+                var data = {
+                    "access_token": accessToken
+                }
+                FB.api("/" + noteId +"/comments", 'get', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        },
+        likeNote:function(noteId,callback){
+            var accessToken = LightBulb.notes.getToken();
+            if (accessToken) {
+                var data = {
+                    "access_token": accessToken
+                }
+                FB.api("/" + noteId +"/likes" , 'post', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        },
+        dislikeNote:function(noteId,callback){
+            var accessToken = LightBulb.notes.getToken();
+            if (accessToken) {
+                var data = {
+                    "access_token": accessToken
+                }
+                FB.api("/" + noteId +"/likes" , 'delete', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        },
+        createComment:function(noteId,message,callback){
+            var accessToken = LightBulb.notes.getToken();
+            if (accessToken) {
+                var data = {
+                    "access_token": accessToken,
+                    message:message
+                }
+                FB.api("/" + noteId +"/comments" , 'post', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        },
     }
 })();
