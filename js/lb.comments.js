@@ -86,7 +86,7 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        unlike:function(commentId, callback){
+        dislike:function(commentId, callback){
             var accessToken = LightBulb.comments.getToken();
             if (accessToken) {
                 var data = {
