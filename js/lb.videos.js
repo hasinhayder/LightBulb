@@ -5,6 +5,7 @@
  */
 (function() {
     LightBulb.videos = {
+        currentToken:"",
         /**
          * User must set the page token to retrieve videos from page. User lb.pages.js to get Page specific tokens
          *
