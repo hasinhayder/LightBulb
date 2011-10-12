@@ -15,6 +15,9 @@
 
 </head>
 <body>
+<h3>FQL Test</h3>
+<input type="button" onclick="runFQL()" value="Run FQL"/>
+
 <h3>Events</h3>
 
 <p>Ask for permissions <input type="button" value="Permission for Events" onclick="askForPermission('create_event')"/>
@@ -24,21 +27,35 @@
 
 <h3>Albums</h3>
 
-<p>Ask for permissions <input type="button" value="Permission for Events" onclick="askForPermission('user_photos, publish_stream')"/>
+<p>Ask for permissions <input type="button" value="Permission for Events"
+                              onclick="askForPermission('user_photos, publish_stream')"/>
+
 <p>Create an album <input type="button" value="Create Album" onclick="createAlbum()"/>
+
 <p>Upload a picture <input type="button" value="Upload Picture" onclick="uploadPicture()"/>
 </p>
 
 <h3>Dialogs</h3>
-<p>Ask for permissions <input type="button" value="Permission for Feed" onclick="askForPermission('user_photos, publish_stream')"/>
+
+<p>Ask for permissions <input type="button" value="Permission for Feed"
+                              onclick="askForPermission('user_photos, publish_stream')"/>
+
 <p>Publish a feed <input type="button" value="Publish Feed" onclick="publishFeed()"/></p>
+
 <p>Prompt a friend dialog <input type="button" value="Prompt Friend Dialog" onclick="makeFriend()"/></p>
+
 <p>Send app request to a friend <input type="button" value="Send Request" onclick="sendRequestToOneFriend()"/></p>
-<p>Send app request to many friends <input type="button" value="Send Requests" onclick="sendRequestToMultipleFriends()"/></p>
+
+<p>Send app request to many friends <input type="button" value="Send Requests"
+                                           onclick="sendRequestToMultipleFriends()"/></p>
+
 <p>Send Message <input type="button" value="Send Message" onclick="sendMessage()"/></p>
 
 <h3>Group</h3>
-<p>Ask for permissions <input type="button" value="Permission for Group" onclick="askForPermission('user_groups,friends_groups,publish_stream')"/>
+
+<p>Ask for permissions <input type="button" value="Permission for Group"
+                              onclick="askForPermission('user_groups,friends_groups,publish_stream')"/>
+
 <p>Post a Message In a group <input type="button" value="Post Message" onclick="postMessageinGroup();"/>
 
 
@@ -85,63 +102,74 @@
     }
 
     function createAlbum() {
-        $.LightBulb.albums.createAlbum("me","","My Test Album 2","Some Album Description","Dhaka","","",function(resp){
+        $.LightBulb.albums.createAlbum("me", "", "My Test Album 2", "Some Album Description", "Dhaka", "", "", function(resp) {
             console.log(resp);
             alert(resp.toSource());
         });
     }
 
 
-    function uploadPicture(){
+    function uploadPicture() {
         var albumId = 224262897633185;
-        $.LightBulb.albums.addPhoto(albumId,"http://2.s3.envato.com/files/6413565/0.__large_preview.png","Hellow World",function(resp){
+        $.LightBulb.albums.addPhoto(albumId, "http://2.s3.envato.com/files/6413565/0.__large_preview.png", "Hellow World", function(resp) {
             alert(resp);
         });
     }
 
-    function publishFeed(){
-        $.LightBulb.dialogs.publishFeed("","","My feed","My Caption","http://google.com","My Description","","","","",function(resp){
+    function publishFeed() {
+        $.LightBulb.dialogs.publishFeed("", "", "My feed", "My Caption", "http://google.com", "My Description", "", "", "", "", function(resp) {
             alert(resp.toSource());
         })
     }
-     function postMessageinGroup()
-    {
+    function postMessageinGroup() {
         var groupId = '132233363545259';
-        var message ='Hello ! Everyone how are you ?.';
-        $.LightBulb.group.postStatus(groupId,message,function(resp){
+        var message = 'Hello ! Everyone how are you ?.';
+        $.LightBulb.group.postStatus(groupId, message, function(resp) {
             alert(resp.toSource());
         });
     }
 
-    function makeFriend(){
+    function makeFriend() {
         var friendId = "734961309";
-        $.LightBulb.dialogs.makeFriend(friendId,"");
+        $.LightBulb.dialogs.makeFriend(friendId, "");
     }
 
-    function sendRequestToOneFriend(){
+    function sendRequestToOneFriend() {
         var friendId = "682334189";
         var message = "Hey, come and join us";
         var title = "Come Join Us"
-        $.LightBulb.dialogs.makeRequestToOneFriend(friendId,message,title,"",function(resp){
+        $.LightBulb.dialogs.makeRequestToOneFriend(friendId, message, title, "", function(resp) {
             alert(resp.toSource());
         });
     }
-    function sendRequestToMultipleFriends(){
+    function sendRequestToMultipleFriends() {
         var message = "Hey, come and join us";
         var title = "Come Join Us"
-        $.LightBulb.dialogs.makeRequestToMultipleFriends(message,title,"","",20,"",function(resp){
+        $.LightBulb.dialogs.makeRequestToMultipleFriends(message, title, "", "", 20, "", function(resp) {
             alert(resp.toSource());
         });
     }
-    function sendMessage(){
+    function sendMessage() {
         var friendId = "682334189";
         var message = "Hey, come and join us";
         var title = "Come Join Us";
         var link = "http://google.com";
         var picture = "http://2.s3.envato.com/files/6413565/0.__large_preview.png";
-        $.LightBulb.dialogs.sendMessage(friendId,link,message,picture,title,"",function(resp){
+        $.LightBulb.dialogs.sendMessage(friendId, link, message, picture, title, "", function(resp) {
             alert(resp.toSource());
         })
+    }
+
+    function runFQL() {
+        var fql = "select name, page_id, pic_square, page_url from page where page_id in( select page_id from page_admin where uid='503274632') and type!='APPLICATION' order by name";
+        FB.api({
+                    method:"fql.query",
+                    query:fql
+                },
+                function(data) {
+                    alert(data.toSource());
+                }
+        );
     }
 </script>
 </body>
