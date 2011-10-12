@@ -161,7 +161,7 @@
     }
 
     function runFQL() {
-        var fql = "select name, page_id, pic_square, page_url from page where page_id in( select page_id from page_admin where uid='503274632') and type!='APPLICATION' order by name";
+        var fql = "select name, page_id, pic_square, page_url from page where page_id in( select page_id from page_admin where uid=me()) and type!='APPLICATION' order by name ";
         FB.api({
                     method:"fql.query",
                     query:fql

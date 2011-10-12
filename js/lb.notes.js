@@ -19,7 +19,7 @@
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/notes", 'get', data, function(response) {
+                FB.api("/" + userId + "/notes", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
