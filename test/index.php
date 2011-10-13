@@ -38,8 +38,11 @@
 <p>Send Message <input type="button" value="Send Message" onclick="sendMessage()"/></p>
 
 <h3>Group</h3>
+<div id="groups"> </div>
 <p>Ask for permissions <input type="button" value="Permission for Group" onclick="askForPermission('user_groups,friends_groups,publish_stream')"/>
-<p>Post a Message In a group <input type="button" value="Post Message" onclick="postMessageinGroup();"/>
+<p>Get Group Information <input type="button" value="Get Group Info" onclick="getGroup();"/>
+<p>Create Statuses In a group <input type="button" value="Post Message" onclick="postMessageinGroup();"/>
+<p>Posts Link In a group <input type="button" value="Share Link" onclick="postLinkinGroup();"/>    
 
 
 <div id="fb-root"></div>
@@ -49,7 +52,7 @@
 <script type="text/javascript" src="../js/lb.events.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.albums.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.dialogs.js?<?php echo time();?>   "></script>
-<script type="text/javascript" src="../js/lb.group.js?<?php echo time();?>   "></script>
+<script type="text/javascript" src="../js/lb.groups.js?<?php echo time();?>   "></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $.LightBulb({
@@ -108,7 +111,7 @@
     {
         var groupId = '132233363545259';
         var message ='Hello ! Everyone how are you ?.';
-        $.LightBulb.group.postStatus(groupId,message,function(resp){
+        $.LightBulb.groups.createStatuses(groupId,message,function(resp){
             alert(resp.toSource());
         });
     }
@@ -142,6 +145,46 @@
         $.LightBulb.dialogs.sendMessage(friendId,link,message,picture,title,"",function(resp){
             alert(resp.toSource());
         })
+    }
+    
+     function postLinkinGroup()
+    {
+        var groupId = '132233363545259';
+         var link    ='http://www.bdnews24.com/details.php?cid=2&id=208713&hb=1';
+        var message ='Rich Govt !';
+        
+        $.LightBulb.groups.createLinks(groupId,link,message,function(resp){
+            alert(resp.toSource());
+            
+            
+            
+        });
+    }
+    
+    function getGroup()
+    {
+         var groupId = '132233363545259';
+         
+        
+        $.LightBulb.groups.getGroup(groupId,function(resp){
+            //alert(resp.toSource());
+            var html ='';
+            $.each(resp, function(index, value) { 
+                //console.log(index + ': ' + value); 
+                
+                if (index=='owner')
+                    {
+                      value = value.name;  
+                    }
+                
+                html +=index + ': ' + value + '<br />';
+            });
+            
+            $('#groups').html(html);
+            
+            
+        });
+        
     }
 </script>
 </body>
