@@ -135,7 +135,7 @@
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
-                }
+                };
                 FB.api("/" + linkId + "/likes", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });

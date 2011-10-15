@@ -28,6 +28,6 @@
             var token = userData.accessToken;
             if (LightBulb.statuses.currentToken) token = LightBulb.statuses.currentToken;
             return token;
-        },
+        }
     }
 })();
