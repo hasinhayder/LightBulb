@@ -21,6 +21,7 @@
                 }
                 var data = {
                     method: 'feed',
+                    access_token:accessToken,
                     link: link,
                     picture: picture,
                     name: name,
