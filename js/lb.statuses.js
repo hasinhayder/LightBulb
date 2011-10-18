@@ -1,7 +1,7 @@
 /**
  * Manage statuses in Facebook.
  */
-(function(){
+(function() {
     LightBulb.statuses = {
         currentToken:"",
         /**
@@ -28,6 +28,66 @@
             var token = userData.accessToken;
             if (LightBulb.statuses.currentToken) token = LightBulb.statuses.currentToken;
             return token;
+        },
+        getStatuses:function(userId, message,callback) {
+            var accessToken = LightBulb.statuse.getToken();
+            if (accessToken) {
+                var data = {
+                    "access_token": accessToken
+                }
+                var reqUrl = "/" + userId + '/statuses';
+
+                FB.api(reqUrl, 'get', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+
+            }
+        },
+        getStatus:function(statusId,callback) {
+            var accessToken = LightBulb.statuse.getToken();
+            if (accessToken) {
+                var data = {
+                    "access_token": accessToken
+                }
+                var reqUrl = "/" + statusId;
+
+                FB.api(reqUrl, 'get', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+
+            }
+        },
+        getComments:function(statusId,callback) {
+            var accessToken = LightBulb.statuse.getToken();
+            if (accessToken) {
+                var data = {
+                    "access_token": accessToken
+                }
+                var reqUrl = "/" + statusId + '/comments';
+
+                FB.api(reqUrl, 'get', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+
+            }
+        },
+        getLikes:function(statusId,callback) {
+            var accessToken = LightBulb.statuse.getToken();
+            if (accessToken) {
+                var data = {
+                    "access_token": accessToken
+                }
+                var reqUrl = "/" + statusId + '/likes';
+
+                FB.api(reqUrl, 'get', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+
+            }
         }
-    }
-})();
+    }})
+    ();
