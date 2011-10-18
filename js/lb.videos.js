@@ -44,66 +44,66 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getVideo:function(videoId) {
+        getVideo:function(statusId) {
             var accessToken = LightBulb.videos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + videoId + "", 'get', data, function(response) {
+                FB.api("/" + statusId + "", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getComments:function(videoId, callback) {
+        getComments:function(statusId, callback) {
             var accessToken = LightBulb.videos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + videoId + "/comments", 'get', data, function(response) {
+                FB.api("/" + statusId + "/comments", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        likeNote:function(videoId, callback) {
-            var accessToken = LightBulb.videos.getToken();
+        likeVideo:function(statusId, callback) {
+            var accessToken = LightBulb.statuses.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + videoId + "/likes", 'post', data, function(response) {
+                FB.api("/" + statusId + "/likes", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        dislikeNote:function(videoId, callback) {
-            var accessToken = LightBulb.videos.getToken();
+        dislikeVideo:function(statusId, callback) {
+            var accessToken = LightBulb.statuses.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + videoId + "/likes", 'delete', data, function(response) {
+                FB.api("/" + statusId + "/likes", 'delete', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        createComment:function(videoId, message, callback) {
-            var accessToken = LightBulb.videos.getToken();
+        createComment:function(statusId, message, callback) {
+            var accessToken = LightBulb.statuses.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken,
                     message:message
                 }
-                FB.api("/" + videoId + "/comments", 'post', data, function(response) {
+                FB.api("/" + statusId + "/comments", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
