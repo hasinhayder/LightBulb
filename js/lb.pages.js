@@ -252,6 +252,21 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
+        isTabInstalled:function(pageId,applicationId,callback){
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            if (LightBulb.pages.currentToken) {
+                var data = {
+                    "access_token": LightBulb.pages.currentToken,
+                    "app_id":applicationId
+                }
+                FB.api("/" + pageId + "/tabs/"+applicationId, 'get', data, function(response) {
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+                throw LIGHTBULB_NO_PAGE_TOKEN;
+            }
+        },
         getTabs:function(pageId,callback){
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
