@@ -1,5 +1,6 @@
 /**
  * Wrapper to manage all questions
+ * @author Hasin Hayder
  */
 (function(){
     LightBulb.questions = {
