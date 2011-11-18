@@ -123,6 +123,25 @@ var LightBulb;
         return (func && typeof(func) == 'function');
     };
 
+    LightBulb.get = function(openGraphPath, data, callback){
+        //alert(openGraphPath);
+        FB.api(openGraphPath, 'get', data, function(response) {
+            if (jQuery.isFunction(callback)) callback.call(this, response);
+        });
+    };
+
+    LightBulb.post = function(openGraphPath, data, callback){
+        FB.api(openGraphPath, 'post', data, function(response) {
+            if (jQuery.isFunction(callback)) callback.call(this, response);
+        });
+    };
+
+    LightBulb.delete = function(openGraphPath, data, callback){
+        FB.api(openGraphPath, 'delete', data, function(response) {
+            if (jQuery.isFunction(callback)) callback.call(this, response);
+        });
+    }
+
     /**
     * writes to console if console is enabled
     *
