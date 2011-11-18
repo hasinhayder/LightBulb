@@ -245,12 +245,43 @@
             }
         },
         getSubscriptions:function(appId,callback){
+            //http://developers.facebook.com/docs/reference/api/realtime/
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
                     "access_token": appAccessToken
                 }
                 LightBulb.get("/" + appId + "/subscriptions",data,callback);
+            } else {
+                throw LIGHTBULB_NO_APP_TOKEN;
+            }
+        },
+        createSubscription:function(appId,object, fields,callbackUrl,verifyToken,callback){
+            //http://developers.facebook.com/docs/reference/api/realtime/
+            /*Object to monitor - `user`, `permissions`, or `page`. If no object is specified all subscriptions are deleted. */
+            var appAccessToken = LightBulb.applications.getAppToken();
+            if (appAccessToken) {
+                var data = {
+                    "access_token": appAccessToken,
+                    object:object,
+                    fields:fields,
+                    callback_url:callbackUrl,
+                    verify_token:verifyToken
+                }
+                LightBulb.post("/" + appId + "/subscriptions",data,callback);
+            } else {
+                throw LIGHTBULB_NO_APP_TOKEN;
+            }
+        },
+        deleteSubscription:function(appId,object,callback){
+            /*Object to monitor - `user`, `permissions`, or `page`. If no object is specified all subscriptions are deleted. */
+            var appAccessToken = LightBulb.applications.getAppToken();
+            if (appAccessToken) {
+                var data = {
+                    "access_token": appAccessToken,
+                    object:object
+                }
+                LightBulb.delete("/" + appId + "/translations",data,callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
