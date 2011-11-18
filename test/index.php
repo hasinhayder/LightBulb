@@ -59,6 +59,13 @@
 <p>Create Statuses In a group <input type="button" value="Post Message" onclick="postMessageinGroup();"/>
 <p>Posts Link In a group <input type="button" value="Share Link" onclick="postLinkinGroup();"/>    
 
+<h3>apps</h3>
+
+<div id="apps"> </div>
+<p>Ask for permissions <input type="button" value="Permission for App" onclick="askForPermission('manage_pages')"/>
+<p>Get Test Accounts <input type="button" value="Get Test Accounts" onclick="getAccounts();"/>
+<p>Get App Access Token <input type="button" value="Get App Access Token" onclick="getAppToken();"/>
+
 
 <div id="fb-root"></div>
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
@@ -68,6 +75,8 @@
 <script type="text/javascript" src="../js/lb.albums.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.dialogs.js?<?php echo time();?>   "></script>
 <script type="text/javascript" src="../js/lb.groups.js?<?php echo time();?>   "></script>
+<script type="text/javascript" src="../js/lb.applications.js?<?php echo time();?>   "></script>
+<script type="text/javascript" src="../js/lb.users.js?<?php echo time();?>   "></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $.LightBulb({
@@ -200,6 +209,23 @@
             
         });
 
+    }
+
+    function getAccounts(){
+        //LightBulb.applications.setToken("289943114353309|qfX1F3K3ECZm9YLozkc4u1AIMdE");
+        /*LightBulb.users.getAccounts("me",function(resp){
+            console.log(resp);
+        })*/
+        LightBulb.applications.getTestAccounts("289943114353309",function(resp){
+            alert(console.log(resp));
+        })
+    }
+
+    function getAppToken(){
+        LightBulb.applications.fetchAppToken('289943114353309','223e83d880ab2c1d46f4e4365c15f3da',function(resp){
+            LightBulb.applications.setAppToken(resp);
+            //LightBulb.applications.getR
+        })
     }
 </script>
 </body>
