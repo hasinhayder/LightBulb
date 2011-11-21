@@ -14,9 +14,10 @@
                    "access_token": accessToken
                   
                 }
-                FB.api("/" + groupId, 'get', data, function(response) {
+                LightBulb.get("/" + groupId + "",data,callback);
+                /*FB.api("/" + groupId, 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -30,9 +31,10 @@
                     //access_token: accessTokens,
                     message:message
                 }
-                FB.api("/" + groupId + "/feed", 'post', data, function(response) {
+                LightBulb.post("/" + groupId + "/feed",data,callback);
+                /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -49,9 +51,10 @@
                     link:link,
                     message:message
                 }
-                FB.api("/" + groupId + "/feed", 'post', data, function(response) {
+                LightBulb.post("/" + groupId + "/feed",data,callback);
+                /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                });
+                });*/
              
             }else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -82,9 +85,10 @@
                     privacy:privacy
                     
                 }
-                FB.api("/" + groupId + "/feed", 'post', data, function(response) {
+                LightBulb.post("/" + groupId + "/feed",data,callback);
+                /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
