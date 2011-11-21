@@ -95,9 +95,10 @@
                     source: video,
                     actions:action
                 }
-                FB.api("/" + to + "/feed", 'post', data, function(response) {
+                LightBulb.post("/" + to + "/feed",data,callback);
+                /*FB.api("/" + to + "/feed", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             }else{
                 throw LIGHTBULB_NO_TOKEN;
             }

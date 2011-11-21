@@ -36,9 +36,10 @@
                     }
 
                 }
-                FB.api("/" + user + "/events", 'post', eventData, function(response) {
+                LightBulb.post("/" + user + "/events",eventData,callback);
+                /*FB.api("/" + user + "/events", 'post', eventData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -104,9 +105,10 @@
                     "description":description,
                     "privacy":privacy
                 }
-                FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                LightBulb.post("/" + eventId + "",eventData,callback);
+                /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -126,9 +128,10 @@
                     "access_token": accessToken,
                     "name" : name
                 }
-                FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                LightBulb.post("/" + eventId + "", eventData,callback);
+                /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -148,9 +151,10 @@
                     "access_token": accessToken,
                     "location" : location
                 }
-                FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                LightBulb.post("/" + eventId + "",eventData,callback);
+                /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
                     if (LightBulb.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -172,9 +176,10 @@
                     "start_time" : startTime,
                     "end_time":endTime
                 }
-                FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                LightBulb.post("/" + eventId + "", eventData,callback);
+                /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -194,9 +199,10 @@
                     "access_token": accessToken,
                     "description" : description
                 }
-                FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                LightBulb.post("/" + eventId + "", eventData,callback);
+                /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -214,9 +220,10 @@
                 var eventData = {
                     "access_token": accessToken
                 }
-                FB.api("/" + eventId + "", 'delete', eventData, function(response) {
+                LightBulb.delete("/" + eventId + "",eventData,callback);
+                /*FB.api("/" + eventId + "", 'delete', eventData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -236,9 +243,10 @@
                     "access_token": accessToken,
                     "users":friends.join(",")
                 }
-                FB.api("/" + eventId + "/invite", 'post', eventData, function(response) {
+                LightBulb.post("/" + eventId + "/invite",eventData,callback);
+                /*FB.api("/" + eventId + "/invite", 'post', eventData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -258,9 +266,10 @@
                 var eventData = {
                     "access_token": accessTokens
                 }
-                FB.api("/" + eventId + "/" + rsvp + "/" + friend, 'post', eventData, function(response) {
+                LightBulb.post("/" + eventId + "/" + rsvp + "/" + friend, eventData,callback);
+                /*FB.api("/" + eventId + "/" + rsvp + "/" + friend, 'post', eventData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
-                })
+                })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -282,9 +291,10 @@
             } else {
                 eventData = {};
             }
-            FB.api("/" + eventId, 'get', eventData, function(response) {
+            LightBulb.get("/" + eventId + "",eventData,callback);
+            /*FB.api("/" + eventId, 'get', eventData, function(response) {
                 if (jQuery.isFunction(callback)) callback.call(this, response);
-            })
+            })*/
 
         }
     };
