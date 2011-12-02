@@ -1,0 +1,51 @@
+<!Doctype html>
+<head>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<h3>Demonstrating Core Functionality of LightBulb</h3>
+
+<p>
+    Login with Facebook <input type="button" value="Login Facebook" onclick="LightBulb.Test.login();" /><br/>
+    <script src="http://pastebin.com/embed_js.php?i=tsKQbc6E"></script>
+    Ask for new permission <input type="button" value="Ask New Permission Facebook" onclick="LightBulb.Test.askPermission();"  /><br/>
+    <script src="http://pastebin.com/embed_js.php?i=4vwkM7bk"></script>
+    Logout <input type="button" value="Ask New Permission Facebook" onclick="LightBulb.Test.askPermission();"  /><br/>
+    <script src="http://pastebin.com/embed_js.php?i=Mw7DdQTi"></script>
+</p>
+
+<div id="fb-root"></div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript" src="/js/lb.core.js"></script>
+<script type="text/javascript">
+    LightBulb.Test = {
+        login:function() {
+            $.LightBulb({
+                apikey:"288048857874241",
+                permissions:'publish_stream, email',
+                callback:function(data) {
+                    var userDetails = LightBulb._getFacebookData();
+                    alert("Logged in. Your Facebook user id is "+userDetails.facebookUserId);
+                }
+            });
+        },
+        askPermission:function() {
+            $.LightBulb({
+                apikey:"288048857874241",
+                permissions:"manage_pages",
+                forcedPermission:true,
+                callback:function(data) {
+                }
+            });
+        },
+        logout:function(){
+            LightBulb.logout();
+        }
+    }
+</script>
+
+</body>
+</html>

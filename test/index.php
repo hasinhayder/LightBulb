@@ -99,7 +99,6 @@
             permissions:perms,
             forcedPermission:true,
             callback:function(data) {
-
             }
         });
     }
