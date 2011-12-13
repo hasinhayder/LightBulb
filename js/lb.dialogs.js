@@ -33,6 +33,7 @@
                         link:actionLink
                     }];
                 }
+                if(!redirectUrl) redirectUrl="http://facebook.com";
                 var data = {
                     method: 'feed',
                     link: link,
