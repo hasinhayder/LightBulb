@@ -25,11 +25,11 @@ var LightBulb;
         opts = $.extend(defaults, options);
         //if (!$("#fb-root")) $("<div/>").attr("id", "fb-root").appendTo("body");
         FB.init({appId: opts.apikey, status: true, cookie: opts.cookie, xfbml: opts.xfbml});
-        FB.Event.subscribe('auth.sessionChange', function(response) {
-            if (response.session) {
-                var session = FB.getSession();
-                fbdata.accessToken = session.access_token;
-                fbdata.facebookUserId = session.uid;
+        FB.Event.subscribe('auth.authResponseChange', function(response) {
+            if (response.authResponse) {
+                var session = response.authResponse;
+                fbdata.accessToken = session.accessToken;
+                fbdata.facebookUserId = session.userID;
                 deferred.resolve(session, fbdata);
             }
         });
@@ -38,10 +38,10 @@ var LightBulb;
             if (opts.forcedPermission) {
                 LightBulb.login();
 
-            } else if (response.session) {
-                var session = FB.getSession();
-                fbdata.accessToken = session.access_token;
-                fbdata.facebookUserId = session.uid;
+            } else if (response.authResponse) {
+                var session = response.authResponse;
+                fbdata.accessToken = session.accessToken;
+                fbdata.facebookUserId = session.userID;
                 if (jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
                 deferred.resolve(session, fbdata);
 
@@ -60,13 +60,13 @@ var LightBulb;
     LightBulb.login = function() {
         //alert("Calling Auth");
       FB.login(function(response) {
-        if (response.session) {
-          var session = FB.getSession();
-          fbdata.accessToken = session.access_token;
-          fbdata.facebookUserId = session.uid;
+        if (response.authResponse) {
+            var session = response.authResponse;
+            fbdata.accessToken = session.accessToken;
+            fbdata.facebookUserId = session.userID;
           if (jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
         }
-      }, {perms:opts.permissions});
+      }, {scope:opts.permissions});
 
       return deferred.promise();
     };
