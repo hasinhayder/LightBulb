@@ -492,7 +492,8 @@
         },
         deleteAchievement:function (parameters, callback) {
             var defaults = {
-                appId:"", achievement:""
+                appId:"",
+                achievement:""
                         };
                         var params = $.extend(defaults,parameters);
             /*Must need read_insights permission*/
