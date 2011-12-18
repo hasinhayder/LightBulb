@@ -11,7 +11,11 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
     LightBulb.pages = {
         pages:{},
         currentToken:"",
-        getPages:function(userId,callback){
+        getPages:function(paramseters,callback){
+            var defaults = {
+                userId:""
+            };
+            var params = $.extend(defaults,parameters);
             if(userId="") userId="me";
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
@@ -19,7 +23,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + userId + "/accounts", 'get', data, function(response) {
+                FB.api("/" + params.userId + "/accounts", 'get', data, function(response) {
                     LightBulb.pages.pages = response.data;
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
@@ -35,14 +39,19 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             LightBulb.pages.currentToken = "";
         },
         getPage:function(pageId,returnToken,callback){
+            var defaults = {
+                pageId:"",
+                returnToken:""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                var reqUrl = "/"+pageId;
-                if (returnToken)
+                var reqUrl = "/"+params.pageId;
+                if (params.returnToken)
                     reqUrl += "?fields=id,name,link,category,location,phone,checkins,access_token,picture";
                 else
                     reqUrl += "?fields=id,name,link,category,location,phone,checkins,picture";
@@ -55,13 +64,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getFeeds:function(pageId,callback){
+            var defaults = {
+                            pageId:"",
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/feeds", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/feeds", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -69,13 +82,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getSettings:function(pageId,callback){
+            var defaults = {
+                            pageId:"",
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken ) {
                 var data = {
                     "access_token":LightBulb.pages.currentToken 
                 }
-                FB.api("/" + pageId + "/settings", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/settings", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -83,15 +100,21 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         updateSettings:function(pageId,settingsName,settingsValue,callback){
+            var defaults = {
+                            pageId:"",
+                            settingsName:"",
+                settingsValue:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken ) {
                 var data = {
                     "access_token":LightBulb.pages.currentToken,
-                    setting:settingsName,
-                    value:settingsValue
+                    setting:params.settingsName,
+                    value:params.settingsValue
                 }
-                FB.api("/" + pageId + "/settings", 'post', data, function(response) {
+                FB.api("/" + params.pageId + "/settings", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -99,13 +122,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getLinks:function(pageId,callback){
+            var defaults = {
+                            pageId:"",
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/links", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/links", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -113,13 +140,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getPhotos:function(pageId,callback){
+            var defaults = {
+                            pageId:"",
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/photos", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/photos", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -127,13 +158,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getGroups:function(pageId,callback){
+            var defaults = {
+                            pageId:"",
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/groups", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/groups", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -141,13 +176,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getAlbums:function(pageId,callback){
+            var defaults = {
+                            pageId:"",
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/albums", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/albums", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -155,13 +194,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getStatuses:function(pageId,callback){
+            var defaults = {
+                            pageId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/statuses", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/statuses", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -169,13 +212,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getVideos:function(pageId,callback){
+            var defaults = {
+                pageId:""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/videos", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/videos", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -183,13 +230,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getNotes:function(pageId,callback){
+            var defaults = {
+                            pageId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/notes", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/notes", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -197,13 +248,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getPosts:function(pageId,callback){
+            var defaults = {
+                            pageId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/posts", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/posts", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -211,13 +266,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getEvents:function(pageId,callback){
+            var defaults = {
+                            pageId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + pageId + "/events", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/events", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -225,13 +284,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getAdmins:function(pageId,callback){
+            var defaults = {
+                            pageId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
                     "access_token": LightBulb.pages.currentToken
                 }
-                FB.api("/" + pageId + "/admins", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/admins", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -239,13 +302,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getBlockedUsers:function(pageId,callback){
+            var defaults = {
+                            pageId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
                     "access_token": LightBulb.pages.currentToken
                 }
-                FB.api("/" + pageId + "/blocked", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/blocked", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -253,14 +320,19 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         isTabInstalled:function(pageId,applicationId,callback){
+            var defaults = {
+                            pageId:"",
+                applicationId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
                     "access_token": LightBulb.pages.currentToken,
-                    "app_id":applicationId
+                    "app_id":params.applicationId
                 }
-                FB.api("/" + pageId + "/tabs/"+applicationId, 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/tabs/"+params.applicationId, 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -268,13 +340,17 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         getTabs:function(pageId,callback){
+            var defaults = {
+                            pageId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
                     "access_token": LightBulb.pages.currentToken
                 }
-                FB.api("/" + pageId + "/tabs", 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/tabs", 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -282,14 +358,19 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         createTab:function(pageId,applicationId,callback){
+            var defaults = {
+                            pageId:"",
+                applicationId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
                     "access_token": LightBulb.pages.currentToken,
-                    "app_id":applicationId
+                    "app_id":params.applicationId
                 }
-                FB.api("/" + pageId + "/tabs", 'post', data, function(response) {
+                FB.api("/" + params.pageId + "/tabs", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -297,16 +378,24 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         updateTab:function(pageId,tabId,position,customName,isDefault,callback){
+            var defaults = {
+                            pageId:"",
+                tabId:"",
+                position:"",
+                customName:"",
+                isDefault:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
                     "access_token": LightBulb.pages.currentToken
                 };
-                if(position) data.position = position;
-                if(customName) data.custom_name = customName;
-                if(isDefault) data.is_non_connection_landing_tab = true;
-                FB.api("/" + pageId + "/tabs/"+tabId, 'post', data, function(response) {
+                if(params.position) data.position = params.position;
+                if(params.customName) data.custom_name = params.customName;
+                if(params.isDefault) data.is_non_connection_landing_tab = true;
+                FB.api("/" + params.pageId + "/tabs/"+params.tabId, 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -314,13 +403,18 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         deletTab:function(pageId,tabId,callback){
+            var defaults = {
+                            pageId:"",
+                tabId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
                     "access_token": LightBulb.pages.currentToken
                 }
-                FB.api("/" + pageId + "/tabs/"+tabId, 'delete', data, function(response) {
+                FB.api("/" + params.pageId + "/tabs/"+params.tabId, 'delete', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -328,13 +422,18 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         isAdmin:function(pageId,userId,callback){
+            var defaults = {
+                            pageId:"",
+                userId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
                     "access_token": LightBulb.pages.currentToken
                 }
-                FB.api("/" + pageId + "/admins/"+userId, 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/admins/"+params.userId, 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -342,13 +441,18 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         isBlocked:function(pageId,userId,callback){
+            var defaults = {
+                            pageId:"",
+                userId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
                     "access_token": LightBulb.pages.currentToken
                 }
-                FB.api("/" + pageId + "/blocked/"+userId, 'get', data, function(response) {
+                FB.api("/" + params.pageId + "/blocked/"+params.userId, 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -356,14 +460,19 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         blockUsers:function(pageId,users,callback){
+            var defaults = {
+                            pageId:"",
+                users:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
                 var data = {
                     "access_token": LightBulb.pages.currentToken,
-                    "uid": users.join(",")
+                    "uid": params.users.join(",")
                 }
-                FB.api("/" + pageId + "/blocked/", 'post', data, function(response) {
+                FB.api("/" + params.pageId + "/blocked/", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -371,6 +480,11 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
             }
         },
         unblockUsers:function(pageId,userId,callback){
+            var defaults = {
+                            pageId:"",
+                userId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (LightBulb.pages.currentToken) {
@@ -378,7 +492,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                     "access_token": LightBulb.pages.currentToken,
                     "uid": userId
                 }
-                FB.api("/" + pageId + "/blocked/", 'delete', data, function(response) {
+                FB.api("/" + params.pageId + "/blocked/", 'delete', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
