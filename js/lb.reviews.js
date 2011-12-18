@@ -8,12 +8,16 @@
         currentToken:"",
 
         getReviews:function(applicationId,callback){
+            var defaults = {
+                            applicationId:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.reviews.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + applicationId+'/reviews' , 'get', data, function(response) {
+                FB.api("/" + params.applicationId+'/reviews' , 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
