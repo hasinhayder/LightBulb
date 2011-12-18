@@ -96,7 +96,11 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        createComment:function(videoId, message, callback) {
+        createComment:function(data, callback) {
+            data= {
+                videoId:
+                message
+            }
             var accessToken = LightBulb.statuses.getToken();
             if (accessToken) {
                 var data = {
@@ -126,7 +130,6 @@
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
-
         }
     }
 })

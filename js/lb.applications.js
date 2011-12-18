@@ -3,7 +3,7 @@
  * @author Hasin Hayder
  */
 
-(function(){
+(function () {
     LightBulb.applications = {
         currentToken:"",
         appToken:"",
@@ -13,11 +13,11 @@
          * @author Hasin Hayder
          * @param token
          */
-        setToken:function(token) {
+        setToken:function (token) {
             LightBulb.applications.currentToken = token;
             return true;
         },
-        removeToken:function() {
+        removeToken:function () {
             LightBulb.applications.currentToken = "";
         },
 
@@ -26,373 +26,483 @@
          *
          * @author Hasin Hayder
          */
-        getToken:function() {
+        getToken:function () {
             var userData = LightBulb._getFacebookData();
             var token = userData.accessToken;
             if (LightBulb.applications.currentToken) token = LightBulb.applications.currentToken;
             return token;
         },
-        getApplication: function(appId,callback){
+        getApplication:function (parameters, callback) {
+            var defaults = {
+                appId:""
+            };
+            var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.applications.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
+                    "access_token":accessToken
                 }
-                FB.api("/" + appId + "", 'get', data, function(response) {
+                FB.api("/" + params.appId + "", 'get', data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getTestUsers: function(appId,callback){
+        getTestUsers:function (parameters, callback) {
+            var defaults = {
+                appId:""
+            };
+            var params = $.extend(defaults, parameters);
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/accounts/test-users",data,callback);
+                LightBulb.get("/" + params.appId + "/accounts/test-users", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        fetchAppToken:function(appId,appSecret,callback){
+        fetchAppToken:function (parameters, callback) {
+            var defaults = {
+                appId:"",
+                appSecret:""
+            };
+            var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.applications.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken,
-                    appid:appId,
-                    secret:appSecret
+                    "access_token":accessToken,
+                    appid:params.appId,
+                    secret:params.appSecret
                 }
                 //LightBulb.get("/oauth/access_token?client_id=" + appId + "&client_secret="+appSecret+"&grant_type=client_credentials&http%3A%2F%2Ffacebook.com",data,callback);
-                $.post("/helpers/app.php",data,callback);
+                $.post("/helpers/app.php", data, callback);
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getAppToken:function(){
-            if(LightBulb.applications.appToken)
+        getAppToken:function () {
+            if (LightBulb.applications.appToken)
                 return LightBulb.applications.appToken;
             return false;
         },
-        setAppToken:function(token){
-            LightBulb.applications.appToken=token;
+        setAppToken:function (token) {
+            LightBulb.applications.appToken = token;
         },
-        createTestUser:function(name,permissions,callback){
-           var appAccessToken = LightBulb.applications.getAppToken();
+        createTestUser:function (parameters, callback) {
+            var defaults = {
+                name:"",
+                permissions:""
+            };
+            var params = $.extend(defaults, parameters);
+            var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken,
-                    name:name,
+                    "access_token":appAccessToken,
+                    name:params.name,
                     installed:true,
-                    permissions:permissions
+                    permissions:params.permissions
                 }
-                LightBulb.post("/" + appId + "/accounts/test-users",data,callback);
+                LightBulb.post("/" + appId + "/accounts/test-users", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        addTestUser:function(testUserId,permissions,ownerAppToken,callback){
-           var appAccessToken = LightBulb.applications.getAppToken();
+        addTestUser:function (parameters, callback) {
+            var defaults = {
+                appId:"",
+                testUserId:"",
+                permissions:"",
+                ownerAppToken:""
+            };
+            var params = $.extend(defaults, parameters);
+            var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken,
-                    uid:testUserId,
-                    owner_access_token:ownerAppToken,
+                    "access_token":appAccessToken,
+                    uid:params.testUserId,
+                    owner_access_token:params.ownerAppToken,
                     installed:true,
-                    permissions:permissions
+                    permissions:params.permissions
                 }
-                LightBulb.post("/" + appId + "/accounts/test-users",data,callback);
+                LightBulb.post("/" + params.appId + "/accounts/test-users", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getTestUser:function(testUserId,callback){
-           var appAccessToken = LightBulb.applications.getAppToken();
-            if (appAccessToken) {
-                var data = {
-                    "access_token": appAccessToken
-                }
-                LightBulb.get("/" + appId + "/accounts/test-users/"+testUserId,data,callback);
-            } else {
-                throw LIGHTBULB_NO_APP_TOKEN;
-            }
-        },
-        makeTestUsersFriendRequest:function(testUserId1,testuserId2,callback){
-           var appAccessToken = LightBulb.applications.getAppToken();
-            if (appAccessToken) {
-                var data = {
-                    "access_token": appAccessToken
-                }
-                LightBulb.post("/" + testUserId1 + "/friends/"+testUserId2,data,callback);
-            } else {
-                throw LIGHTBULB_NO_APP_TOKEN;
-            }
-        },
-        updateTestUser:function(testUserId,name, password,callback){
-           var appAccessToken = LightBulb.applications.getAppToken();
-            if (appAccessToken) {
-                var data = {
-                    "access_token": appAccessToken,
-                    name:name,
-                    password:password
-                }
-                LightBulb.post("/" + testUserId + "",data,callback);
-            } else {
-                throw LIGHTBULB_NO_APP_TOKEN;
-            }
-        },
-        deleteTestUser:function(testUserId,callback){
+        getTestUser:function (parameters, callback) {
+            var defaults = {
+                            appId: "",
+                            testUserId:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken,
+                    "access_token":appAccessToken
                 }
-                LightBulb.delete("/" + testUserId + "",data,callback);
+                LightBulb.get("/" + params.appId + "/accounts/test-users/" + testUserId, data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getBannedUsers:function(appId,callback){
+        makeTestUsersFriendRequest:function (testUserId1, testuserId2, callback) {
+            var defaults = {
+                            testUserId1: "",
+                testUserId2:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/banned",data,callback);
+                LightBulb.post("/" + params.testUserId1 + "/friends/" + params.testUserId2, data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        isBanned:function(appId,userId,callback){
+        updateTestUser:function (parameters, callback) {
+            var defaults = {
+                            testUserId: "",
+                name:"",
+                password:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken,
+                    name:params.name,
+                    password:params.password
                 }
-                LightBulb.get("/" + appId + "/banned/"+userId,data,callback);
+                LightBulb.post("/" + params.testUserId + "", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        banUsers:function(appId,users,callback){
+        deleteTestUser:function (testUserId, callback) {
+            var defaults = {
+                            testUserId: ""
+                        };
+                        var params = $.extend(defaults, parameters);
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
+                }
+                LightBulb.delete("/" + params.testUserId + "", data, callback);
+            } else {
+                throw LIGHTBULB_NO_APP_TOKEN;
+            }
+        },
+        getBannedUsers:function (appId, callback) {
+            var defaults = {
+                            appId: ""
+                        };
+                        var params = $.extend(defaults, parameters);
+            var appAccessToken = LightBulb.applications.getAppToken();
+            if (appAccessToken) {
+                var data = {
+                    "access_token":appAccessToken
+                }
+                LightBulb.get("/" + params.appId + "/banned", data, callback);
+            } else {
+                throw LIGHTBULB_NO_APP_TOKEN;
+            }
+        },
+        isBanned:function (parameters, callback) {
+            var defaults = {
+                appId:"",
+                userId:""
+            };
+            var params = $.extend(defaults,parameters);
+            var appAccessToken = LightBulb.applications.getAppToken();
+            if (appAccessToken) {
+                var data = {
+                    "access_token":appAccessToken
+                }
+                LightBulb.get("/" + params.appId + "/banned/" + userId, data, callback);
+            } else {
+                throw LIGHTBULB_NO_APP_TOKEN;
+            }
+        },
+        banUsers:function (appId, users, callback) {
+            var appAccessToken = LightBulb.applications.getAppToken();
+            if (appAccessToken) {
+                var data = {
+                    "access_token":appAccessToken
                 }
                 busers = users.join(",");
-                LightBulb.post("/" + appId + "/banned?uid="+busers,data,callback);
+                LightBulb.post("/" + appId + "/banned?uid=" + busers, data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        unBanUsers:function(appId,userId,callback){
+        unBanUsers:function (parameters, callback) {
+            var defaults = {
+                appId:"",
+                userId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
                 busers = users.join(",");
-                LightBulb.delete("/" + appId + "/banned/"+userId,data,callback);
+                LightBulb.delete("/" + params.appId + "/banned/" + userId, data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getInsights:function(appId,callback){
+        getInsights:function (appId, callback) {
             /*Must need read_insights permission*/
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/insights",data,callback);
+                LightBulb.get("/" + appId + "/insights", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getPayments:function(appId,callback){
+        getPayments:function (appId, callback) {
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/payments",data,callback);
+                LightBulb.get("/" + appId + "/payments", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getReviews:function(appId,callback){
+        getReviews:function (appId, callback) {
             var appAccessToken = LightBulb.applications.getToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/reviews",data,callback);
+                LightBulb.get("/" + appId + "/reviews", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getStaticResources:function(appId,callback){
+        getStaticResources:function (appId, callback) {
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/staticresources",data,callback);
+                LightBulb.get("/" + appId + "/staticresources", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getSubscriptions:function(appId,callback){
+        getSubscriptions:function (appId, callback) {
             //http://developers.facebook.com/docs/reference/api/realtime/
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/subscriptions",data,callback);
+                LightBulb.get("/" + appId + "/subscriptions", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        createSubscription:function(appId,object, fields,callbackUrl,verifyToken,callback){
+        createSubscription:function (parameters, callback) {
+            var defaults = {
+                appId:"",
+                object:"",
+                fields:"",
+                callbackUrl:"",
+                verifyToken:""
+                        };
+                        var params = $.extend(defaults,parameters);
             //http://developers.facebook.com/docs/reference/api/realtime/
             /*Object to monitor - `user`, `permissions`, or `page`. If no object is specified all subscriptions are deleted. */
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken,
-                    object:object,
-                    fields:fields,
-                    callback_url:callbackUrl,
-                    verify_token:verifyToken
+                    "access_token":appAccessToken,
+                    object:params.object,
+                    fields:params.fields,
+                    callback_url:params.callbackUrl,
+                    verify_token:params.verifyToken
                 }
-                LightBulb.post("/" + appId + "/subscriptions",data,callback);
+                LightBulb.post("/" + params.appId + "/subscriptions", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        deleteSubscription:function(appId,object,callback){
+        deleteSubscription:function (parameters, callback) {
+            var defaults = {
+                appId:"", object:""
+                        };
+                        var params = $.extend(defaults,parameters);
             /*Object to monitor - `user`, `permissions`, or `page`. If no object is specified all subscriptions are deleted. */
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken,
-                    object:object
+                    "access_token":appAccessToken,
+                    object:params.object
                 }
-                LightBulb.delete("/" + appId + "/translations",data,callback);
+                LightBulb.delete("/" + params.appId + "/translations", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getTags:function(appId,callback){
+        getTags:function (parameters, callback) {
+            var defaults = {
+                            appId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var appAccessToken = LightBulb.applications.getToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/tagged",data,callback);
+                LightBulb.get("/" + params.appId + "/tagged", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getTranslations:function(appId,callback){
+        getTranslations:function (parameters, callback) {
+            var defaults = {
+                            appId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/translations",data,callback);
+                LightBulb.get("/" + parameters.appId + "/translations", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        createTranslation:function(appId,nativeStrings,callback){
+        createTranslation:function (parameters, callback) {
+            var defaults = {
+                appId:"", nativeStrings:""
+                        };
+                        var params = $.extend(defaults,parameters);
             /*native_strings is a JSON-encoded array of strings to translate. Each element of the string array is an object, with text storing the actual string, description storing the description of the text. */
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken,
-                    native_strings:nativeStrings
+                    "access_token":appAccessToken,
+                    native_strings:params.nativeStrings
                 }
-                LightBulb.post("/" + appId + "/translations",data,callback);
+                LightBulb.post("/" + params.appId + "/translations", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        deleteTranslations:function(appId,nativeHashes,callback){
+        deleteTranslations:function (parameters, callback) {
+            var defaults = {
+                appId:"",
+                nativeHashes:""
+                        };
+                        var params = $.extend(defaults,parameters);
             /*native_hashes is a An array of native hashes. The native hash is a unique identifier of the native string and a description and is generated by the Translations application.  */
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken,
-                    native_hashes:nativeHashes
+                    "access_token":appAccessToken,
+                    native_hashes:params.nativeHashes
                 }
-                LightBulb.delete("/" + appId + "/translations",data,callback);
+                LightBulb.delete("/" + params.appId + "/translations", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getScores:function(appId,callback){
+        getScores:function (parameters, callback) {
+            var defaults = {
+                            appId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             /*Must need read_insights permission*/
             var appAccessToken = LightBulb.applications.getToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/scores",data,callback);
+                LightBulb.get("/" + params.appId + "/scores", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        deleteScores:function(appId,callback){
+        deleteScores:function (parameters, callback) {
+            var defaults = {
+                            appId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             /*Must need read_insights permission*/
             var appAccessToken = LightBulb.applications.getToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.delete("/" + appId + "/scores",data,callback);
+                LightBulb.delete("/" + params.appId + "/scores", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        getAchievements:function(appId,callback){
+        getAchievements:function (parameters, callback) {
+            var defaults = {
+                            appId:""
+                        };
+                        var params = $.extend(defaults,parameters);
             /*Must need read_insights permission*/
             var appAccessToken = LightBulb.applications.getAppToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken
+                    "access_token":appAccessToken
                 }
-                LightBulb.get("/" + appId + "/achievements",data,callback);
+                LightBulb.get("/" + parameters.appId + "/achievements", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        createAchievement:function(appId,achievement,displayOrder,callback){
+        createAchievement:function (parameters, callback) {
+            var defaults = {
+                appId:"",
+                achievement:"",
+                displayOrder:""
+                        };
+                        var params = $.extend(defaults,parameters);
             /*Must need read_insights permission*/
             var appAccessToken = LightBulb.applications.getToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken,
+                    "access_token":appAccessToken,
                     achievement:achievement,
-                    display_order:displayOrder
+                    display_order:params.displayOrder
                 }
-                LightBulb.post("/" + appId + "/achievements",data,callback);
+                LightBulb.post("/" + params.appId + "/achievements", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }
         },
-        deleteAchievement:function(appId,achievement,callback){
+        deleteAchievement:function (parameters, callback) {
+            var defaults = {
+                appId:"", achievement:""
+                        };
+                        var params = $.extend(defaults,parameters);
             /*Must need read_insights permission*/
             var appAccessToken = LightBulb.applications.getToken();
             if (appAccessToken) {
                 var data = {
-                    "access_token": appAccessToken,
-                    achievement:achievement
+                    "access_token":appAccessToken,
+                    achievement:params.achievement
                 }
-                LightBulb.delete("/" + appId + "/achievements",data,callback);
+                LightBulb.delete("/" + params.appId + "/achievements", data, callback);
             } else {
                 throw LIGHTBULB_NO_APP_TOKEN;
             }

@@ -75,16 +75,17 @@ var LightBulb;
      * @author Hasin Hayder
      * Log out the currently active user from Facebook
      */
-    LightBulb.logout = function() {
+    LightBulb.logout = function(callback) {
         var dfr = $.Deferred();
         FB.logout(function(response) {
-            LightBulb.log(response);
+            //LightBulb.log(response);
 
             if (response) {
                 fbdata.accessToken = 0;
                 fbdata.facebookUserId = 0;
                 dfr.resolve(response);
             }
+            if (jQuery.isFunction(callback)) callback.call(this, response);
         });
       return dfr.promise();
     };

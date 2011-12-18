@@ -42,7 +42,9 @@
             });
         },
         logout:function(){
-            LightBulb.logout();
+            LightBulb.logout(function(){
+                alert("You are now logged out?")
+            });
         }
     }
 </script>
