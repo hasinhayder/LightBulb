@@ -32,52 +32,68 @@
             if (LightBulb.photos.currentToken) token = LightBulb.photos.currentToken;
             return token;
         },
-        getPhoto:function(photoId,callback){
+        getPhoto:function(parameters,callback){
+            var defaults = {
+                photoId:""
+            };
+            var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.photos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + photoId , 'get', data, function(response) {
+                FB.api("/" + params.photoId , 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getComments:function(photoId,callback){
+        getComments:function(parameters,callback){
+            var defaults = {
+                            photoId:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.photos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + photoId+"/comments" , 'get', data, function(response) {
+                FB.api("/" + params.photoId+"/comments" , 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getLikes:function(photoId,callback){
+        getLikes:function(parameters,callback){
+            var defaults = {
+                            photoId:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.photos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + photoId+"/likes" , 'get', data, function(response) {
+                FB.api("/" + params.photoId+"/likes" , 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getTags:function(photoId,callback){
+        getTags:function(parameters,callback){
+            var defaults = {
+                            photoId:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.photos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + photoId+"/tags" , 'get', data, function(response) {
+                FB.api("/" + params.photoId+"/tags" , 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -85,74 +101,105 @@
             }
         },
         getPicture:function(photoId){
-            return "http://graph.facebook.com/"+photoId+"/picture";
+            var defaults = {
+                            photoId:""
+                        };
+                        var params = $.extend(defaults, parameters);
+            return "http://graph.facebook.com/"+params.photoId+"/picture";
         },
-        postComment:function(photoId,message,callback){
+        postComment:function(parameters,callback){
+            var defaults = {
+                            photoId:"",
+                message:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.photos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken,
-                    message: message
+                    message: params.message
                 }
-                FB.api("/" + photoId+"/comments" , 'post', data, function(response) {
+                FB.api("/" + params.photoId+"/comments" , 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        likePhoto:function(photoId,callback){
+        likePhoto:function(parameters,callback){
+            var defaults = {
+                            photoId:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.photos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + photoId+"/likes" , 'post', data, function(response) {
+                FB.api("/" + params.photoId+"/likes" , 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        dislikePhoto:function(photoId,callback){
+        dislikePhoto:function(parameters,callback){
+            var defaults = {
+                            photoId:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.photos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
                 }
-                FB.api("/" + photoId+"/likes" , 'delete', data, function(response) {
+                FB.api("/" + params.photoId+"/likes" , 'delete', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        createTag:function(photoId,userId,x,y,callback){
+        createTag:function(parameters,callback){
+            var defaults = {
+                            photoId:"",
+                userId:"",
+                x:"",
+                y:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.photos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken,
-                    to:userId,
-                    x:x,
-                    y:y
+                    to:params.userId,
+                    x:params.x,
+                    y:params.y
                 }
-                FB.api("/" + photoId+"/tags/"+userId , 'post', data, function(response) {
+                FB.api("/" + params.photoId+"/tags/"+params.userId , 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        updateTag:function(photoId,userId,x,y,callback){
+        updateTag:function(parameters,callback){
+            var defaults = {
+                            photoId:"",
+                userId:"",
+                x:"",
+                y:""
+                        };
+                        var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.photos.getToken();
             if (accessToken) {
                 var data = {
                     "access_token": accessToken,
-                    to:userId,
-                    x:x,
-                    y:y
+                    to:params.userId,
+                    x:params.x,
+                    y:params.y
                 }
-                FB.api("/" + photoId+"/tags/"+userId , 'post', data, function(response) {
+                FB.api("/" + params.photoId+"/tags/"+params.userId , 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
