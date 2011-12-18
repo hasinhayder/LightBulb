@@ -7,7 +7,7 @@
     LightBulb.reviews = {
         currentToken:"",
 
-        getReviews:function(applicationId,callback){
+        getReviews:function(parameters,callback){
             var defaults = {
                             applicationId:""
                         };

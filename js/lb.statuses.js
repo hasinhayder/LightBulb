@@ -1,7 +1,7 @@
 /**
  * Manage statuses in Facebook.
  */
-(function() {
+(function () {
     LightBulb.statuses = {
         currentToken:"",
         /**
@@ -10,11 +10,11 @@
          * @author Hasin Hayder
          * @param token
          */
-        setToken:function(token) {
+        setToken:function (token) {
             LightBulb.statuses.currentToken = token;
             return true;
         },
-        removeToken:function() {
+        removeToken:function () {
             LightBulb.statuses.currentToken = "";
         },
 
@@ -23,71 +23,88 @@
          *
          * @author Hasin Hayder
          */
-        getToken:function() {
+        getToken:function () {
             var userData = LightBulb._getFacebookData();
             var token = userData.accessToken;
             if (LightBulb.statuses.currentToken) token = LightBulb.statuses.currentToken;
             return token;
         },
-        getStatuses:function(userId, message,callback) {
+        getStatuses:function (parameters, callback) {
+            var defaults = {
+                userId:""
+            };
+            var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.statuse.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
+                    "access_token":accessToken
                 }
-                var reqUrl = "/" + userId + '/statuses';
+                var reqUrl = "/" + params.userId + '/statuses';
 
-                FB.api(reqUrl, 'get', data, function(response) {
+                FB.api(reqUrl, 'get', data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
 
             }
         },
-        getStatus:function(statusId,callback) {
+        getStatus:function (parameters, callback) {
+            var defaults = {
+                statusId:""
+            };
+            var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.statuse.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
+                    "access_token":accessToken
                 }
-                var reqUrl = "/" + statusId;
+                var reqUrl = "/" + params.statusId;
 
-                FB.api(reqUrl, 'get', data, function(response) {
+                FB.api(reqUrl, 'get', data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
 
             }
         },
-        getComments:function(statusId,callback) {
+        getComments:function (parameters, callback) {
+            var defaults = {
+                statusId:""
+            };
+            var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.statuse.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
+                    "access_token":accessToken
                 }
-                var reqUrl = "/" + statusId + '/comments';
+                var reqUrl = "/" + params.statusId + '/comments';
 
-                FB.api(reqUrl, 'get', data, function(response) {
+                FB.api(reqUrl, 'get', data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
 
             }
         },
-        getLikes:function(statusId,callback) {
+        getLikes:function (parameters, callback) {
+            var defaults = {
+                statusId:""
+            };
+            var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.statuse.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
+                    "access_token":accessToken
                 }
-                var reqUrl = "/" + statusId + '/likes';
+                var reqUrl = "/" + params.statusId + '/likes';
 
-                FB.api(reqUrl, 'get', data, function(response) {
+                FB.api(reqUrl, 'get', data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
 
             }
         }
-    }})
+    }
+})
     ();

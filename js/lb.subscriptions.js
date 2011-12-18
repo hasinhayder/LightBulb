@@ -3,17 +3,21 @@
  *
  * @author M A Hossain Tonu
  */
-(function(){
+(function () {
     LightBulb.subscriptions = {
         currentToken:"",
 
-        getSubscription:function(applicationId,callback){
+        getSubscription:function (parameters, callback) {
+            var defaults = {
+                applicationId:""
+            };
+            var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.subscriptions.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
+                    "access_token":accessToken
                 }
-                FB.api("/" + applicationId+'/subscriptions' , 'get', data, function(response) {
+                FB.api("/" + params.applicationId + '/subscriptions', 'get', data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -27,11 +31,11 @@
          * @author Hasin Hayder
          * @param token
          */
-        setToken:function(token){
+        setToken:function (token) {
             LightBulb.subscriptions.currentToken = token;
             return true;
         },
-        removeToken:function(){
+        removeToken:function () {
             LightBulb.subscriptions.currentToken = "";
         },
 
@@ -40,10 +44,10 @@
          *
          * @author Hasin Hayder
          */
-        getToken:function(){
+        getToken:function () {
             var userData = LightBulb._getFacebookData();
             var token = userData.accessToken;
-            if(LightBulb.subscriptions.currentToken) token=LightBulb.subscriptions.currentToken;
+            if (LightBulb.subscriptions.currentToken) token = LightBulb.subscriptions.currentToken;
             return token;
         }
 

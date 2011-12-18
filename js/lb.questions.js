@@ -30,7 +30,7 @@
             if (LightBulb.questions.currentToken) token = LightBulb.questions.currentToken;
             return token;
         },
-        getQuestions:function (userId, callback) {
+        getQuestions:function (parameters, callback) {
             var defaults = {
                 userId:""
             };
@@ -47,7 +47,7 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getQuestion:function (questionId, callback) {
+        getQuestion:function (parameters, callback) {
             var defaults = {
                 questionId:""
             };
@@ -64,7 +64,7 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getOptions:function (questionId) {
+        getOptions:function (parameters) {
             var defaults = {
                 questionId:""
             };
