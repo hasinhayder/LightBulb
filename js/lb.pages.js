@@ -38,7 +38,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
         removeToken:function(){
             LightBulb.pages.currentToken = "";
         },
-        getPage:function(pageId,returnToken,callback){
+        getPage:function(parameters,callback){
             var defaults = {
                 pageId:"",
                 returnToken:""
@@ -63,9 +63,9 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getFeeds:function(pageId,callback){
+        getFeeds:function(parameters,callback){
             var defaults = {
-                            pageId:"",
+                            pageId:""
                         };
                         var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
@@ -81,9 +81,9 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getSettings:function(pageId,callback){
+        getSettings:function(parameters,callback){
             var defaults = {
-                            pageId:"",
+                            pageId:""
                         };
                         var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
@@ -99,7 +99,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        updateSettings:function(pageId,settingsName,settingsValue,callback){
+        updateSettings:function(parameters,callback){
             var defaults = {
                             pageId:"",
                             settingsName:"",
@@ -121,9 +121,9 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        getLinks:function(pageId,callback){
+        getLinks:function(parameters,callback){
             var defaults = {
-                            pageId:"",
+                            pageId:""
                         };
                         var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
@@ -139,9 +139,9 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getPhotos:function(pageId,callback){
+        getPhotos:function(parameters,callback){
             var defaults = {
-                            pageId:"",
+                            pageId:""
                         };
                         var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
@@ -157,9 +157,9 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getGroups:function(pageId,callback){
+        getGroups:function(parameters,callback){
             var defaults = {
-                            pageId:"",
+                            pageId:""
                         };
                         var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
@@ -175,9 +175,9 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getAlbums:function(pageId,callback){
+        getAlbums:function(parameters,callback){
             var defaults = {
-                            pageId:"",
+                            pageId:""
                         };
                         var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
@@ -193,7 +193,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getStatuses:function(pageId,callback){
+        getStatuses:function(parameters,callback){
             var defaults = {
                             pageId:""
                         };
@@ -211,7 +211,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getVideos:function(pageId,callback){
+        getVideos:function(parameters,callback){
             var defaults = {
                 pageId:""
             };
@@ -229,7 +229,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getNotes:function(pageId,callback){
+        getNotes:function(parameters,callback){
             var defaults = {
                             pageId:""
                         };
@@ -247,7 +247,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getPosts:function(pageId,callback){
+        getPosts:function(parameters,callback){
             var defaults = {
                             pageId:""
                         };
@@ -265,7 +265,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getEvents:function(pageId,callback){
+        getEvents:function(parameters,callback){
             var defaults = {
                             pageId:""
                         };
@@ -283,7 +283,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getAdmins:function(pageId,callback){
+        getAdmins:function(parameters,callback){
             var defaults = {
                             pageId:""
                         };
@@ -301,7 +301,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        getBlockedUsers:function(pageId,callback){
+        getBlockedUsers:function(parameters,callback){
             var defaults = {
                             pageId:""
                         };
@@ -319,7 +319,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        isTabInstalled:function(pageId,applicationId,callback){
+        isTabInstalled:function(parameters,callback){
             var defaults = {
                             pageId:"",
                 applicationId:""
@@ -339,7 +339,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        getTabs:function(pageId,callback){
+        getTabs:function(parameters,callback){
             var defaults = {
                             pageId:""
                         };
@@ -357,7 +357,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        createTab:function(pageId,applicationId,callback){
+        createTab:function(parameters,callback){
             var defaults = {
                             pageId:"",
                 applicationId:""
@@ -377,7 +377,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        updateTab:function(pageId,tabId,position,customName,isDefault,callback){
+        updateTab:function(parameters,callback){
             var defaults = {
                             pageId:"",
                 tabId:"",
@@ -402,7 +402,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        deletTab:function(pageId,tabId,callback){
+        deletTab:function(parameters,callback){
             var defaults = {
                             pageId:"",
                 tabId:""
@@ -421,7 +421,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        isAdmin:function(pageId,userId,callback){
+        isAdmin:function(parameters,callback){
             var defaults = {
                             pageId:"",
                 userId:""
@@ -440,7 +440,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        isBlocked:function(pageId,userId,callback){
+        isBlocked:function(parameters,callback){
             var defaults = {
                             pageId:"",
                 userId:""
@@ -459,7 +459,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        blockUsers:function(pageId,users,callback){
+        blockUsers:function(parameters,callback){
             var defaults = {
                             pageId:"",
                 users:""
@@ -479,7 +479,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS="USERS_CAN_POST_VIDEOS";
                 throw LIGHTBULB_NO_PAGE_TOKEN;
             }
         },
-        unblockUsers:function(pageId,userId,callback){
+        unblockUsers:function(parameters,callback){
             var defaults = {
                             pageId:"",
                 userId:""
