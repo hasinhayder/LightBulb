@@ -19,33 +19,47 @@
          * @param actionLink Link of the action, optional
          * @param callback
          */
-        publishFeed:function(to, from, name, caption, link, description, picture, video, redirectUrl,actionName, actionLink, callback) {
+        publishFeed:function(parameters, callback) {
+            var defaults={
+                to:"",
+                from:"",
+                name:"", 
+                caption:"",
+                link:"",
+                description:"", 
+                picture:"", 
+                video:"",
+                redirectUrl:"",
+                actionName:"", 
+                actionLink:""
+            };
+            var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var action = "";
-                if (to == "") to = userId;
-                if (from == "") from = userId
-                if (actionName != "" && actionLink != "") {
+                if (params.to == "") params.to = userId;
+                if (params.from == "") params.from = userId
+                if (params.actionName != "" && params.actionLink != "") {
                     action = [{
-                        name:actionName,
-                        link:actionLink
+                        name:params.actionName,
+                        link:params.actionLink
                     }];
                 }
-                if(!redirectUrl) redirectUrl="http://facebook.com";
+                if(!params.redirectUrl) params.redirectUrl="http://facebook.com";
                 var data = {
                     method: 'feed',
-                    link: link,
-                    picture: picture,
-                    name: name,
-                    caption: caption,
-                    description: description,
-                    to:to,
-                    from:from,
+                    link: params.link,
+                    picture: params.picture,
+                    name: params.name,
+                    caption: params.caption,
+                    description: params.description,
+                    to:params.to,
+                    from:params.from,
                     source: video,
                     actions:action,
-                    redirect_uri:redirectUrl
+                    redirect_uri:params.redirectUrl
                 }
                 FB.ui(data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
@@ -70,33 +84,46 @@
          * @param actionLink Link of the action, optional
          * @param callback
          */
-        publishFeedBackground:function(to, from, name, caption, link, description, picture, video, actionName, actionLink, callback) {
+        publishFeedBackground:function(parameters, callback) {
+            var defaults={
+                to:"",
+                from:"",
+                name:"", 
+                caption:"",
+                link:"",
+                description:"", 
+                picture:"",
+                video:"",
+                actionName:"", 
+                actionLink:""
+            };
+            var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var action = "";
-                if (to == "") to = userId;
-                if (from == "") from = userId
-                if (actionName != "" && actionLink != "") {
+                if (params.to == "") params.to = userId;
+                if (params.from == "") params.from = userId
+                if (params.actionName != "" && params.actionLink != "") {
                     action = [{
-                        name:actionName,
-                        link:actionLink
+                        name:params.actionName,
+                        link:params.actionLink
                     }];
                 }
                 var data = {
                     method: 'feed',
-                    link: link,
-                    picture: picture,
-                    name: name,
-                    caption: caption,
-                    description: description,
-                    to:to,
-                    from:from,
+                    link: params.link,
+                    picture: params.picture,
+                    name: params.name,
+                    caption: params.caption,
+                    description: params.description,
+                    to:params.to,
+                    from:params.from,
                     source: video,
                     actions:action
                 }
-                LightBulb.post("/" + to + "/feed",data,callback);
+                LightBulb.post("/" + params.to + "/feed",data,callback);
                 /*FB.api("/" + to + "/feed", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })*/
@@ -113,17 +140,24 @@
          * @param data
          * @param callback
          */
-        makeRequestToOneFriend:function(friendId,message,title,data,callback){
+        makeRequestToOneFriend:function(parameters,callback){
+            var defaults={
+                friendId:"",
+                message:"",
+                title:"",
+                data:""
+            };
+            var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var data = {
                     method: 'apprequests',
-                    to: friendId,
-                    message:message,
-                    title:title,
-                    data:data
+                    to: params.friendId,
+                    message:params.message,
+                    title:params.title,
+                    data:params.data
                 }
                 FB.ui(data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
@@ -143,20 +177,29 @@
          * @param data
          * @param callback
          */
-        makeRequestToMultipleFriends:function(message,title,filters,excludedFriends, maxRecipients,data, callback){
+        makeRequestToMultipleFriends:function(parameters, callback){
+            var defaults={
+                message:"",
+                title:"",
+                filters:"",
+                excludedFriends:"", 
+                maxRecipients:"",
+                data:""
+            };
+            var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
             if (accessToken) {
-                if(maxRecipients=="") maxRecipients=20;
+                if(params.maxRecipients=="") params.maxRecipients=20;
                 var data = {
                     method: 'apprequests',
-                    filters: filters,
-                    exclude_ids:excludedFriends,
-                    message:message,
-                    title:title,
-                    max_recipients:maxRecipients,
-                    data:data
+                    filters: params.filters,
+                    exclude_ids:params.excludedFriends,
+                    message:params.message,
+                    title:params.title,
+                    max_recipients:params.maxRecipients,
+                    data:params.data
                 }
                 FB.ui(data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
@@ -200,19 +243,28 @@
          * @param redirectUrl
          * @param callback
          */
-        sendMessage:function(friendId, link, message, picture, title, redirectUrl, callback){
+        sendMessage:function(parameters, callback){
+            var defaults={
+                friendId:"",
+                link:"", 
+                message:"",
+                picture:"", 
+                title:"", 
+                redirectUrl:""
+            };
+            var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var data = {
                     method: 'send',
-                    to: friendId,
-                    link:link,
-                    description:message,
-                    picture:picture,
-                    redirect_url: redirectUrl,
-                    name:title
+                    to: params.friendId,
+                    link:params.link,
+                    description:params.message,
+                    picture:params.picture,
+                    redirect_url: params.redirectUrl,
+                    name:params.title
                 }
                 FB.ui(data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);

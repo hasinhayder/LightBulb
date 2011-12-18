@@ -6,7 +6,11 @@
 (function() {
     LightBulb.groups = {
         
-       getGroup:function(groupId,callback) {
+       getGroup:function(parameters,callback) {
+            var defaults={
+                groupId:""
+            };
+            var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
@@ -14,7 +18,7 @@
                    "access_token": accessToken
                   
                 }
-                LightBulb.get("/" + groupId + "",data,callback);
+                LightBulb.get("/" + params.groupId + "",data,callback);
                 /*FB.api("/" + groupId, 'get', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })*/
@@ -23,15 +27,20 @@
             }
         },
        
-       createStatuses:function(groupId,message,callback) {
+       createStatuses:function(parameters,callback) {
+            var defaults={
+                groupId:"",
+                message:""
+            };
+            var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     //access_token: accessTokens,
-                    message:message
+                    message:params.message
                 }
-                LightBulb.post("/" + groupId + "/feed",data,callback);
+                LightBulb.post("/" + params.groupId + "/feed",data,callback);
                 /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })*/
@@ -40,18 +49,24 @@
             }
         },
         
-        createLinks : function (groupId,link,message,callback)
+        createLinks : function (parameters,callback)
         {
+             var defaults={
+                groupId:"",
+                link:"",
+                message:""
+            };
+            var params=$.extend(defaults,parameters);
              var userData = LightBulb._getFacebookData();
              var accessToken = userData.accessToken;
              if (accessToken) {
                  //LightBulb.links.create(groupId,link,message,callback);
                  var data = {
                     "access_token": accessToken,
-                    link:link,
-                    message:message
+                    link:params.link,
+                    message:params.message
                 }
-                LightBulb.post("/" + groupId + "/feed",data,callback);
+                LightBulb.post("/" + params.groupId + "/feed",data,callback);
                 /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });*/
@@ -62,30 +77,43 @@
             
         },
         
-        createPosts:function (groupId,message,link,picture,name,caption,description,actionName, actionLink,privacy)
+        createPosts:function (parameters,callback)
         {
+            var defaults={
+                groupId:"",
+                message:"",
+                link:"",
+                picture:"",
+                name:"",
+                caption:"",
+                description:"",
+                actionName:"", 
+                actionLink:"",
+                privacy:""
+            };
+            var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
-                if (actionName != "" && actionLink != "") {
+                if (params.actionName != "" && params.actionLink != "") {
                     action = [{
-                        name:actionName,
-                        link:actionLink
+                        name:params.actionName,
+                        link:params.actionLink
                     }];
                 }
                 
                 var data = {
                     //access_token: accessTokens,
-                    message:message,
-                    link:link,
-                    picture:picture,
-                    caption:caption,
-                    description:description,
+                    message:params.message,
+                    link:params.link,
+                    picture:params.picture,
+                    caption:params.caption,
+                    description:params.description,
                     actions:actions,
-                    privacy:privacy
+                    privacy:params.privacy
                     
                 }
-                LightBulb.post("/" + groupId + "/feed",data,callback);
+                LightBulb.post("/" + params.groupId + "/feed",data,callback);
                 /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })*/
