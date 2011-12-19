@@ -22,7 +22,6 @@ var LightBulb;
             callback:function() {
             },
             authResponseChange:function(){
-
             }
         };
         opts = $.extend(defaults, options);
@@ -33,7 +32,7 @@ var LightBulb;
                 var session = response.authResponse;
                 fbdata.accessToken = session.accessToken;
                 fbdata.facebookUserId = session.userID;
-                if (jQuery.isFunction(opts.authResponseListener)) opts.authResponseListener.call(this, fbdata);
+                if (jQuery.isFunction(opts.authResponseChange)) opts.authResponseChange.call(this, fbdata);
                 deferred.resolve(session, fbdata);
             }
         });
