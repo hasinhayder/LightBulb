@@ -307,7 +307,7 @@
                 var data = {
                     "access_token":accessToken
                 }
-                var reqUrl = "/" + params.user + '/friends/' + params.friendsId;
+                var reqUrl = "/" + params.user1 + '/friends/' + params.user2;
 
                 FB.api(reqUrl, 'get', data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
