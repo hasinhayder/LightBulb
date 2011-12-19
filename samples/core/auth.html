@@ -2,7 +2,7 @@
 <p>
     Login with Facebook <input type="button" value="Login Facebook" onclick="login();"/><br/><br/>
     <pre class="js">
-$.LightBulb({
+LightBulb({
     apikey:"288048857874241",
     permissions:'publish_stream, email',
     callback:function (data) {
@@ -14,7 +14,7 @@ $.LightBulb({
 </p>
 <script type="text/javascript">
     function login() {
-        $.LightBulb({
+        LightBulb({
             apikey:"288048857874241",
             permissions:'publish_stream, email',
             callback:function (data) {

@@ -5,7 +5,7 @@
         <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
         <script type="text/javascript" src="js/jquery.snippet.js"></script>
         <script type="text/javascript" src="/js/lb.core.js"></script>
-        <script type="text/javascript" src="/js/lb.core.js"></script>
+        <script type="text/javascript" src="/js/lb.users.js"></script>
         <link rel="stylesheet" href="css/grid.css"/>
         <link rel="stylesheet" href="css/style.css"/>
         <style type="text/css">
@@ -58,6 +58,7 @@
                 <ul class="menu">
                     <li><a href="core/auth.html">Core - Login</a></li>
                     <li><a href="core/newperm.html">Core - New Permission</a></li>
+                    <li><a href="users/getuser.html">Users - Get details</a></li>
                 </ul>
             </div>
             <div class="column grid_9">
@@ -79,8 +80,15 @@
                 });
 
                 return false;
-            })
-        })
+            });
+            LightBulb({
+                apikey:"288048857874241",
+                permissions:'publish_stream, email',
+                callback:function (data) {
+                }
+            });
+        });
+
     </script>
 
     </body>

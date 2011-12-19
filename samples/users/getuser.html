@@ -1,0 +1,24 @@
+<h2>Example of Core Login</h2>
+<p>
+    Fetch user details <input type="button" value="Fetch Details" onclick="fetch();"/><br/><br/>
+    <pre class="js">
+LightBulb.users.getUser({user:"me"}, function(response) {
+    console.log(response);
+    $("#result").html("&lt;h2>Result&lt;/h2>")
+    for(i in response){
+        $("#result").append("&lt;b>"+i+":&lt;/b> "+response[i]+"&lt;br/>");
+    }
+})
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+        LightBulb.users.getUser({user:"me"}, function(response) {
+            console.log(response);
+            $("#result").html("<h2>Result</h2>")
+            for(i in response){
+                $("#result").append("<b>"+i+":</b> "+response[i]+"<br/>");
+            }
+        });
+    }
+</script>
