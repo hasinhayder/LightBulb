@@ -1,0 +1,23 @@
+<p>
+    Ask for new permission <input type="button" value="New Permission" onclick="newperm();"/><br/><br/>
+    <pre class="js">
+$.LightBulb({
+    apikey:"288048857874241",
+    permissions:"manage_pages",
+    forcedPermission:true,
+    callback:function(data) {
+    }
+});
+    </pre>
+</p>
+<script type="text/javascript">
+    function newperm() {
+        $.LightBulb({
+            apikey:"288048857874241",
+            permissions:"manage_pages",
+            forcedPermission:true,
+            callback:function(data) {
+            }
+        });
+    }
+</script>

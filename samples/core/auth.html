@@ -1,0 +1,25 @@
+<p>
+    Login with Facebook <input type="button" value="Login Facebook" onclick="login();"/><br/><br/>
+    <pre class="js">
+$.LightBulb({
+    apikey:"288048857874241",
+    permissions:'publish_stream, email',
+    callback:function (data) {
+        var userDetails = LightBulb._getFacebookData();
+        alert("Logged in as " + userDetails.facebookUserId);
+    }
+});
+    </pre>
+</p>
+<script type="text/javascript">
+    function login() {
+        $.LightBulb({
+            apikey:"288048857874241",
+            permissions:'publish_stream, email',
+            callback:function (data) {
+                var userDetails = LightBulb._getFacebookData();
+                alert("Logged in. Your Facebook user id is " + userDetails.facebookUserId);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Project LightBulb - The Easiest wrapper for Facebook JS-SDK </title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+        <script type="text/javascript" src="js/jquery.snippet.js"></script>
+        <script type="text/javascript" src="/js/lb.core.js"></script>
+        <script type="text/javascript" src="/js/lb.core.js"></script>
+        <link rel="stylesheet" href="css/grid.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <style type="text/css">
+            .source{
+                padding:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="column grid_3">
+                <ul class="menu">
+                    <li><a href="core/auth.html">Core - Login</a></li>
+                    <li><a href="core/newperm.html">Core - New Permission</a></li>
+                </ul>
+            </div>
+            <div class="column grid_9">
+                <div class="source" id="source">
+
+                </div>
+                <div class="result" id="result">
+
+                </div>
+            </div>
+        </div>
+        <div id="fb-root"></div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".menu").find("a").bind("click",function(e){
+                var href = $(this).attr("href");
+                $("#source").load(href,function(){
+                    $("pre.js").snippet("javascript",{style:"zellner",clipboard:"js/ZeroClipboard.swf"});
+                });
+
+                return false;
+            })
+        })
+    </script>
+
+    </body>
+</html>

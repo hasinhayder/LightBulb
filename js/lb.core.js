@@ -27,7 +27,7 @@ var LightBulb;
         opts = $.extend(defaults, options);
         //if (!$("#fb-root")) $("<div/>").attr("id", "fb-root").appendTo("body");
         FB.init({appId: opts.apikey, status: true, cookie: opts.cookie, xfbml: opts.xfbml});
-        FB.Event.subscribe('auth.authResponseChange', function(response) {
+        FB.Event.subscribe('auth.authResponseChange', function(response){
             if (response.authResponse) {
                 var session = response.authResponse;
                 fbdata.accessToken = session.accessToken;
