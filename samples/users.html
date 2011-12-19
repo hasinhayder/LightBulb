@@ -22,7 +22,7 @@
                                                           onclick="LightBulb.Test.getDetails();"/><br/>
     <script src="http://pastebin.com/embed_js.php?i=tsKQbc6E"></script>
     Get All my Pages <input type="button" value="Get Pages"
-                                                          onclick="LightBulb.Test.getDetails();"/><br/>
+                                                          onclick="LightBulb.Test.getAccounts();"/><br/>
 </p>
 
 <div id="fb-root"></div>
@@ -55,14 +55,23 @@
             LightBulb.logout();
         },
         getDetails:function() {
-            LightBulb.users.getUser("me", function(data) {
+            LightBulb.users.getUser({user:"me"}, function(data) {
                 alert(data.toSource());
             })
         },
         getAccounts:function() {
-            LightBulb.users.getAccounts("me", function(data) {
-                alert(data.toSource());
-            })
+            LightBulb.users.getAccounts({
+                        user:"me"
+                    },
+                    function (response) {
+                        for (i in response.data) {
+                            var page = response.data[i];
+                            console.log(page);
+                            alert(page.id+"\n"+page.name+"\n"+page.category+"\n"+page.access_token);
+                            break;
+                        }
+                    }
+            );
         }
     }
 

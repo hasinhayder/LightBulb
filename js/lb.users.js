@@ -297,8 +297,8 @@
         },
         isFriend:function (parameters, callback) {
             var defaults = {
-                user:"",
-                friendsId:""
+                user1:"",
+                user2:""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
