@@ -255,7 +255,8 @@
         },
         getFriendRequests:function (parameters, callback) {
             var defaults = {
-                user:""
+                user:"",
+                limit:10
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
@@ -264,7 +265,7 @@
                 var data = {
                     "access_token":accessToken
                 }
-                var reqUrl = "/" + params.user + '/friendrequests';
+                var reqUrl = "/" + params.user + '/friendrequests?limit='+params.limit;
 
                 FB.api(reqUrl, 'get', data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
@@ -275,7 +276,8 @@
         },
         getFriends:function (parameters, callback) {
             var defaults = {
-                user:""
+                user:"",
+                limit:10
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
@@ -284,7 +286,7 @@
                 var data = {
                     "access_token":accessToken
                 }
-                var reqUrl = "/" + params.user + '/friends';
+                var reqUrl = "/" + params.user + '/friends?limit='+params.limit;
 
                 FB.api(reqUrl, 'get', data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
