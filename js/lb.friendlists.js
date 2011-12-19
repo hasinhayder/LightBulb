@@ -3,7 +3,7 @@
  *
  * @author M A Hossain Tonu
  */
-(function(){
+(function($) {
     LightBulb.friendlists = {
         currentToken:"",
 
@@ -18,7 +18,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.friendlistId , 'get', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -36,7 +36,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.friendlistId+'/members' , 'get', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -82,7 +82,7 @@
                     "name" : params.name
                 }
                 FB.api("/" + params.userId + "/friendlists", 'post', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -100,7 +100,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.friendlistId , 'delete', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -119,7 +119,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.friendlistId+"/members/"+params.userId, 'post', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -138,7 +138,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.friendlistId+"/members/"+params.userId, 'delete', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -146,4 +146,4 @@
         }
 
     }
-})();
+})(jQuery);

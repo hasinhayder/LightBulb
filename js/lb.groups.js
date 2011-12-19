@@ -3,7 +3,7 @@
  * @author Hasin Hayder
  *
  */
-(function() {
+(function($) {
     LightBulb.groups = {
         
        getGroup:function(parameters,callback) {
@@ -20,7 +20,7 @@
                 }
                 LightBulb.get("/" + params.groupId + "",data,callback);
                 /*FB.api("/" + groupId, 'get', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -42,7 +42,7 @@
                 }
                 LightBulb.post("/" + params.groupId + "/feed",data,callback);
                 /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -68,7 +68,7 @@
                 }
                 LightBulb.post("/" + params.groupId + "/feed",data,callback);
                 /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });*/
              
             }else {
@@ -115,7 +115,7 @@
                 }
                 LightBulb.post("/" + params.groupId + "/feed",data,callback);
                 /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -124,6 +124,5 @@
             
         }
 
-        
     }
-})();
+})(jQuery);

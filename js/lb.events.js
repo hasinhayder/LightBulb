@@ -2,7 +2,7 @@
  * Helper functions to manage Facebook events using LightBulb.
  * Tonu here again
  */
-(function() {
+(function($) {
     LightBulb.events = {
 
         /**
@@ -48,7 +48,7 @@
                 }
                 LightBulb.post("/" + params.user + "/events",eventData,callback);
                 /*FB.api("/" + user + "/events", 'post', eventData, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -94,7 +94,7 @@
                     "user":params.user
                 }
                 $.post("/helpers/events.php?what=createevent", eventData, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -138,7 +138,7 @@
                 }
                 LightBulb.post("/" + params.eventId + "",eventData,callback);
                 /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -166,7 +166,7 @@
                 }
                 LightBulb.post("/" + params.eventId + "", eventData,callback);
                 /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -225,7 +225,7 @@
                 }
                 LightBulb.post("/" + params.eventId + "", eventData,callback);
                 /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -253,7 +253,7 @@
                 }
                 LightBulb.post("/" + params.eventId + "", eventData,callback);
                 /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -278,7 +278,7 @@
                 }
                 LightBulb.delete("/" + params.eventId + "",eventData,callback);
                 /*FB.api("/" + eventId + "", 'delete', eventData, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -306,7 +306,7 @@
                 }
                 LightBulb.post("/" + params.eventId + "/invite",eventData,callback);
                 /*FB.api("/" + eventId + "/invite", 'post', eventData, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -335,7 +335,7 @@
                 }
                 LightBulb.post("/" + params.eventId + "/" + params.rsvp + "/" + params.friend, eventData,callback);
                 /*FB.api("/" + eventId + "/" + rsvp + "/" + friend, 'post', eventData, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -364,9 +364,9 @@
             }
             LightBulb.get("/" + params.eventId + "",eventData,callback);
             /*FB.api("/" + eventId, 'get', eventData, function(response) {
-                if (jQuery.isFunction(callback)) callback.call(this, response);
+                if ($.isFunction(callback)) callback.call(this, response);
             })*/
 
         }
     };
-})();
+})(jQuery);
