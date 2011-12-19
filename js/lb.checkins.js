@@ -1,10 +1,10 @@
 /**
  * Helper functions to manage Facebook checkins using LightBulb.
  */
-(function() {
+(function () {
     //publish_checkins
 
-    
+
     LightBulb.checkins = {
 
         /**
@@ -20,7 +20,18 @@
          * @param picture string checkin picture
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        create: function(user, placeId, latitude, longitude, userIdsCSV, message, link, picture, callback) {
+        create:function (parameters, callback) {
+            var defaults = {
+                user:"",
+                placeId:"",
+                latitude:"",
+                longitude:"",
+                userIdsCSV:"",
+                message:"",
+                link:"",
+                picture:""
+            };
+            var params = $.extend(defaults, parameters);
             var dfr = $.Deferred();
 
             //need to obtain publish_checkins permission
@@ -30,23 +41,23 @@
 
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken,
-                    "place" : placeId,
+                    "access_token":accessToken,
+                    "place":params.placeId,
                     "coordinates":{
-                        latitude: latitude,
-                        longitude: longitude
+                        latitude:params.latitude,
+                        longitude:params.longitude
                     },
-                    "tags" : userIdsCSV,
-                    "message" : message,
-                    "link":link,
-                    "picture":picture
+                    "tags":params.userIdsCSV,
+                    "message":params.message,
+                    "link":params.link,
+                    "picture":params.picture
 
                 }
-                FB.api("/" + user + "/checkins", 'post', eventData, function(response) {
+                FB.api("/" + params.user + "/checkins", 'post', eventData, function (response) {
                     dfr.resolve(response);
 
                     if (jQuery.isFunction(callback)) {
-                      callback.call(this, response);
+                        callback.call(this, response);
                     }
                 })
             } else {
@@ -54,12 +65,17 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
 
-          return dfr.promise();
+            return dfr.promise();
         },
         /**
          * return with new comment id if writing successfull
          */
-        comment: function(checkinId, message, callback) {
+        comment:function (checkinId, message, callback) {
+            var defaults = {
+                checkinId:"",
+                message:""
+            };
+            var params = $.extend(defaults, parameters);
             //need to obtain publish_stream permission
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
@@ -67,11 +83,11 @@
 
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken,
-                    "place" : message
+                    "access_token":accessToken,
+                    "place":params.message
 
                 }
-                FB.api("/" + checkinId + "/comments", 'post', eventData, function(response) {
+                FB.api("/" + params.checkinId + "/comments", 'post', eventData, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })
             } else {
@@ -82,7 +98,11 @@
         /**
          * return boolean if writing successfull
          */
-        like: function(checkinId, callback) {
+        like:function (checkinId, callback) {
+            var defaults = {
+                checkinId:""
+            };
+            var params = $.extend(defaults, parameters);
             //need to obtain publish_stream permission
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
@@ -90,9 +110,9 @@
 
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken
+                    "access_token":accessToken
                 }
-                FB.api("/" + checkinId + "/likes", 'post', eventData, function(response) {
+                FB.api("/" + params.checkinId + "/likes", 'post', eventData, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })
             } else {
@@ -103,7 +123,11 @@
         /**
          * return boolean if writing successfull
          */
-        unlike: function(checkinId, callback) {
+        unlike:function (checkinId, callback) {
+            var defaults = {
+                checkinId:""
+            };
+            var params = $.extend(defaults, parameters);
             //need to obtain publish_stream permission
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
@@ -111,9 +135,9 @@
 
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken
+                    "access_token":accessToken
                 }
-                FB.api("/" + checkinId + "/likes", 'delete', eventData, function(response) {
+                FB.api("/" + params.checkinId + "/likes", 'delete', eventData, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })
             } else {
