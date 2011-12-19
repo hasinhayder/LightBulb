@@ -57,7 +57,7 @@
                     description: params.description,
                     to:params.to,
                     from:params.from,
-                    source: video,
+                    source: params.video,
                     actions:action,
                     redirect_uri:params.redirectUrl
                 }
