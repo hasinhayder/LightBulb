@@ -1,7 +1,7 @@
 /**
  * Manage statuses in Facebook.
  */
-(function () {
+(function($) {
     LightBulb.statuses = {
         currentToken:"",
         /**
@@ -42,7 +42,7 @@
                 var reqUrl = "/" + params.userId + '/statuses';
 
                 FB.api(reqUrl, 'get', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
 
@@ -61,7 +61,7 @@
                 var reqUrl = "/" + params.statusId;
 
                 FB.api(reqUrl, 'get', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
 
@@ -80,7 +80,7 @@
                 var reqUrl = "/" + params.statusId + '/comments';
 
                 FB.api(reqUrl, 'get', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
 
@@ -99,12 +99,11 @@
                 var reqUrl = "/" + params.statusId + '/likes';
 
                 FB.api(reqUrl, 'get', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
 
             }
         }
     }
-})
-    ();
+})(jQuery);

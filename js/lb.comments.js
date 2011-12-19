@@ -3,7 +3,7 @@
  *
  * @author M A Hossain Tonu
  */
-(function(){
+(function($) {
     LightBulb.comments = {
         currentToken:"",
         

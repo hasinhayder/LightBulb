@@ -3,7 +3,7 @@
  *
  * @author M A Hossain Tonu
  */
-(function () {
+(function($) {
     LightBulb.socialplugins = {
 
         getLikeButton:function (parameters) {
@@ -157,4 +157,4 @@
                     data-width="' + params.width + '" data-height="' + params.height + '" data-xid="' + params.xid + '" data-via-url="' + params.viaUrl + '" data-always-post-to-friends="' + params.alwaysPosttoFriends + '"></div>';
         }
     }
-})();
+})(jQuery);

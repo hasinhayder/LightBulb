@@ -1,4 +1,4 @@
-(function() {
+
   describe('LightBulb Core', function() {
     it('should avail LightBulb instance in global scope', function() {
       return expect(LightBulb).toBeDefined();
@@ -8,11 +8,13 @@
       return expect($.LightBulb).toBeDefined();
     });
   });
+
   describe('LightBulb initialize', function() {
     return it('should initialize facebook api', function() {
       return LightBulb.specUtil.initLB();
     });
   });
+
   describe('LightBulb login', function() {
     beforeEach(function() {
       return LightBulb.specUtil.initLB();
@@ -49,4 +51,3 @@
       });
     });
   });
-}).call(this);

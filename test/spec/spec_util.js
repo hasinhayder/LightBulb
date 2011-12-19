@@ -1,4 +1,4 @@
-(function() {
+
   LightBulb.specUtil = {
     initLB: function() {
       LightBulb({
@@ -16,4 +16,3 @@
       });
     }
   };
-}).call(this);

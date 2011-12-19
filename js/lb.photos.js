@@ -4,7 +4,7 @@
  * @author Hasin Hayder
  */
 
-(function() {
+(function($) {
     LightBulb.photos = {
         currentToken:"",
         /**
@@ -43,7 +43,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.photoId , 'get', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -60,7 +60,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.photoId+"/comments" , 'get', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -77,7 +77,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.photoId+"/likes" , 'get', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -94,7 +94,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.photoId+"/tags" , 'get', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -120,7 +120,7 @@
                     message: params.message
                 }
                 FB.api("/" + params.photoId+"/comments" , 'post', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -137,7 +137,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.photoId+"/likes" , 'post', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -154,7 +154,7 @@
                     "access_token": accessToken
                 }
                 FB.api("/" + params.photoId+"/likes" , 'delete', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -177,7 +177,7 @@
                     y:params.y
                 }
                 FB.api("/" + params.photoId+"/tags/"+params.userId , 'post', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -200,7 +200,7 @@
                     y:params.y
                 }
                 FB.api("/" + params.photoId+"/tags/"+params.userId , 'post', data, function(response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -208,4 +208,4 @@
         }
 
     }
-})();
+})(jQuery);

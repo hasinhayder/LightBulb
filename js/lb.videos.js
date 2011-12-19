@@ -3,7 +3,7 @@
  *
  * @author Hasin Hayder
  */
-(function () {
+(function($) {
     LightBulb.videos = {
         currentToken:"",
         /**
@@ -42,7 +42,7 @@
                     "access_token":accessToken
                 }
                 FB.api("/" + params.userId + "/videos", 'get', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -59,7 +59,7 @@
                     "access_token":accessToken
                 }
                 FB.api("/" + params.videoId + "", 'get', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -76,7 +76,7 @@
                     "access_token":accessToken
                 }
                 FB.api("/" + params.videoId + "/comments", 'get', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -93,7 +93,7 @@
                     "access_token":accessToken
                 }
                 FB.api("/" + params.videoId + "/likes", 'post', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -110,7 +110,7 @@
                     "access_token":accessToken
                 }
                 FB.api("/" + params.videoId + "/likes", 'delete', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -129,7 +129,7 @@
                     message:params.message
                 }
                 FB.api("/" + params.videoId + "/comments", 'post', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -153,11 +153,11 @@
                     "source_id":params.userId
                 }
                 $.post("/helpers/videos.php", data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         }
     }
-})
+})(jQuery);

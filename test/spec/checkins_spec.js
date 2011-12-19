@@ -1,4 +1,4 @@
-(function() {
+
   describe('Valid checkin', function() {
     return it('should check in a specific location', function() {
       var lb;
@@ -6,4 +6,3 @@
       return expect(lb).not.toBeNull();
     });
   });
-}).call(this);

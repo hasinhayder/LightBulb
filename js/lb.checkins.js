@@ -1,7 +1,7 @@
 /**
  * Helper functions to manage Facebook checkins using LightBulb.
  */
-(function () {
+(function($) {
     //publish_checkins
 
 
@@ -56,7 +56,7 @@
                 FB.api("/" + params.user + "/checkins", 'post', eventData, function (response) {
                     dfr.resolve(response);
 
-                    if (jQuery.isFunction(callback)) {
+                    if ($.isFunction(callback)) {
                         callback.call(this, response);
                     }
                 })
@@ -88,7 +88,7 @@
 
                 }
                 FB.api("/" + params.checkinId + "/comments", 'post', eventData, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -113,7 +113,7 @@
                     "access_token":accessToken
                 }
                 FB.api("/" + params.checkinId + "/likes", 'post', eventData, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -138,11 +138,11 @@
                     "access_token":accessToken
                 }
                 FB.api("/" + params.checkinId + "/likes", 'delete', eventData, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 })
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         }
     };
-})();
+})(jQuery);

@@ -3,7 +3,7 @@
  * @author Hasin Hayder
  */
 
-(function () {
+(function($) {
     LightBulb.applications = {
         currentToken:"",
         appToken:"",
@@ -43,7 +43,7 @@
                     "access_token":accessToken
                 }
                 FB.api("/" + params.appId + "", 'get', data, function (response) {
-                    if (jQuery.isFunction(callback)) callback.call(this, response);
+                    if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -509,4 +509,4 @@
             }
         }
     }
-})();
+})(jQuery);

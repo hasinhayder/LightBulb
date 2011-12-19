@@ -7,7 +7,7 @@ var LIGHTBULB_ALBUM_PRIVACY_ALLFRIENDS = "ALL_FRIENDS";
 var LIGHTBULB_ALBUM_PRIVACY_NETWORKS_FRIENDS = "NETWORKS_FRIENDS";
 var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
 
-(function() {
+(function($) {
     LightBulb.albums = {
         createAlbum: function(parameters, callback) {
             var defaults = {
@@ -207,12 +207,12 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
                 albumData = {};
             }
             /*FB.api("/" + albumId + "/comments", 'post', albumData, function(response) {
-             if (jQuery.isFunction(callback)) callback.call(this, response);
+             if ($.isFunction(callback)) callback.call(this, response);
              });*/
             $.post("/helpers/photos.php?what=addphototoalbum", albumData, function(response) {
-                if (jQuery.isFunction(callback)) callback.call(this, response);
+                if ($.isFunction(callback)) callback.call(this, response);
             })
         }
     }
 
-})();
+})(jQuery);
