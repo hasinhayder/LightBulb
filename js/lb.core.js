@@ -5,7 +5,7 @@
  * @version: 1.00
  */
 var LightBulb;
-(function() {
+(function($) {
     var opts;
     var fbdata = {};
     var deferred = $.Deferred();
@@ -32,7 +32,7 @@ var LightBulb;
                 var session = response.authResponse;
                 fbdata.accessToken = session.accessToken;
                 fbdata.facebookUserId = session.userID;
-                if (jQuery.isFunction(opts.authResponseChange)) opts.authResponseChange.call(this, fbdata);
+                if ($.isFunction(opts.authResponseChange)) opts.authResponseChange.call(this, fbdata);
                 deferred.resolve(session, fbdata);
             }
         });
@@ -45,7 +45,7 @@ var LightBulb;
                 var session = response.authResponse;
                 fbdata.accessToken = session.accessToken;
                 fbdata.facebookUserId = session.userID;
-                if (jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
+                if ($.isFunction(opts.callback)) opts.callback.call(this, fbdata);
                 deferred.resolve(session, fbdata);
 
             } else {
@@ -62,16 +62,16 @@ var LightBulb;
      */
     LightBulb.login = function() {
         //alert("Calling Auth");
-      FB.login(function(response) {
-        if (response.authResponse) {
-            var session = response.authResponse;
-            fbdata.accessToken = session.accessToken;
-            fbdata.facebookUserId = session.userID;
-          if (jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
-        }
-      }, {scope:opts.permissions});
+        FB.login(function(response) {
+            if (response.authResponse) {
+                var session = response.authResponse;
+                fbdata.accessToken = session.accessToken;
+                fbdata.facebookUserId = session.userID;
+                if ($.isFunction(opts.callback)) opts.callback.call(this, fbdata);
+            }
+        }, {scope:opts.permissions});
 
-      return deferred.promise();
+        return deferred.promise();
     };
 
     /**
@@ -88,9 +88,9 @@ var LightBulb;
                 fbdata.facebookUserId = 0;
                 dfr.resolve(response);
             }
-            if (jQuery.isFunction(callback)) callback.call(this, response);
+            if ($.isFunction(callback)) callback.call(this, response);
         });
-      return dfr.promise();
+        return dfr.promise();
     };
 
     /**
@@ -130,19 +130,19 @@ var LightBulb;
     LightBulb.get = function(openGraphPath, data, callback){
         //alert(openGraphPath);
         FB.api(openGraphPath, 'get', data, function(response) {
-            if (jQuery.isFunction(callback)) callback.call(this, response);
+            if ($.isFunction(callback)) callback.call(this, response);
         });
     };
 
     LightBulb.post = function(openGraphPath, data, callback){
         FB.api(openGraphPath, 'post', data, function(response) {
-            if (jQuery.isFunction(callback)) callback.call(this, response);
+            if ($.isFunction(callback)) callback.call(this, response);
         });
     };
 
     LightBulb.delete = function(openGraphPath, data, callback){
         FB.api(openGraphPath, 'delete', data, function(response) {
-            if (jQuery.isFunction(callback)) callback.call(this, response);
+            if ($.isFunction(callback)) callback.call(this, response);
         });
     }
 
@@ -155,15 +155,15 @@ var LightBulb;
     LightBulb.log = function() {
         var msg = arguments;
         if (window.console && window.console.log) {
-                window.console.log(msg);
+            window.console.log(msg);
         }
         else if (window.opera && window.opera.postError) {
-                window.opera.postError(msg);
+            window.opera.postError(msg);
         }
     };
 
     if (typeof($) != 'undefined') {
-      // Associate this LightBulb as jquery extension
-      $.LightBulb = LightBulb;
+        // Associate this LightBulb as jquery extension
+        $.LightBulb = LightBulb;
     }
-})();
+})(jQuery);
