@@ -1,0 +1,26 @@
+<h2>Get all the pages user can administer</h2>
+<p>
+    Fetch user's pages <input type="button" value="Fetch Pages" onclick="fetch();"/><br/><br/>
+    <pre class="js">
+LightBulb.users.getAccounts({user:"me"}, function(response) {
+    console.log(response);
+    $("#result").html("&lt;h2>Result  - 1st Page&lt;/h2>")
+        var page = response.data[0];
+        for(i in page){
+            $("#result").append("&lt;b>"+i+":&lt;/b> "+page[i]+"&lt;br/>");
+        }
+});
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+        LightBulb.users.getAccounts({user:"me"}, function(response) {
+            console.log(response);
+            $("#result").html("<h2>Result  - 1st Page</h2>")
+                var page = response.data[0];
+                for(i in page){
+                    $("#result").append("<b>"+i+":</b> "+page[i]+"<br/>");
+                }
+        });
+    }
+</script>
