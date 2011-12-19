@@ -17,6 +17,8 @@ AllowOverride All
 
 And point your browser to http://lb.appstep.net/test/
 
+Download the ongoing documentation: http://dl.dropbox.com/u/5396928/LBDocs/LightBulb20111219.pdf
+
 Documentation instruction for collaborators:
 --------------------------------------------
 a) proper documentation must be added at the top of each wrapper library
