@@ -2,13 +2,17 @@
 <p>
     Fetch user activities <input type="button" value="Fetch Details" onclick="fetch();"/><br/><br/>
     <pre class="js">
-LightBulb.users.getUser({user:"me"}, function(response) {
-    console.log(response);
+LightBulb.users.getActivities({user:"me"}, function(response) {
+    //console.log(response);
     $("#result").html("&lt;h2>Result&lt;/h2>")
-    for(i in response){
-        $("#result").append("&lt;b>"+i+":&lt;/b> "+response[i]+"&lt;br/>");
+    for(i in response.data){
+        var activity = response.data[i];
+        //console.log(activity);
+        for(j in activity)
+            $("#result").append("&lt;b>"+j+":&lt;/b> "+activity[i]+"&lt;br/>");
+        $("#result").append("&lt;br/>&lt;br/>")
     }
-})
+});
 </pre>
 </p>
 <script type="text/javascript">
