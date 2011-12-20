@@ -1,0 +1,16 @@
+<h2>Get users app requests</h2>
+<p>
+    Fetch app requests <input type="button" value="Fetch Details" onclick="fetch();"/><br/><br/>
+    <pre class="js">
+LightBulb.users.getAppRequests({user:"me"}, function(response) {
+    console.log(response);
+});
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+        LightBulb.users.getAppRequests({user:"me"}, function(response) {
+            console.log(response);
+        });
+    }
+</script>

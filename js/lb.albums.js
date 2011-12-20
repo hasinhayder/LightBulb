@@ -40,7 +40,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
                     "privacy":params.privacyobj
                 }
                 //alert(albumData.toSource());
-                LightBulb.post("/" + user + "/albums", data,callback);
+                LightBulb.post("/" + params.user + "/albums", data,callback);
                 /*FB.api("/" + user + "/albums", 'post', data, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })*/

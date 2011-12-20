@@ -1,0 +1,39 @@
+<h2>Get user albums</h2>
+<p>
+    Ask for permission <input type="button" value="Fetch Details" onclick="newperm();"/><br/><br/>
+    Fetch user albums <input type="button" value="Fetch Details" onclick="fetch();"/><br/><br/>
+<pre class="js">
+function fetch() {
+    LightBulb.users.getAlbums({user:"me"}, function (response) {
+        console.log(response);
+        $("#result").html("&lt;h2>Result&lt;/h2>")
+        for (i in response.data) {
+            var album = response.data[i];
+            $("#result").append("&lt;b>" + i + ":&lt;/b> " + album.name + "&lt;br/>");
+            //$("#result").append("&lt;br/>&lt;br/>")
+        }
+    });
+}
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+        LightBulb.users.getAlbums({user:"me"}, function (response) {
+            console.log(response);
+            $("#result").html("<h2>Result</h2>")
+            for (i in response.data) {
+                var album = response.data[i];
+                $("#result").append("<b>" + i + ":</b> " + album.name + "<br/>");
+            }
+        });
+    }
+    function newperm() {
+        LightBulb({
+            apikey:"288048857874241",
+            permissions:"user_photos",
+            forcedPermission:true,
+            callback:function (data) {
+            }
+        });
+    }
+</script>

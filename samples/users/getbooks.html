@@ -1,0 +1,32 @@
+<h2>Get users books</h2>
+<p>
+    Fetch user books <input type="button" value="Fetch Details" onclick="fetch();"/><br/><br/>
+    <pre class="js">
+LightBulb.users.getBooks({user:"me"}, function(response) {
+    //console.log(response);
+    $("#result").html("<h2>Result</h2>")
+    for(i in response.data){
+        var activity = response.data[i];
+        //console.log(activity);
+        for(j in activity)
+            $("#result").append("<b>"+j+":</b> "+activity[j]+"<br/>");
+        $("#result").append("<br/><br/>")
+    }
+});
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+        LightBulb.users.getBooks({user:"me"}, function(response) {
+            //console.log(response);
+            $("#result").html("<h2>Result</h2>")
+            for(i in response.data){
+                var activity = response.data[i];
+                //console.log(activity);
+                for(j in activity)
+                    $("#result").append("<b>"+j+":</b> "+activity[j]+"<br/>");
+                $("#result").append("<br/><br/>")
+            }
+        });
+    }
+</script>
