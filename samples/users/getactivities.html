@@ -9,7 +9,7 @@ LightBulb.users.getActivities({user:"me"}, function(response) {
         var activity = response.data[i];
         //console.log(activity);
         for(j in activity)
-            $("#result").append("&lt;b>"+j+":&lt;/b> "+activity[i]+"&lt;br/>");
+            $("#result").append("&lt;b>"+j+":&lt;/b> "+activity[j]+"&lt;br/>");
         $("#result").append("&lt;br/>&lt;br/>")
     }
 });
@@ -24,7 +24,7 @@ LightBulb.users.getActivities({user:"me"}, function(response) {
                 var activity = response.data[i];
                 //console.log(activity);
                 for(j in activity)
-                    $("#result").append("<b>"+j+":</b> "+activity[i]+"<br/>");
+                    $("#result").append("<b>"+j+":</b> "+activity[j]+"<br/>");
                 $("#result").append("<br/><br/>")
             }
         });
