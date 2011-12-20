@@ -14,7 +14,7 @@ var LightBulb;
         var defaults = {
             apikey:"",
             secret:"",
-            login: "true",
+            login:true,
             permissions:"",
             cookie:true,
             xfbml:true,
