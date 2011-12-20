@@ -1,0 +1,24 @@
+<h2>Get user achievements</h2>
+<p>
+    Fetch user achievements <input type="button" value="Fetch Details" onclick="fetch();"/><br/><br/>
+    <pre class="js">
+LightBulb.users.getAchievements({user:"me"}, function(response) {
+    console.log(response);
+    /*$("#result").html("<h2>Result</h2>")
+    for(i in response){
+        $("#result").append("<b>"+i+":</b> "+response[i]+"<br/>");
+    }*/
+});
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+        LightBulb.users.getAchievements({user:"me"}, function(response) {
+            console.log(response);
+            /*$("#result").html("<h2>Result</h2>")
+            for(i in response){
+                $("#result").append("<b>"+i+":</b> "+response[i]+"<br/>");
+            }*/
+        });
+    }
+</script>
