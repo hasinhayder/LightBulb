@@ -1,0 +1,30 @@
+<h2>Example of albums</h2>
+<p>
+    Create album <input type="button" value="Get Albums" onclick="getAlbums();"/>
+</p>
+
+<pre class="js">
+LightBulb.albums.createAlbum({
+    creator: 'creatorName',
+    name: 'yourAlbumName',
+    description: 'albumDescriptions',
+    },
+    function (response) {
+        alert('Album created with the following id: ' + response.id);
+    }
+);
+</pre>
+
+<div id="result">
+    <!-- Albums -->
+</div>
+
+<script type="text/javascript">
+    function getAlbums() {
+        LightBulb.albums.getAlbums({user:'me'},function(response) {
+                    console.log(response);
+                    //alert('Album created with the following id: ' + response);
+                }
+        );
+    }
+</script>

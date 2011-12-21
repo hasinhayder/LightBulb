@@ -49,6 +49,27 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             }
         },
 
+        getAlbums:function (parameters, callback) {
+            var defaults = {
+                user:""
+            };
+            var params = $.extend(defaults, parameters);
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            if (accessToken) {
+                var data = {
+                    "access_token":accessToken
+                }
+                var reqUrl = "/" + params.user + '/albums';
+
+                FB.api(reqUrl, 'get', data, function (response) {
+                    if ($.isFunction(callback)) callback.call(this, response);
+                });
+            } else {
+                throw LIGHTBULB_NO_TOKEN;
+            }
+        },
+
         get:function(parameters, callback) {
             var defaults = {
                 albumId: ""
