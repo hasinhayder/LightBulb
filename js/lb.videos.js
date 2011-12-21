@@ -41,7 +41,7 @@
                 var data = {
                     access_token: accessToken
                 };
-                FB.api("/" + params.userId + "/videos", 'get', data, function (response) {
+                FB.api("/" + params.userId + "/videos", "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -58,7 +58,7 @@
                 var data = {
                     access_token: accessToken
                 };
-                FB.api("/" + params.videoId + "", 'get', data, function (response) {
+                FB.api("/" + params.videoId + "", "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -75,7 +75,7 @@
                 var data = {
                     access_token: accessToken
                 };
-                FB.api("/" + params.videoId + "/comments", 'get', data, function (response) {
+                FB.api("/" + params.videoId + "/comments", "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
