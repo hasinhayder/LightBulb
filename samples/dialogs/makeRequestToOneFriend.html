@@ -1,0 +1,19 @@
+<h2>Make Request To One Friend</h2>
+<p>
+    Make Request To One Friend<input type="button" value="Send Request" onclick="fetch();"/><br/><br/>
+<pre class="js">
+LightBulb.dialogs.makeRequestToOneFriend({user:"me"}, function(response) {
+
+});
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+        LightBulb.dialogs.makeRequestToOneFriend({
+            friendId:1306909833
+        },
+        function(response) {
+
+        });
+    }
+</script>
