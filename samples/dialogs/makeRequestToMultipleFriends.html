@@ -1,26 +1,23 @@
-<h2>Make Request To One Friend</h2>
+<h2>Make Request To Multiple Friends</h2>
 <p>
-    Make Request To One Friend<input type="button" value="Send Request" onclick="fetch();"/><br/><br/>
+    Make Request To Multiple Friends<input type="button" value="Send Request" onclick="fetch();"/><br/><br/>
 <pre class="js">
-LightBulb.dialogs.makeRequestToOneFriend({user:"me"}, function(response) {
+LightBulb.dialogs.makeRequestToMultipleFriends({user:"me"}, function(response) {
 
 });
 </pre>
 </p>
 <script type="text/javascript">
     function fetch() {
-        LightBulb.dialogs.makeRequestToOneFriend({
-            friendId:1454543922,
+        LightBulb.dialogs.makeRequestToMultipleFriends({
             message:'This is LightBulb'
-        },
-        function(response) {
+        },function(response) {
             console.log(response);
             $("#result").html("<h2>Result  - 1st Page</h2>")
             var page = response[0];
             for(i in page){
                 $("#result").append("<b>"+i+":</b> "+page[i]+"<br/>");
             }
-
         });
     }
 </script>

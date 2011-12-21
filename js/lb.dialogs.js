@@ -143,9 +143,7 @@
         makeRequestToOneFriend:function(parameters,callback){
             var defaults={
                 friendId:"",
-                message:"",
-                title:"",
-                data:""
+                message:""
             };
             var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
@@ -155,9 +153,7 @@
                 var data = {
                     method: 'apprequests',
                     to: params.friendId,
-                    message:params.message,
-                    title:params.title,
-                    data:params.data
+                    message:params.message
                 }
                 FB.ui(data, function(response) {
                     if ($.isFunction(callback)) callback.call(this, response);
@@ -180,11 +176,9 @@
         makeRequestToMultipleFriends:function(parameters, callback){
             var defaults={
                 message:"",
-                title:"",
                 filters:"",
                 excludedFriends:"", 
-                maxRecipients:"",
-                data:""
+                maxRecipients:""
             };
             var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
@@ -197,9 +191,7 @@
                     filters: params.filters,
                     exclude_ids:params.excludedFriends,
                     message:params.message,
-                    title:params.title,
-                    max_recipients:params.maxRecipients,
-                    data:params.data
+                    max_recipients:params.maxRecipients
                 }
                 FB.ui(data, function(response) {
                     if ($.isFunction(callback)) callback.call(this, response);
