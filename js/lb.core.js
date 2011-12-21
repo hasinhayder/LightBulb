@@ -118,15 +118,6 @@ var LightBulb;
         return fbdata.facebookUserId && fbdata.facebookUserId > 0;
     };
 
-    /**
-     * Determine whether the defined method is function or not.
-     * Type of should return 'function'
-     * @param func object which needs to be checked.
-     */
-    LightBulb.isFunction = function (func) {
-        return (func && typeof(func) == 'function');
-    };
-
     LightBulb.get = function (openGraphPath, data, callback) {
         //alert(openGraphPath);
         FB.api(openGraphPath, 'get', data, function (response) {
