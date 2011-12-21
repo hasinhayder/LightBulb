@@ -135,15 +135,17 @@ var LightBulb;
     };
 
     LightBulb.post = function(openGraphPath, data, callback){
-        FB.api(openGraphPath, 'post', data, function(response) {
-            if ($.isFunction(callback)) callback.call(this, response);
-        });
+        FB.api(openGraphPath, 'post', data, callback);
     };
 
     LightBulb.delete = function(openGraphPath, data, callback){
         FB.api(openGraphPath, 'delete', data, function(response) {
             if ($.isFunction(callback)) callback.call(this, response);
         });
+    }
+
+    LightBulb.parseXFBML=function(){
+        FB.XFBML.parse();
     }
 
     /**
