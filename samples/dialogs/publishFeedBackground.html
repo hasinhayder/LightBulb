@@ -16,7 +16,7 @@ LightBulb.dialogs.publishFeedBackground({user:"me"}, function(response) {
         }, function(response) {
             console.log(response);
             $("#result").html("<h2>Result  - 1st Page</h2>")
-            var page = response.data[0];
+            var page = response[0];
             for(i in page){
                 $("#result").append("<b>"+i+":</b> "+page[i]+"<br/>");
             }
