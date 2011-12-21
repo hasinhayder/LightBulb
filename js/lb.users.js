@@ -11,405 +11,405 @@
          * @param user Facebook User Id, either string "me" or a particular Facebook User/Page Id
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        getUser:function (parameters, callback) {
+        getUser: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
+                    access_token: accessToken
+                };
                 var reqUrl = "/" + params.user;
                 reqUrl += "?fields=id,name,first_name,middle_name,last_name,gender,locale,languages,link,username,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,video_upload_limits,website,work";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getAccounts:function (parameters, callback) {
+        getAccounts: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/accounts';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/accounts";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getAchievements:function (parameters, callback) {
+        getAchievements: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/achievements';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/achievements";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getActivities:function (parameters, callback) {
+        getActivities: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/activities';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/activities";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getAlbums:function (parameters, callback) {
+        getAlbums: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/albums';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/albums";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getAppRequests:function (parameters, callback) {
+        getAppRequests: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/apprequests';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/apprequests";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getBooks:function (parameters, callback) {
+        getBooks: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/books';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/books";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getCheckins:function (parameters, callback) {
+        getCheckins: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/checkins';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/checkins";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getEvents:function (parameters, callback) {
+        getEvents: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/events';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/events";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getFamily:function (parameters, callback) {
+        getFamily: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/family';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/family";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getFeed:function (parameters, callback) {
+        getFeed: function (parameters, callback) {
             var defaults = {
-                user:"",
-                limit:10
+                user: "",
+                limit: 10
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
+                    access_token: accessToken
+                };
                 var reqUrl = "/" + params.user + '/feed?'+"limit="+params.limit;
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getFriendLists:function (parameters, callback) {
+        getFriendLists: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/friendlists';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/friendlists";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getFriendRequests:function (parameters, callback) {
+        getFriendRequests: function (parameters, callback) {
             var defaults = {
-                user:"",
-                limit:10
+                user: "",
+                limit: 10
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
+                    access_token: accessToken
+                };
                 var reqUrl = "/" + params.user + '/friendrequests?limit='+params.limit;
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getFriends:function (parameters, callback) {
+        getFriends: function (parameters, callback) {
             var defaults = {
-                user:"",
-                limit:10
+                user: "",
+                limit: 10
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
+                    access_token: accessToken
+                };
                 var reqUrl = "/" + params.user + '/friends?limit='+params.limit;
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        isFriend:function (parameters, callback) {
+        isFriend: function (parameters, callback) {
             var defaults = {
-                user1:"",
-                user2:""
+                user1: "",
+                user2: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
+                    access_token: accessToken
+                };
                 var reqUrl = "/" + params.user1 + '/friends/' + params.user2;
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getGames:function (parameters, callback) {
+        getGames: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/games';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/games";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getGroups:function (parameters, callback) {
+        getGroups: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/groups';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/groups";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getHome:function (parameters, callback) {
+        getHome: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/home';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/home";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getInbox:function (parameters, callback) {
+        getInbox: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/inbox';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/inbox";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getInterests:function (parameters, callback) {
+        getInterests: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/interests';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/interests";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -417,20 +417,20 @@
             }
         },
         //the pages that a User has liked
-        getLikes:function (parameters, callback) {
+        getLikes: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/likes';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/likes";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -438,326 +438,326 @@
             }
         },
         //if a User likes a specific page
-        isLiked:function (parameters, callback) {
+        isLiked: function (parameters, callback) {
             var defaults = {
-                user:"",
-                pageId:""
+                user: "",
+                pageId: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
+                    access_token: accessToken
+                };
                 var reqUrl = "/" + params.user + '/likes/' + params.pageId;
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getLinks:function (parameters, callback) {
+        getLinks: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/links';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/links";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getMovies:function (parameters, callback) {
+        getMovies: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/movies';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/movies";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getMusic:function (parameters, callback) {
+        getMusic: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/music';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/music";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getMutualFriends:function (parameters, callback) {
+        getMutualFriends: function (parameters, callback) {
             var defaults = {
-                user:"",
-                friendsId:""
+                user: "",
+                friendsId: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
+                    access_token: accessToken
+                };
                 var reqUrl = "/" + params.user + '/mutualfriends/' + params.friendsId;
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getNotes:function (parameters, callback) {
+        getNotes: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/notes';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/notes";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getNotifications:function (parameters, callback) {
+        getNotifications: function (parameters, callback) {
             var defaults = {
-                user:"",
-                includeRead:""
+                user: "",
+                includeRead: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/notifications';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/notifications";
 
                 if (params.includeRead === true)
                     reqUrl += '?include_read=1';
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getOutbox:function (parameters, callback) {
+        getOutbox: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/outbox';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/outbox";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getPermissions:function (parameters, callback) {
+        getPermissions: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/permissions';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/permissions";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getPhotos:function (parameters, callback) {
+        getPhotos: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/photos';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/photos";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getPokes:function (parameters, callback) {
+        getPokes: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/pokes';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/pokes";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getPosts:function (parameters, callback) {
+        getPosts: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/posts';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/posts";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getScores:function (parameters, callback) {
+        getScores: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/scores';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/scores";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getStatuses:function (parameters, callback) {
+        getStatuses: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/statuses';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/statuses";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getTagged:function (parameters, callback) {
+        getTagged: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/tagged';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/tagged";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getTelevision:function (parameters, callback) {
+        getTelevision: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/television';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/television";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -765,46 +765,45 @@
             }
         },
         //The updates in this user's inbox.
-        getUpdates:function (parameters, callback) {
+        getUpdates: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/updates';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/updates";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getVideos:function (parameters, callback) {
+        getVideos: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/videos';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/videos";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         }
-
     };
 })(jQuery);

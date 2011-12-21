@@ -5,19 +5,19 @@
  */
 (function($) {
     LightBulb.reviews = {
-        currentToken:"",
+        currentToken: "",
 
-        getReviews:function(parameters,callback){
+        getReviews: function (parameters,callback) {
             var defaults = {
-                            applicationId:""
-                        };
-                        var params = $.extend(defaults, parameters);
+                applicationId: ""
+            };
+            var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.reviews.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.applicationId+'/reviews' , 'get', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.applicationId + "/reviews", "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -31,11 +31,11 @@
          * @author Hasin Hayder
          * @param token
          */
-        setToken:function(token){
+        setToken: function (token) {
             LightBulb.reviews.currentToken = token;
             return true;
         },
-        removeToken:function(){
+        removeToken: function () {
             LightBulb.reviews.currentToken = "";
         },
 
@@ -44,12 +44,11 @@
          *
          * @author Hasin Hayder
          */
-        getToken:function(){
+        getToken: function () {
             var userData = LightBulb._getFacebookData();
             var token = userData.accessToken;
-            if(LightBulb.reviews.currentToken) token=LightBulb.reviews.currentToken;
+            if(LightBulb.reviews.currentToken) token = LightBulb.reviews.currentToken;
             return token;
         }
-
-    }
+    };
 })(jQuery);

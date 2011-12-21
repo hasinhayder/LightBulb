@@ -20,16 +20,16 @@
          * @param picture string checkin picture
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        create:function (parameters, callback) {
+        create: function (parameters, callback) {
             var defaults = {
-                user:"",
-                placeId:"",
-                latitude:"",
-                longitude:"",
-                userIdsCSV:"",
-                message:"",
-                link:"",
-                picture:""
+                user: "",
+                placeId: "",
+                latitude: "",
+                longitude: "",
+                userIdsCSV: "",
+                message: "",
+                link: "",
+                picture: ""
             };
             var params = $.extend(defaults, parameters);
             var dfr = $.Deferred();
@@ -41,25 +41,25 @@
 
             if (accessToken) {
                 var eventData = {
-                    "access_token":accessToken,
-                    "place":params.placeId,
-                    "coordinates":{
-                        latitude:params.latitude,
-                        longitude:params.longitude
+                    access_token: accessToken,
+                    place: params.placeId,
+                    coordinates: {
+                        latitude: params.latitude,
+                        longitude: params.longitude
                     },
-                    "tags":params.userIdsCSV,
-                    "message":params.message,
-                    "link":params.link,
-                    "picture":params.picture
+                    tags: params.userIdsCSV,
+                    message: params.message,
+                    link: params.link,
+                    picture: params.picture
 
-                }
-                FB.api("/" + params.user + "/checkins", 'post', eventData, function (response) {
+                };
+                FB.api("/" + params.user + "/checkins", "post", eventData, function (response) {
                     dfr.resolve(response);
 
                     if ($.isFunction(callback)) {
                         callback.call(this, response);
                     }
-                })
+                });
             } else {
                 dfr.reject(LIGHTBULB_NO_TOKEN);
                 throw LIGHTBULB_NO_TOKEN;
@@ -70,10 +70,10 @@
         /**
          * return with new comment id if writing successfull
          */
-        comment:function (checkinId, message, callback) {
+        comment: function (checkinId, message, callback) {
             var defaults = {
-                checkinId:"",
-                message:""
+                checkinId: "",
+                message: ""
             };
             var params = $.extend(defaults, parameters);
             //need to obtain publish_stream permission
@@ -83,13 +83,12 @@
 
             if (accessToken) {
                 var eventData = {
-                    "access_token":accessToken,
-                    "place":params.message
-
-                }
-                FB.api("/" + params.checkinId + "/comments", 'post', eventData, function (response) {
+                    access_token: accessToken,
+                    place: params.message
+                };
+                FB.api("/" + params.checkinId + "/comments", "post", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
-                })
+                });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -98,9 +97,9 @@
         /**
          * return boolean if writing successfull
          */
-        like:function (checkinId, callback) {
+        like: function (checkinId, callback) {
             var defaults = {
-                checkinId:""
+                checkinId: ""
             };
             var params = $.extend(defaults, parameters);
             //need to obtain publish_stream permission
@@ -110,11 +109,11 @@
 
             if (accessToken) {
                 var eventData = {
-                    "access_token":accessToken
-                }
-                FB.api("/" + params.checkinId + "/likes", 'post', eventData, function (response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.checkinId + "/likes", "post", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
-                })
+                });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -123,9 +122,9 @@
         /**
          * return boolean if writing successfull
          */
-        unlike:function (checkinId, callback) {
+        unlike: function (checkinId, callback) {
             var defaults = {
-                checkinId:""
+                checkinId: ""
             };
             var params = $.extend(defaults, parameters);
             //need to obtain publish_stream permission
@@ -135,11 +134,11 @@
 
             if (accessToken) {
                 var eventData = {
-                    "access_token":accessToken
-                }
-                FB.api("/" + params.checkinId + "/likes", 'delete', eventData, function (response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.checkinId + "/likes", "delete", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
-                })
+                });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }

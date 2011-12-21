@@ -5,19 +5,19 @@
  */
 (function($) {
     LightBulb.friendlists = {
-        currentToken:"",
+        currentToken: "",
 
-        getFriendList:function(parameters,callback){
+        getFriendList: function (parameters,callback) {
             var defaults = {
-                friendlistId:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                friendlistId: ""
+            };
+            var params = $.extend(defaults,parameters);
             var accessToken = LightBulb.friendlists.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.friendlistId , 'get', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.friendlistId , "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -25,17 +25,17 @@
             }
         },
         
-        getMembers:function(parameters,callback){
+        getMembers: function (parameters,callback) {
             var defaults = {
-                            friendlistId:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                friendlistId: ""
+            };
+            var params = $.extend(defaults,parameters);
             var accessToken = LightBulb.friendlists.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.friendlistId+'/members' , 'get', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.friendlistId+'/members' , "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -49,11 +49,11 @@
          * @author Hasin Hayder
          * @param token
          */
-        setToken:function(token){
+        setToken: function (token) {
             LightBulb.friendlists.currentToken = token;
             return true;
         },
-        removeToken:function(){
+        removeToken: function () {
             LightBulb.friendlists.currentToken = "";
         },
 
@@ -62,26 +62,26 @@
          *
          * @author Hasin Hayder
          */
-        getToken:function(){
+        getToken: function () {
             var userData = LightBulb._getFacebookData();
             var token = userData.accessToken;
-            if(LightBulb.friendlists.currentToken) token=LightBulb.friendlists.currentToken;
+            if (LightBulb.friendlists.currentToken) token=LightBulb.friendlists.currentToken;
             return token;
         },
 
-        create:function(parameters, callback){
+        create: function (parameters, callback) {
             var defaults = {
-                            userId:"",
-                name:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                userId: "",
+                name: ""
+            };
+            var params = $.extend(defaults,parameters);
             var accessToken = LightBulb.friendlists.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken,
-                    "name" : params.name
-                }
-                FB.api("/" + params.userId + "/friendlists", 'post', data, function(response) {
+                    access_token: accessToken,
+                    name: params.name
+                };
+                FB.api("/" + params.userId + "/friendlists", "post", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -89,17 +89,17 @@
             }
         },
         
-        deleteFriendList:function(parameters, callback){
+        deleteFriendList: function (parameters, callback) {
             var defaults = {
-                    friendlistId:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                friendlistId: ""
+            };
+            var params = $.extend(defaults,parameters);
             var accessToken = LightBulb.friendlists.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.friendlistId , 'delete', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.friendlistId , "delete", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -107,18 +107,18 @@
             }
         },
 
-        createMember:function(parameters, callback){
+        createMember: function (parameters, callback) {
             var defaults = {
-                            friendlistId:"",
-                userId:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                friendlistId: "",
+                userId: ""
+            };
+            var params = $.extend(defaults,parameters);
             var accessToken = LightBulb.friendlists.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.friendlistId+"/members/"+params.userId, 'post', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.friendlistId+"/members/"+params.userId, "post", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -126,24 +126,23 @@
             }
         },
 
-        deleteMember:function(parameters, callback){
+        deleteMember: function (parameters, callback) {
             var defaults = {
-                            friendlistId:"",
-                userId:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                friendlistId: "",
+                userId: ""
+            };
+            var params = $.extend(defaults,parameters);
             var accessToken = LightBulb.friendlists.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.friendlistId+"/members/"+params.userId, 'delete', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.friendlistId+"/members/"+params.userId, "delete", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         }
-
-    }
+    };
 })(jQuery);

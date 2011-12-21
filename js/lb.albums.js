@@ -9,15 +9,15 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
 
 (function($) {
     LightBulb.albums = {
-        createAlbum: function(parameters, callback) {
+        createAlbum: function (parameters, callback) {
             var defaults = {
-                user:"",
-                creator:"",
-                name:"",
-                description:"",
-                location:"",
-                privacy:"",
-                type:""
+                user: "",
+                creator: "",
+                name: "",
+                description: "",
+                location: "",
+                privacy: "",
+                type: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = $.LightBulb._getFacebookData();
@@ -25,23 +25,23 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             var userId = userData.facebookUserId;
             if (params.creator === "") params.creator = userId;
             if (params.type === "") params.type = "normal";
-            if (params.privacy === "") params.privacyobj = {value:"EVERYONE"};
-            else params.privacyobj = {value:privacy};
+            if (params.privacy === "") params.privacyobj = {value: "EVERYONE"};
+            else params.privacyobj = {value: privacy};
 
             if (accessToken) {
                 //create the album
                 var data = {
-                    "access_token": accessToken,
-                    "from" : params.creator,
-                    "name":params.name,
-                    "description" : params.description,
-                    "location" : params.location,
-                    "type":params.type,
-                    "privacy":params.privacyobj
+                    access_token: accessToken,
+                    from: params.creator,
+                    name: params.name,
+                    description: params.description,
+                    location: params.location,
+                    type: params.type,
+                    privacy: params.privacyobj
                 };
                 //alert(albumData.toSource());
-                LightBulb.post("/" + params.user + "/albums", data,callback);
-                /*FB.api("/" + user + "/albums", 'post', data, function(response) {
+                LightBulb.post("/" + params.user + "/albums", data, callback);
+                /*FB.api("/" + user + "/albums", "post", data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -49,20 +49,20 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             }
         },
 
-        getAlbums:function (parameters, callback) {
+        getAlbums: function (parameters, callback) {
             var defaults = {
-                user:""
+                user: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.user + '/albums';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.user + "/albums";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -70,7 +70,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             }
         },
 
-        get:function(parameters, callback) {
+        get: function (parameters, callback) {
             var defaults = {
                 albumId: ""
             };
@@ -80,13 +80,13 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
+                    access_token: accessToken
                 };
             } else {
                 data = {};
             }
-            LightBulb.get("/" + params.albumId,data,callback);
-            /*FB.api("/" + albumId, 'post', data, function(response) {
+            LightBulb.get("/" + params.albumId, data, callback);
+            /*FB.api("/" + albumId, "post", data, function (response) {
                 if (jQuery.isFunction(callback)) callback.call(this, response);
             });*/
         },
@@ -95,7 +95,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
          * meta information of the
          * @param albumId
          */
-        getMeta:function(parameters, callback) {
+        getMeta: function (parameters, callback) {
             var defaults = {
                 albumId: ""
             };
@@ -105,19 +105,19 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var albumData = {
-                    "access_token": accessToken
+                    access_token: accessToken
                 };
             } else {
                 albumData = {};
             }
-            LightBulb.get("/" + params.albumId + "?fields=id,name,from,description, location, link, cover_photo, privacy,count,type,created_time,updated_time",albumData,callback);
-            /*FB.api("/" + albumId + "?fields=id,name,from,description, location, link, cover_photo, privacy,count,type,created_time,updated_time", 'get', albumData, function(response) {
+            LightBulb.get("/" + params.albumId + "?fields=id,name,from,description, location, link, cover_photo, privacy,count,type,created_time,updated_time", albumData, callback);
+            /*FB.api("/" + albumId + "?fields=id,name,from,description, location, link, cover_photo, privacy,count,type,created_time,updated_time", "get", albumData, function (response) {
                 response.comments = {};
                 if (jQuery.isFunction(callback)) callback.call(this, response);
             });*/
 
         },
-        getPhotos:function(parameters, callback) {
+        getPhotos: function (parameters, callback) {
             var defaults = {
                 albumId: ""
             };
@@ -127,19 +127,19 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var albumData = {
-                    "access_token": accessToken
+                    access_token: accessToken
                 };
             } else {
                 albumData = {};
             }
-            LightBulb.get("/" + params.albumId + "/photos?fields=id,from,picture,source,images,height,width,created_time",albumData,callback);
+            LightBulb.get("/" + params.albumId + "/photos?fields=id,from,picture,source,images,height,width,created_time", albumData, callback);
 
-            /*FB.api("/" + albumId + "/photos?fields=id,from,picture,source,images,height,width,created_time", 'get', albumData, function(response) {
+            /*FB.api("/" + albumId + "/photos?fields=id,from,picture,source,images,height,width,created_time", "get", albumData, function (response) {
                 if (jQuery.isFunction(callback)) callback.call(this, response);
             });*/
 
         },
-        likeAlbum: function(parameters,callback) {
+        likeAlbum: function (parameters, callback) {
             var defaults = {
                 albumId: ""
             };
@@ -150,17 +150,17 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var albumData = {
-                    "access_token": accessToken
+                    access_token: accessToken
                 };
-                LightBulb.post("/" + params.albumId + "/like", albumData,callback);
-                /*FB.api("/" + albumId + "/like", 'post', albumData, function(response) {
+                LightBulb.post("/" + params.albumId + "/like", albumData, callback);
+                /*FB.api("/" + albumId + "/like", "post", albumData, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        unlikeAlbum: function(parameters,callback) {
+        unlikeAlbum: function (parameters,callback) {
             var defaults = {
                 albumId: ""
             };
@@ -171,10 +171,10 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var albumData = {
-                    "access_token": accessToken
+                    access_token: accessToken
                 };
-                LightBulb.delete("/" + params.albumId + "/like", albumData,callback);
-                /*FB.api("/" + albumId + "/like", 'delete', albumData, function(response) {
+                LightBulb.remove("/" + params.albumId + "/like", albumData, callback);
+                /*FB.api("/" + albumId + "/like", "delete", albumData, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });*/
             } else {
@@ -182,7 +182,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             }
 
         },
-        addComment:function(parameters,callback) {
+        addComment: function (parameters, callback) {
             var defaults = {
                 albumId: "",
                 message:""
@@ -194,11 +194,11 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var albumData = {
-                    "access_token": accessToken,
-                    "message":params.message
-                }
-                LightBulb.post("/" + params.albumId + "/comments", albumData,callback);
-                /*FB.api("/" + albumId + "/comments", 'post', albumData, function(response) {
+                    access_token: accessToken,
+                    message: params.message
+                };
+                LightBulb.post("/" + params.albumId + "/comments", albumData, callback);
+                /*FB.api("/" + albumId + "/comments", "post", albumData, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });*/
             } else {
@@ -206,12 +206,12 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             }
 
         },
-        addPhoto:function(parameters, callback) {
+        addPhoto: function (parameters, callback) {
             //you need to obtain publish_stream permission for this
             var defaults = {
                 albumId: "",
-                source:"",
-                message:""
+                source: "",
+                message: ""
             };
             var params = $.extend(defaults, parameters);
             var userData = $.LightBulb._getFacebookData();
@@ -219,21 +219,20 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var albumData = {
-                    "access_token": accessToken,
-                    "source":params.source,
-                    "message":params.message,
-                    "album_id":params.albumId
-                }
+                    access_token: accessToken,
+                    source: params.source,
+                    message: params.message,
+                    album_id: params.albumId
+                };
             } else {
                 albumData = {};
             }
-            /*FB.api("/" + albumId + "/comments", 'post', albumData, function(response) {
+            /*FB.api("/" + albumId + "/comments", "post", albumData, function (response) {
              if ($.isFunction(callback)) callback.call(this, response);
              });*/
-            $.post("/helpers/photos.php?what=addphototoalbum", albumData, function(response) {
+            $.post("/helpers/photos.php?what=addphototoalbum", albumData, function (response) {
                 if ($.isFunction(callback)) callback.call(this, response);
-            })
+            });
         }
-    }
-
+    };
 })(jQuery);

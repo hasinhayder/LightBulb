@@ -4,18 +4,18 @@
  */
 (function($) {
     LightBulb.questions = {
-        currentToken:"",
+        currentToken: "",
         /**
          * User must set the page token to retrieve questions from page. User lb.pages.js to get Page specific tokens
          *
          * @author Hasin Hayder
          * @param token
          */
-        setToken:function (token) {
+        setToken: function (token) {
             LightBulb.questions.currentToken = token;
             return true;
         },
-        removeToken:function () {
+        removeToken: function () {
             LightBulb.questions.currentToken = "";
         },
 
@@ -24,63 +24,62 @@
          *
          * @author Hasin Hayder
          */
-        getToken:function () {
+        getToken: function () {
             var userData = LightBulb._getFacebookData();
             var token = userData.accessToken;
             if (LightBulb.questions.currentToken) token = LightBulb.questions.currentToken;
             return token;
         },
-        getQuestions:function (parameters, callback) {
+        getQuestions: function (parameters, callback) {
             var defaults = {
-                userId:""
+                userId: ""
             };
             var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.questions.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                FB.api("/" + params.userId + "/questions", 'get', data, function (response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.userId + "/questions", "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getQuestion:function (parameters, callback) {
+        getQuestion: function (parameters, callback) {
             var defaults = {
-                questionId:""
+                questionId: ""
             };
             var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.questions.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                FB.api("/" + params.questionId + "", 'get', data, function (response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.questionId + "", "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getOptions:function (parameters) {
+        getOptions: function (parameters) {
             var defaults = {
-                questionId:""
+                questionId: ""
             };
             var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.questions.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                FB.api("/" + params.questionId + "/options", 'get', data, function (response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.questionId + "/options", "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         }
-
-    }
+    };
 })(jQuery);

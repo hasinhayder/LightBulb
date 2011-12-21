@@ -5,36 +5,36 @@
  */
 (function($) {
     LightBulb.comments = {
-        currentToken:"",
+        currentToken: "",
         
-        getComment:function(parameters,callback){
+        getComment: function (parameters,callback) {
             
-            var defaults={
-                commentId:""
+            var defaults = {
+                commentId: ""
             };
-            var params=$.extend(defaults,parameters);var accessToken = LightBulb.comments.getToken();
+            var params = $.extend(defaults,parameters);var accessToken = LightBulb.comments.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.commentId , 'get', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.commentId , "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getLikes:function(parameters,callback){
-            var defaults={
-                commentId:""
+        getLikes: function (parameters,callback) {
+            var defaults = {
+                commentId: ""
             };
-            var params=$.extend(defaults,parameters);
+            var params = $.extend(defaults,parameters);
             var accessToken = LightBulb.comments.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.commentId+"/likes" , 'get', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.commentId+"/likes" , "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
@@ -48,11 +48,11 @@
          * @author Hasin Hayder
          * @param token
          */
-        setToken:function(token){
+        setToken: function (token) {
             LightBulb.comments.currentToken = token;
             return true;
         },
-        removeToken:function(){
+        removeToken: function () {
             LightBulb.comments.currentToken = "";
         },
 
@@ -61,63 +61,63 @@
          *
          * @author Hasin Hayder
          */
-        getToken:function(){
+        getToken: function () {
             var userData = LightBulb._getFacebookData();
             var token = userData.accessToken;
-            if(LightBulb.comments.currentToken) token=LightBulb.comments.currentToken;
+            if(LightBulb.comments.currentToken) token = LightBulb.comments.currentToken;
             return token;
         },
         
-        deleteComment:function(parameters, callback){
-            var defaults={
-                commentId:""
+        deleteComment: function (parameters, callback) {
+            var defaults = {
+                commentId: ""
             };
-            var params=$.extend(defaults,parameters);
+            var params = $.extend(defaults,parameters);
             var accessToken = LightBulb.comments.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.commentId , 'delete', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.commentId , "delete", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        like:function(parameters, callback){
-            var defaults={
-                commentId:""
+        like: function (parameters, callback) {
+            var defaults = {
+                commentId: ""
             };
-            var params=$.extend(defaults,parameters);
+            var params = $.extend(defaults,parameters);
             var accessToken = LightBulb.comments.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.commentId + "/likes", 'post', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.commentId + "/likes", "post", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        dislike:function(parameters, callback){
-            var defaults={
-                commentId:""
+        dislike: function (parameters, callback) {
+            var defaults = {
+                commentId: ""
             };
-            var params=$.extend(defaults,parameters);
+            var params = $.extend(defaults,parameters);
             var accessToken = LightBulb.comments.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token": accessToken
-                }
-                FB.api("/" + params.commentId + "/likes", 'delete', data, function(response) {
+                    access_token: accessToken
+                };
+                FB.api("/" + params.commentId + "/likes", "delete", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
         }
-    }
+    };
 })(jQuery);

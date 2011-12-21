@@ -10,24 +10,24 @@ var LightBulb;
     var fbdata = {};
     var deferred = $.Deferred();
     
-    LightBulb = function(options) {
+    LightBulb = function (options) {
         var defaults = {
-            apikey:"",
-            secret:"",
-            login:true,
-            permissions:"",
-            cookie:true,
-            xfbml:true,
-            forcedPermission:false,
-            callback:function() {
+            apikey: "",
+            secret: "",
+            login: true,
+            permissions: "",
+            cookie: true,
+            xfbml: true,
+            forcedPermission: false,
+            callback: function () {
             },
-            authResponseChange:function(){
+            authResponseChange: function () {
             }
         };
         opts = $.extend(defaults, options);
         //if (!$("#fb-root")) $("<div/>").attr("id", "fb-root").appendTo("body");
         FB.init({appId: opts.apikey, status: true, cookie: opts.cookie, xfbml: opts.xfbml});
-        FB.Event.subscribe('auth.authResponseChange', function(response){
+        FB.Event.subscribe('auth.authResponseChange', function (response) {
             if (response.authResponse) {
                 var session = response.authResponse;
                 fbdata.accessToken = session.accessToken;
@@ -37,7 +37,7 @@ var LightBulb;
             }
         });
 
-        FB.getLoginStatus(function(response) {
+        FB.getLoginStatus(function (response) {
             if (opts.forcedPermission) {
                 LightBulb.login();
 
@@ -60,9 +60,9 @@ var LightBulb;
      * @author Hasin Hayder
      * Perform a Facebook login and prompt the authentication dialog
      */
-    LightBulb.login = function() {
+    LightBulb.login = function () {
         //alert("Calling Auth");
-        FB.login(function(response) {
+        FB.login(function (response) {
             if (response.authResponse) {
                 var session = response.authResponse;
                 fbdata.accessToken = session.accessToken;
@@ -78,9 +78,9 @@ var LightBulb;
      * @author Hasin Hayder
      * Log out the currently active user from Facebook
      */
-    LightBulb.logout = function(callback) {
+    LightBulb.logout = function (callback) {
         var dfr = $.Deferred();
-        FB.logout(function(response) {
+        FB.logout(function (response) {
             //LightBulb.log(response);
 
             if (response) {
@@ -97,7 +97,7 @@ var LightBulb;
      * @author Hasin Hayder
      * Return the parameters which was passed to this plugin while initializing
      */
-    LightBulb._getOptions = function() {
+    LightBulb._getOptions = function () {
         return opts;
     };
 
@@ -105,7 +105,7 @@ var LightBulb;
      * @author Hasin Hayder
      * Return the currently authenticated and logged in users access token and Facebook user id
      */
-    LightBulb._getFacebookData = function() {
+    LightBulb._getFacebookData = function () {
         return fbdata;
     };
 
@@ -113,7 +113,7 @@ var LightBulb;
      * @author Hasin Hayder
      * Return true if there is currently any active user logged in with this application
      */
-    LightBulb.isLoggedIn = function() {
+    LightBulb.isLoggedIn = function () {
         LightBulb.log('is Logged in - ' + fbdata.facebookUserId);
         return fbdata.facebookUserId && fbdata.facebookUserId > 0;
     };
@@ -123,30 +123,30 @@ var LightBulb;
      * Type of should return 'function'
      * @param func object which needs to be checked.
      */
-    LightBulb.isFunction = function(func) {
+    LightBulb.isFunction = function (func) {
         return (func && typeof(func) == 'function');
     };
 
-    LightBulb.get = function(openGraphPath, data, callback){
+    LightBulb.get = function (openGraphPath, data, callback) {
         //alert(openGraphPath);
-        FB.api(openGraphPath, 'get', data, function(response) {
+        FB.api(openGraphPath, 'get', data, function (response) {
             if ($.isFunction(callback)) callback.call(this, response);
         });
     };
 
-    LightBulb.post = function(openGraphPath, data, callback){
-        FB.api(openGraphPath, 'post', data, callback);
+    LightBulb.post = function (openGraphPath, data, callback) {
+        FB.api(openGraphPath, "post", data, callback);
     };
 
-    LightBulb.delete = function(openGraphPath, data, callback){
-        FB.api(openGraphPath, 'delete', data, function(response) {
+    LightBulb.remove = function (openGraphPath, data, callback) {
+        FB.api(openGraphPath, "delete", data, function (response) {
             if ($.isFunction(callback)) callback.call(this, response);
         });
-    }
+    };
 
-    LightBulb.parseXFBML=function(){
+    LightBulb.parseXFBML = function () {
         FB.XFBML.parse();
-    }
+    };
 
     /**
     * writes to console if console is enabled
@@ -154,7 +154,7 @@ var LightBulb;
     * @author M A Hossain Tonu
     *
     **/
-    LightBulb.log = function() {
+    LightBulb.log = function () {
         var msg = arguments;
         if (window.console && window.console.log) {
             window.console.log(msg);

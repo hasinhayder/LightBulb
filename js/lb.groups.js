@@ -6,20 +6,19 @@
 (function($) {
     LightBulb.groups = {
         
-       getGroup:function(parameters,callback) {
-            var defaults={
-                groupId:""
+       getGroup: function (parameters,callback) {
+            var defaults = {
+                groupId: ""
             };
-            var params=$.extend(defaults,parameters);
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                   "access_token": accessToken
-                  
-                }
+                   access_token: accessToken
+                };
                 LightBulb.get("/" + params.groupId + "",data,callback);
-                /*FB.api("/" + groupId, 'get', data, function(response) {
+                /*FB.api("/" + groupId, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -27,21 +26,21 @@
             }
         },
        
-       createStatuses:function(parameters,callback) {
-            var defaults={
-                groupId:"",
-                message:""
+       createStatuses: function (parameters,callback) {
+            var defaults = {
+                groupId: "",
+                message: ""
             };
-            var params=$.extend(defaults,parameters);
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
                     //access_token: accessTokens,
                     message:params.message
-                }
+                };
                 LightBulb.post("/" + params.groupId + "/feed",data,callback);
-                /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
+                /*FB.api("/" + groupId + "/feed", "post", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -49,53 +48,51 @@
             }
         },
         
-        createLinks : function (parameters,callback)
-        {
-             var defaults={
-                groupId:"",
-                link:"",
-                message:""
+        createLinks : function (parameters,callback) {
+            var defaults = {
+                groupId: "",
+                link: "",
+                message: ""
             };
-            var params=$.extend(defaults,parameters);
-             var userData = LightBulb._getFacebookData();
-             var accessToken = userData.accessToken;
-             if (accessToken) {
-                 //LightBulb.links.create(groupId,link,message,callback);
-                 var data = {
-                    "access_token": accessToken,
-                    link:params.link,
-                    message:params.message
-                }
+            var params = $.extend(defaults,parameters);
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            if (accessToken) {
+                //LightBulb.links.create(groupId,link,message,callback);
+                var data = {
+                    access_token: accessToken,
+                    link: params.link,
+                    message: params.message
+                };
                 LightBulb.post("/" + params.groupId + "/feed",data,callback);
-                /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
+                /*FB.api("/" + groupId + "/feed", "post", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });*/
              
-            }else {
+            } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
             
         },
         
-        createPosts:function (parameters,callback)
-        {
-            var defaults={
-                groupId:"",
-                message:"",
-                link:"",
-                picture:"",
-                name:"",
-                caption:"",
-                description:"",
-                actionName:"", 
-                actionLink:"",
-                privacy:""
+        createPosts: function (parameters,callback) {
+            var defaults = {
+                groupId: "",
+                message: "",
+                link: "",
+                picture: "",
+                name: "",
+                caption: "",
+                description: "",
+                actionName: "", 
+                actionLink: "",
+                privacy: ""
             };
-            var params=$.extend(defaults,parameters);
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
-                if (params.actionName != "" && params.actionLink != "") {
+                if (params.actionName !== "" && params.actionLink !== "") {
                     action = [{
                         name:params.actionName,
                         link:params.actionLink
@@ -104,25 +101,22 @@
                 
                 var data = {
                     //access_token: accessTokens,
-                    message:params.message,
-                    link:params.link,
-                    picture:params.picture,
-                    caption:params.caption,
-                    description:params.description,
-                    actions:actions,
-                    privacy:params.privacy
+                    message: params.message,
+                    link: params.link,
+                    picture: params.picture,
+                    caption: params.caption,
+                    description: params.description,
+                    actions: actions,
+                    privacy: params.privacy
                     
-                }
+                };
                 LightBulb.post("/" + params.groupId + "/feed",data,callback);
-                /*FB.api("/" + groupId + "/feed", 'post', data, function(response) {
+                /*FB.api("/" + groupId + "/feed", "post", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
-            
-            
         }
-
-    }
+    };
 })(jQuery);

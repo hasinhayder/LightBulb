@@ -3,18 +3,18 @@
  */
 (function($) {
     LightBulb.statuses = {
-        currentToken:"",
+        currentToken: "",
         /**
          * User must set the page token to retrieve statuses from page. User lb.pages.js to get Page specific tokens
          *
          * @author Hasin Hayder
          * @param token
          */
-        setToken:function (token) {
+        setToken: function (token) {
             LightBulb.statuses.currentToken = token;
             return true;
         },
-        removeToken:function () {
+        removeToken: function () {
             LightBulb.statuses.currentToken = "";
         },
 
@@ -23,87 +23,87 @@
          *
          * @author Hasin Hayder
          */
-        getToken:function () {
+        getToken: function () {
             var userData = LightBulb._getFacebookData();
             var token = userData.accessToken;
             if (LightBulb.statuses.currentToken) token = LightBulb.statuses.currentToken;
             return token;
         },
-        getStatuses:function (parameters, callback) {
+        getStatuses: function (parameters, callback) {
             var defaults = {
-                userId:""
+                userId: ""
             };
             var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.statuse.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.userId + '/statuses';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.userId + "/statuses";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
-
+                throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getStatus:function (parameters, callback) {
+        getStatus: function (parameters, callback) {
             var defaults = {
-                statusId:""
+                statusId: ""
             };
             var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.statuse.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
+                    access_token: accessToken
+                };
                 var reqUrl = "/" + params.statusId;
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
-
+                throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getComments:function (parameters, callback) {
+        getComments: function (parameters, callback) {
             var defaults = {
-                statusId:""
+                statusId: ""
             };
             var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.statuse.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.statusId + '/comments';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.statusId + "/comments";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
-
+                throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getLikes:function (parameters, callback) {
+        getLikes: function (parameters, callback) {
             var defaults = {
-                statusId:""
+                statusId: ""
             };
             var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.statuse.getToken();
             if (accessToken) {
                 var data = {
-                    "access_token":accessToken
-                }
-                var reqUrl = "/" + params.statusId + '/likes';
+                    access_token: accessToken
+                };
+                var reqUrl = "/" + params.statusId + "/likes";
 
-                FB.api(reqUrl, 'get', data, function (response) {
+                FB.api(reqUrl, "get", data, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 });
             } else {
-
+                throw LIGHTBULB_NO_TOKEN;
             }
         }
-    }
+    };
 })(jQuery);

@@ -16,38 +16,37 @@
          * @param privacy Privacy of the event
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        create: function(parameters, callback) {
+        create: function (parameters, callback) {
             var defaults = {
-                user:"",
-                name:"",
-                location:"",
-                startTime:"",
-                endTime:"",
-                description:"",
-                privacy:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                user: "",
+                name: "",
+                location: "",
+                startTime: "",
+                endTime: "",
+                description: "",
+                privacy: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
-            alert(accessToken);
+            // alert(accessToken);
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken,
-                    "start_time" : params.startTime,
-                    "end_time":params.endTime,
-                    "location" : params.location,
-                    "name" : params.name,
-                    "description":params.description,
-                    "privacy":params.privacy,
-                    "owner": {
-                        id:userId,
-                        name:""
+                    access_token: accessToken,
+                    start_time: params.startTime,
+                    end_time: params.endTime,
+                    location: params.location,
+                    name: params.name,
+                    description: params.description,
+                    privacy: params.privacy,
+                    owner: {
+                        id: userId,
+                        name: ""
                     }
-
-                }
+                };
                 LightBulb.post("/" + params.user + "/events",eventData,callback);
-                /*FB.api("/" + user + "/events", 'post', eventData, function(response) {
+                /*FB.api("/" + user + "/events", "post", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -67,35 +66,35 @@
          * @param picture http url/source of the picture
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        createWithPicture: function(parameters, callback) {
+        createWithPicture: function (parameters, callback) {
             var defaults = {
-                user:"",
-                name:"",
-                location:"",
-                startTime:"",
-                endTime:"",
-                description:"",
-                privacy:"",
-                picture:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                user: "",
+                name: "",
+                location: "",
+                startTime: "",
+                endTime: "",
+                description: "",
+                privacy: "",
+                picture: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken,
-                    "start_time" : params.startTime,
-                    "end_time":params.endTime,
-                    "location" : params.location,
-                    "name" : params.name,
-                    "description":params.description,
-                    "privacy":params.privacy,
-                    "picture":params.picture,
-                    "user":params.user
-                }
-                $.post("/helpers/events.php?what=createevent", eventData, function(response) {
+                    access_token: accessToken,
+                    start_time: params.startTime,
+                    end_time: params.endTime,
+                    location: params.location,
+                    name: params.name,
+                    description: params.description,
+                    privacy: params.privacy,
+                    picture: params.picture,
+                    user: params.user
+                };
+                $.post("/helpers/events.php?what=createevent", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
-                })
+                });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
@@ -113,31 +112,31 @@
          * @param privacy Privacy of the event
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        update:function(parameters, callback) {
+        update: function (parameters, callback) {
             var defaults = {
-                eventId:"",
-                name:"",
-                location:"",
-                startTime:"",
-                endTime:"",
-                description:"",
-                privacy:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                eventId: "",
+                name: "",
+                location: "",
+                startTime: "",
+                endTime: "",
+                description: "",
+                privacy: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken,
-                    "start_time" : params.startTime,
-                    "end_time":params.endTime,
-                    "location" : params.location,
-                    "name" : params.name,
-                    "description":params.description,
-                    "privacy":params.privacy
-                }
+                    access_token: accessToken,
+                    start_time: params.startTime,
+                    end_time: params.endTime,
+                    location: params.location,
+                    name: params.name,
+                    description: params.description,
+                    privacy: params.privacy
+                };
                 LightBulb.post("/" + params.eventId + "",eventData,callback);
-                /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                /*FB.api("/" + eventId + "", "post", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -151,21 +150,21 @@
          * @param name
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        updateName:function(parameters, callback) {
+        updateName: function (parameters, callback) {
             var defaults = {
-                eventId:"",
-                name:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                eventId: "",
+                name: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken,
-                    "name" : params.name
-                }
+                    access_token: accessToken,
+                    name: params.name
+                };
                 LightBulb.post("/" + params.eventId + "", eventData,callback);
-                /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                /*FB.api("/" + eventId + "", "post", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -179,21 +178,21 @@
          * @param location
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        updateLocation:function(parameters, callback) {
+        updateLocation: function (parameters, callback) {
             var defaults = {
-                eventId:"",
-                location:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                eventId: "",
+                location: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken,
-                    "location" : params.location
-                }
+                    access_token: accessToken,
+                    location: params.location
+                };
                 LightBulb.post("/" + params.eventId + "",eventData,callback);
-                /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                /*FB.api("/" + eventId + "", "post", eventData, function (response) {
                     if (LightBulb.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -208,23 +207,23 @@
          * @param endTime End time of the event in either unix timestamp or in m/d/Y H:i format
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        updateTime:function(parameters, callback) {
+        updateTime: function (parameters, callback) {
             var defaults = {
-                eventId:"",
-                startTime:"",
-                endTime:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                eventId: "",
+                startTime: "",
+                endTime: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken,
-                    "start_time" : params.startTime,
-                    "end_time":params.endTime
-                }
+                    access_token: accessToken,
+                    start_time: params.startTime,
+                    end_time: params.endTime
+                };
                 LightBulb.post("/" + params.eventId + "", eventData,callback);
-                /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                /*FB.api("/" + eventId + "", "post", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -238,21 +237,21 @@
          * @param description String
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        updateDescription:function(parameters, callback) {
+        updateDescription: function (parameters, callback) {
             var defaults = {
-                eventId:"",
-                description:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                eventId: "",
+                description: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken,
-                    "description" : params.description
-                }
+                    access_token: accessToken,
+                    description: params.description
+                };
                 LightBulb.post("/" + params.eventId + "", eventData,callback);
-                /*FB.api("/" + eventId + "", 'post', eventData, function(response) {
+                /*FB.api("/" + eventId + "", "post", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -265,19 +264,19 @@
          * @param eventId
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        del:function(parameters, callback) {
+        del: function (parameters, callback) {
             var defaults = {
-                            eventId:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                eventId: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken
-                }
-                LightBulb.delete("/" + params.eventId + "",eventData,callback);
-                /*FB.api("/" + eventId + "", 'delete', eventData, function(response) {
+                    access_token: accessToken
+                };
+                LightBulb.remove("/" + params.eventId + "",eventData,callback);
+                /*FB.api("/" + eventId + "", "delete", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -291,21 +290,21 @@
          * @param friends Array of Facebook user ids
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        invite:function(parameters, callback) {
+        invite: function (parameters, callback) {
             var defaults = {
-                eventId:"",
-                friends:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                eventId: "",
+                friends: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessToken,
-                    "users":params.friends.join(",")
-                }
+                    access_token: accessToken,
+                    users: params.friends.join(",")
+                };
                 LightBulb.post("/" + params.eventId + "/invite",eventData,callback);
-                /*FB.api("/" + eventId + "/invite", 'post', eventData, function(response) {
+                /*FB.api("/" + eventId + "/invite", "post", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -320,21 +319,21 @@
          * @param rsvp String mentioning the users RSVP status, either "attending","maybe","declined" or "noreply'
          * @param callback Callback function, which will be invoked when the event creation is successful or unsuccessful
          */
-        updateRSVP:function(parameters, callback) {
+        updateRSVP: function (parameters, callback) {
             var defaults = {
-                eventId:"",
-                friend:"",
-                rsvp:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                eventId: "",
+                friend: "",
+                rsvp: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessTokens
-                }
+                    access_token: accessTokens
+                };
                 LightBulb.post("/" + params.eventId + "/" + params.rsvp + "/" + params.friend, eventData,callback);
-                /*FB.api("/" + eventId + "/" + rsvp + "/" + friend, 'post', eventData, function(response) {
+                /*FB.api("/" + eventId + "/" + rsvp + "/" + friend, "post", eventData, function (response) {
                     if ($.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
@@ -348,25 +347,24 @@
          * @param eventId
          * @param callback
          */
-        get: function(parameters, callback) {
+        get: function (parameters, callback) {
             var defaults = {
-                           eventId:""
-                        };
-                        var params = $.extend(defaults,parameters);
+                eventId: ""
+            };
+            var params = $.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    "access_token": accessTokens
-                }
+                    access_token: accessTokens
+                };
             } else {
                 eventData = {};
             }
             LightBulb.get("/" + params.eventId + "",eventData,callback);
-            /*FB.api("/" + eventId, 'get', eventData, function(response) {
+            /*FB.api("/" + eventId, "get", eventData, function (response) {
                 if ($.isFunction(callback)) callback.call(this, response);
             })*/
-
         }
     };
 })(jQuery);
