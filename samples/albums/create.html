@@ -8,25 +8,24 @@ LightBulb.albums.createAlbum({
     creator: 'creatorName',
     name: 'yourAlbumName',
     description: 'albumDescriptions',
-
-    callback:function (response) {
-        alert('Album created with the following id: ' + response);
+    },
+    function (response) {
+        alert('Album created with the following id: ' + response.id);
     }
-});
+);
 </pre>
 
-
+        
 <script type="text/javascript">
-    var userDetails = LightBulb._getFacebookData();
-    var userId = userDetails.facebookUserId;
     function create() {
         LightBulb.albums.createAlbum({
-            creator: 'me',
-            name: 'LightBulb',
-            description: 'LightBulb testing testing... hello this your boss :)',
-            callback:function(response) {
-                alert('Album created with the following id: ' + response);
-            }
-        });
+                    creator: 'me',
+                    name: 'LightBulb',
+                    description: 'LightBulb testing testing... hello this your boss :)'
+                },
+                function(response) {
+                    alert('Album created with the following id: ' + response.id);
+                }
+        );
     }
 </script>
