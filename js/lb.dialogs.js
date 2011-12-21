@@ -143,7 +143,9 @@
         makeRequestToOneFriend:function(parameters,callback){
             var defaults={
                 friendId:"",
-                message:""
+                message:"",
+                title:"",
+                data:""
             };
             var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
@@ -153,7 +155,9 @@
                 var data = {
                     method: 'apprequests',
                     to: params.friendId,
-                    message:params.message
+                    message:params.message,
+                    title:params.title,
+                    data:params.data
                 }
                 FB.ui(data, function(response) {
                     if ($.isFunction(callback)) callback.call(this, response);
@@ -176,9 +180,11 @@
         makeRequestToMultipleFriends:function(parameters, callback){
             var defaults={
                 message:"",
+                title:"",
                 filters:"",
                 excludedFriends:"", 
-                maxRecipients:""
+                maxRecipients:"",
+                data:""
             };
             var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
@@ -191,7 +197,9 @@
                     filters: params.filters,
                     exclude_ids:params.excludedFriends,
                     message:params.message,
-                    max_recipients:params.maxRecipients
+                    title:params.title,
+                    max_recipients:params.maxRecipients,
+                    data:params.data
                 }
                 FB.ui(data, function(response) {
                     if ($.isFunction(callback)) callback.call(this, response);
@@ -207,15 +215,21 @@
          * @param friendId Facebook user id of username
          * @param redirectUrl Url to redirect after user clicks a button
          */
-        makeFriend:function(friendId,redirectUrl){
+        makeFriend:function(parameters, callback){
+            var defaults={
+                id:"",
+                redirect_url:"http://www.facebook.com/"
+
+            };
+            var params=$.extend(defaults,parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
             if (accessToken) {
                 var data = {
                     method: 'friends',
-                    id: friendId,
-                    redirect_url: redirectUrl
+                    id: params.friendId,
+                    redirect_url: params.redirectUrl
                 }
                 FB.ui(data, function(response) {
                     if ($.isFunction(callback)) callback.call(this, response);

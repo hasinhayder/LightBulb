@@ -2,7 +2,10 @@
 <p>
     Make Request To One Friend<input type="button" value="Send Request" onclick="fetch();"/><br/><br/>
 <pre class="js">
-LightBulb.dialogs.makeRequestToOneFriend({user:"me"}, function(response) {
+LightBulb.dialogs.makeRequestToOneFriend({
+            friendId:FRIEND ID,
+            message:'This is LightBulb',
+            }, function(response) {
 
 });
 </pre>
@@ -10,8 +13,9 @@ LightBulb.dialogs.makeRequestToOneFriend({user:"me"}, function(response) {
 <script type="text/javascript">
     function fetch() {
         LightBulb.dialogs.makeRequestToOneFriend({
-            friendId:1454543922,
-            message:'This is LightBulb'
+            friendId:100001484289609,
+            message:'This is LightBulb',
+            title:'This is the title'
         },
         function(response) {
             console.log(response);
