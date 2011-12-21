@@ -166,6 +166,7 @@ var LightBulb;
 
     if (typeof($) != 'undefined') {
         // Associate this LightBulb as jquery extension
+        $.isFunction = LightBulb.isFunction;
         $.LightBulb = LightBulb;
     }
 })(jQuery);
