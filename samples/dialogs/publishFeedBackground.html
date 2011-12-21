@@ -2,7 +2,11 @@
 <p>
     Publish Feed Background<input type="button" value="Publish" onclick="fetch();"/><br/><br/>
 <pre class="js">
-LightBulb.dialogs.publishFeedBackground({user:"me"}, function(response) {
+LightBulb.dialogs.publishFeedBackground({
+            user:"me",
+            link:'http://www.projectligtbulb.net/',
+            caption: 'LightBulb'
+            }, function(response) {
 
 });
 </pre>
