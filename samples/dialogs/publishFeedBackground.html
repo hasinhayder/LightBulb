@@ -1,0 +1,27 @@
+<h2>Publish Feed Background</h2>
+<p>
+    Publish Feed Background<input type="button" value="Publish" onclick="fetch();"/><br/><br/>
+<pre class="js">
+LightBulb.dialogs.publishFeedBackground({user:"me"}, function(response) {
+
+});
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+        LightBulb.dialogs.publishFeedBackground({
+            user:"me",
+            link:'http://www.projectligtbulb.net/',
+            caption: 'LightBulb'
+        }, function(response) {
+            console.log(response);
+            $("#result").html("<h2>Result  - 1st Page</h2>")
+            var page = response.data[0];
+            for(i in page){
+                $("#result").append("<b>"+i+":</b> "+page[i]+"<br/>");
+            }
+
+
+        });
+    }
+</script>

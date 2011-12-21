@@ -1,0 +1,33 @@
+<h2>Get Friend List</h2>
+<p>
+    Fetch friend list <input type="button" value="Fetch Details" onclick="fetch();"/><br/><br/>
+<pre class="js">
+LightBulb.friendlists.getFriendList({user:"me"}, function(response) {
+    console.log(response);
+    $("#result").html("&lt;h2>Result&lt;/h2>")
+    for(i in response){
+        $("#result").append("&lt;b>"+i+":&lt;/b> "+response[i]+"&lt;br/>");
+    }
+})
+</pre>
+</p>
+<script type="text/javascript">
+//    LightBulb({
+//        apikey:"288048857874241",
+//        permissions:'manage_friendlists',
+//        forcedPermission:true,
+//        callback:function (data) {
+//
+//        }
+//    });
+
+    function fetch() {
+        var friend = LightBulb.friendlists.getFriendList('', function(response) {
+            console.log(response);
+            $("#result").html("<h2>Result</h2>")
+            for(i in response){
+                $("#result").append("<b>"+i+":</b> "+response[i]+"<br/>");
+            }
+        });
+    }
+</script>

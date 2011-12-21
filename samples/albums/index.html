@@ -1,0 +1,93 @@
+<html>
+<head>
+    <title>Project LightBulb - The Easiest wrapper for Facebook JS-SDK </title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+    <script type="text/javascript" src="../js/jquery.snippet.js"></script>
+    <script type="text/javascript" src="/js/lb.core.js"></script>
+    <script type="text/javascript" src="/js/lb.albums.js"></script>
+    <link rel="stylesheet" href="../css/grid.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <style type="text/css">
+        body{
+            font-family: Tahoma;
+            font-size: 14px;
+        }
+        .source{
+            padding:10px;
+        }
+        a{
+            text-decoration: underline;
+            color:#222;
+        }
+        h1{
+            margin: 0px;
+            padding: 0px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        ul{
+            margin: 0px;
+            margin-top:10px;
+            padding: 0px;
+        }
+        li{
+            margin:0px;
+            padding:0px;
+        }
+        h2{
+            margin: 0px;
+            padding: 0px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: normal;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="row">
+    <div class="column grid_12">
+        <h1>Project Lightbulb Examples</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="column grid_3">
+        <ul class="menu">
+            <li><a href="create.html">Create Album</a></li>
+        </ul>
+    </div>
+    <div class="column grid_9">
+        <div class="source" id="source">
+
+        </div>
+        <div class="result" id="result">
+
+        </div>
+    </div>
+</div>
+<div id="fb-root"></div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".menu").find("a").bind("click",function(e){
+            var href = $(this).attr("href");
+            $("#source").load(href,function(){
+                $("pre.js").snippet("javascript",{style:"zellner",clipboard:"../js/ZeroClipboard.swf"});
+            });
+
+            return false;
+        });
+        LightBulb({
+            apikey:"288048857874241",
+            permissions:'publish_stream, email',
+            callback:function (data) {
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>

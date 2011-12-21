@@ -19,7 +19,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
                 privacy:"",
                 type:""
             };
-            var params = $.extend(detaults, parameters);
+            var params = $.extend(defaults, parameters);
             var userData = $.LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
