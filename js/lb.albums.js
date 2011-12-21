@@ -23,10 +23,10 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             var userData = $.LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             var userId = userData.facebookUserId;
-            if (params.creator == "") params.creator = userId;
-            if (params.type == "") params.type = "normal";
-            if (params.privacy == "") params.privacyobj = {value:"EVERYONE"}
-            else params.privacyobj = {value:privacy}
+            if (params.creator === "") params.creator = userId;
+            if (params.type === "") params.type = "normal";
+            if (params.privacy === "") params.privacyobj = {value:"EVERYONE"};
+            else params.privacyobj = {value:privacy};
 
             if (accessToken) {
                 //create the album
@@ -38,7 +38,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
                     "location" : params.location,
                     "type":params.type,
                     "privacy":params.privacyobj
-                }
+                };
                 //alert(albumData.toSource());
                 LightBulb.post("/" + params.user + "/albums", data,callback);
                 /*FB.api("/" + user + "/albums", 'post', data, function(response) {
@@ -60,7 +60,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             if (accessToken) {
                 var data = {
                     "access_token": accessToken
-                }
+                };
             } else {
                 data = {};
             }
@@ -85,7 +85,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             if (accessToken) {
                 var albumData = {
                     "access_token": accessToken
-                }
+                };
             } else {
                 albumData = {};
             }
@@ -107,7 +107,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             if (accessToken) {
                 var albumData = {
                     "access_token": accessToken
-                }
+                };
             } else {
                 albumData = {};
             }
@@ -130,13 +130,13 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             if (accessToken) {
                 var albumData = {
                     "access_token": accessToken
-                }
+                };
                 LightBulb.post("/" + params.albumId + "/like", albumData,callback);
                 /*FB.api("/" + albumId + "/like", 'post', albumData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
                 });*/
             } else {
-                throw LIGHTBULB_NO_TOKEN
+                throw LIGHTBULB_NO_TOKEN;
             }
         },
         unlikeAlbum: function(parameters,callback) {
@@ -151,7 +151,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
             if (accessToken) {
                 var albumData = {
                     "access_token": accessToken
-                }
+                };
                 LightBulb.delete("/" + params.albumId + "/like", albumData,callback);
                 /*FB.api("/" + albumId + "/like", 'delete', albumData, function(response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
