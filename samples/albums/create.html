@@ -1,0 +1,32 @@
+<h2>Example of Core Login</h2>
+<p>
+    Create album <input type="button" value="Create" onclick="create();"/>
+</p>
+
+<pre class="js">
+LightBulb.albums.createAlbum({
+    creator: 'creatorName',
+    name: 'yourAlbumName',
+    description: 'albumDescriptions',
+
+    callback:function (response) {
+        alert('Album created with the following id: ' + response);
+    }
+});
+</pre>
+
+
+<script type="text/javascript">
+    var userDetails = LightBulb._getFacebookData();
+    var userId = userDetails.facebookUserId;
+    function create() {
+        LightBulb.albums.createAlbum({
+            creator: 'me',
+            name: 'LightBulb',
+            description: 'LightBulb testing testing... hello this your boss :)',
+            callback:function(response) {
+                alert('Album created with the following id: ' + response);
+            }
+        });
+    }
+</script>
