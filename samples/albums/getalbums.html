@@ -25,15 +25,15 @@
 </p>
 
 <pre class="js">
-LightBulb.albums.createAlbum({
-    creator: 'creatorName',
-    name: 'yourAlbumName',
-    description: 'albumDescriptions',
-    },
-    function (response) {
-        alert('Album created with the following id: ' + response.id);
-    }
-);
+    LightBulb.albums.getAlbums({user:'me'},function(response) {
+        var html = '&lt;ul>';
+        for(var i in response.data){
+            var album = response.data[i];
+            html += '&lt;li>&lt;a href="'+ album.link +'">&lt;img src="https://graph.facebook.com/'+ album.id +'/picture?type=album&access_token='+ accessToken +'" alt="image"/>&lt;span>'+ album.name +'&lt;/span>&lt;/a>&lt;/li>';
+        }
+        html += '&lt;/ul>';
+        $('#result').html(html);
+    });
 </pre>
 
 <div id="result">
@@ -56,7 +56,6 @@ LightBulb.albums.createAlbum({
         var accessToken = userData.accessToken;
 
         LightBulb.albums.getAlbums({user:'me'},function(response) {
-                    console.log(response);
                     var html = '<ul>';
                     for(var i in response.data){
                         var album = response.data[i];
