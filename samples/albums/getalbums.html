@@ -1,5 +1,26 @@
+<style type="text/css">
+    ul li{
+     float: left;
+     display: inline;
+     width: 300px;
+     padding: 5px 0;
+    }
+
+    ul li img{
+     width: 32px;
+     height: 32px;
+     padding: 3px;
+     border: 1px solid #ddd;
+    }
+    
+    ul li span{
+        display: block;
+    }
+
+</style>
 <h2>Example of albums</h2>
 <p>
+    Ask for permission <input type="button" value="Get permission" onclick="newPermission();"/>
     Create album <input type="button" value="Get Albums" onclick="getAlbums();"/>
 </p>
 
@@ -20,10 +41,29 @@ LightBulb.albums.createAlbum({
 </div>
 
 <script type="text/javascript">
+    function newPermission() {
+        LightBulb({
+            apikey:"288048857874241",
+            permissions:"user_photos",
+            forcedPermission:true,
+            callback:function (data) {
+            }
+        });
+    }
+
     function getAlbums() {
+        var userData = $.LightBulb._getFacebookData();
+        var accessToken = userData.accessToken;
+
         LightBulb.albums.getAlbums({user:'me'},function(response) {
                     console.log(response);
-                    //alert('Album created with the following id: ' + response);
+                    var html = '<ul>';
+                    for(var i in response.data){
+                        var album = response.data[i];
+                        html += '<li><a href="'+ album.link +'"><img src="https://graph.facebook.com/'+ album.id +'/picture?type=album&access_token='+ accessToken +'" alt="image"/><span>'+ album.name +'</span></a></li>';
+                    }
+                    html += '</ul>';
+                    $('#result').html(html);
                 }
         );
     }
