@@ -1,6 +1,7 @@
 <h2>Example of creating an album</h2>
 <p>
-    Create album <input type="button" value="Create" onclick="create();"/>
+    Ask for permission <input type="button" value="Get permission" onclick="newPermission();"/>
+    Create album <input type="button" value="Create album" onclick="create();"/>
 </p>
 
 <pre class="js">
@@ -17,6 +18,16 @@ LightBulb.albums.createAlbum({
 
 
 <script type="text/javascript">
+    function newPermission() {
+        LightBulb({
+            apikey:"288048857874241",
+            permissions:"user_photos",
+            forcedPermission:true,
+            callback:function (data) {
+            }
+        });
+    }
+
     function create() {
         LightBulb.albums.createAlbum({
                     creator: 'me',

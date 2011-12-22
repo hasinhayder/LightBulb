@@ -330,7 +330,7 @@
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    access_token: accessTokens
+                    access_token: accessToken
                 };
                 LightBulb.post("/" + params.eventId + "/" + params.rsvp + "/" + params.friend, eventData,callback);
                 /*FB.api("/" + eventId + "/" + rsvp + "/" + friend, "post", eventData, function (response) {
@@ -356,7 +356,7 @@
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var eventData = {
-                    access_token: accessTokens
+                    access_token: accessToken
                 };
             } else {
                 eventData = {};

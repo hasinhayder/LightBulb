@@ -1,0 +1,53 @@
+<style type="text/css">
+    ul li{
+        list-style: none;
+    }
+</style>
+<h2>Example of event</h2>
+<p>
+    Ask for permission <input type="button" value="Get permission" onclick="newPermission();"/>
+    Get event <input type="button" value="Get Event" onclick="getEvent();"/>
+</p>
+
+<pre class="js">
+    LightBulb.albums.getAlbums({eventId:'327139013971803'},function(response) {
+        var html =  '&lt;ul>';
+            html += '&lt;li>Event name: '+ response.name +'&lt;/li>';
+            html += '&lt;li>Description: '+ response.description +'&lt;/li>';
+            html += '&lt;li>Start time: '+ response.start_time +'&lt;li>';
+            html += '&lt;li>End time: '+ response.end_time +'&lt;/li>';
+            html += '&lt;li>Location: '+ response.location +'&lt;/li>';
+            html += '&lt;/ul>';
+        $('#result').html(html);
+    });
+</pre>
+
+<div id="result">
+    <!-- Event info  -->
+</div>
+
+<script type="text/javascript">
+    function newPermission() {
+        LightBulb({
+            apikey:"288048857874241",
+            permissions:"create_event",
+            forcedPermission:true,
+            callback:function (data) {
+            }
+        });
+    }
+
+    function getEvent() {
+        LightBulb.events.get({eventId:'327139013971803'},function(response) {
+                    var html = '<ul>';
+                        html += '<li>Event name: '+ response.name +'</li>';
+                        html += '<li>Description: '+ response.description +'</li>';
+                        html += '<li>Start time: '+ response.start_time +'</li>';
+                        html += '<li>End time: '+ response.end_time +'</li>';
+                        html += '<li>Location: '+ response.location +'</li>';
+                        html += '</ul>';
+                    $('#result').html(html);
+                }
+        );
+    }
+</script>

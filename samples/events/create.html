@@ -1,0 +1,53 @@
+<h2>Example of creating an event</h2>
+<p>
+    Ask for permission <input type="button" value="Get permission" onclick="newPermission();"/>
+    Create event <input type="button" value="Create event" onclick="create();"/>
+</p>
+
+<pre class="js">
+LightBulb.albums.createAlbum({
+    user: 'whoAreYou',
+    name: 'eventName',
+    location: 'eventLocation',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    description: 'albumDescriptions',
+    privacy: 'OPEN/CLOSED/SECRET'
+    },
+    function (response) {
+        alert('Event created with the following id: ' + response.id);
+    }
+);
+</pre>
+
+<script type="text/javascript">
+    function newPermission() {
+        LightBulb({
+            apikey:"288048857874241",
+            permissions:"create_event",
+            forcedPermission:true,
+            callback:function (data) {
+            }
+        });
+    }
+
+    function create() {
+        LightBulb.events.create({
+                    user: "me",
+                    name: "Test Event",
+                    location: "Leevio",
+                    startTime: "24-12-2011/10:30AM",
+                    endTime: "24-12-2011/5:00PM",
+                    description: "Test event page",
+                    privacy: "OPEN"
+                },
+                function(response) {
+                    if(response.error){
+                        alert('Error: ' + response.error.message);
+                    }else{
+                        alert('Event created with the following id: '+ response.id);
+                    }
+                }
+        );
+    }
+</script>
