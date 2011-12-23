@@ -63,7 +63,7 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
                 var reqUrl = "/" + params.user + "/albums";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -228,10 +228,10 @@ var LIGHTBULB_ALBUM_PRIVACY_FRIENDS_FRIENDS = "FRIENDS_OF_FRIENDS";
                 albumData = {};
             }
             /*FB.api("/" + albumId + "/comments", "post", albumData, function (response) {
-             if ($.isFunction(callback)) callback.call(this, response);
+             if (jQuery.isFunction(callback)) callback.call(this, response);
              });*/
             $.post("/helpers/photos.php?what=addphototoalbum", albumData, function (response) {
-                if ($.isFunction(callback)) callback.call(this, response);
+                if (jQuery.isFunction(callback)) callback.call(this, response);
             });
         }
     };

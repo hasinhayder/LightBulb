@@ -41,7 +41,7 @@
                     access_token: accessToken
                 };
                 FB.api("/" + params.userId + "/questions", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -58,7 +58,7 @@
                     access_token: accessToken
                 };
                 FB.api("/" + params.questionId + "", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -75,7 +75,7 @@
                     access_token: accessToken
                 };
                 FB.api("/" + params.questionId + "/options", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;

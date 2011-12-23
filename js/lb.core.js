@@ -32,7 +32,7 @@ var LightBulb;
                 var session = response.authResponse;
                 fbdata.accessToken = session.accessToken;
                 fbdata.facebookUserId = session.userID;
-                if ($.isFunction(opts.authResponseChange)) opts.authResponseChange.call(this, fbdata);
+                if (jQuery.isFunction(opts.authResponseChange)) opts.authResponseChange.call(this, fbdata);
                 deferred.resolve(session, fbdata);
             }
         });
@@ -45,7 +45,7 @@ var LightBulb;
                 var session = response.authResponse;
                 fbdata.accessToken = session.accessToken;
                 fbdata.facebookUserId = session.userID;
-                if ($.isFunction(opts.callback)) opts.callback.call(this, fbdata);
+                if (jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
                 deferred.resolve(session, fbdata);
 
             } else {
@@ -67,7 +67,7 @@ var LightBulb;
                 var session = response.authResponse;
                 fbdata.accessToken = session.accessToken;
                 fbdata.facebookUserId = session.userID;
-                if ($.isFunction(opts.callback)) opts.callback.call(this, fbdata);
+                if (jQuery.isFunction(opts.callback)) opts.callback.call(this, fbdata);
             }
         }, {scope:opts.permissions});
 
@@ -88,7 +88,7 @@ var LightBulb;
                 fbdata.facebookUserId = 0;
                 dfr.resolve(response);
             }
-            if ($.isFunction(callback)) callback.call(this, response);
+            if (jQuery.isFunction(callback)) callback.call(this, response);
         });
         return dfr.promise();
     };
@@ -121,7 +121,7 @@ var LightBulb;
     LightBulb.get = function (openGraphPath, data, callback) {
         //alert(openGraphPath);
         FB.api(openGraphPath, "get", data, function (response) {
-            if ($.isFunction(callback)) callback.call(this, response);
+            if (jQuery.isFunction(callback)) callback.call(this, response);
         });
     };
 
@@ -131,7 +131,7 @@ var LightBulb;
 
     LightBulb.remove = function (openGraphPath, data, callback) {
         FB.api(openGraphPath, "delete", data, function (response) {
-            if ($.isFunction(callback)) callback.call(this, response);
+            if (jQuery.isFunction(callback)) callback.call(this, response);
         });
     };
 
@@ -154,19 +154,9 @@ var LightBulb;
             window.opera.postError(msg);
         }
     };
-    
-    /**
-     * Determine whether the defined method is function or not.
-     * Type of should return 'function'
-     * @param func object which needs to be checked.
-     */
-    LightBulb.isFunction = function (func) {
-        return (func && typeof(func) == 'function');
-    };
 
     if (typeof($) != "undefined") {
         // Associate this LightBulb as jquery extension
-        $.isFunction = LightBulb.isFunction;
         $.LightBulb = LightBulb;
     }
 })(jQuery);

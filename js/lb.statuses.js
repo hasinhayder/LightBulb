@@ -42,7 +42,7 @@
                 var reqUrl = "/" + params.userId + "/statuses";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -61,7 +61,7 @@
                 var reqUrl = "/" + params.statusId;
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -80,7 +80,7 @@
                 var reqUrl = "/" + params.statusId + "/comments";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -99,7 +99,7 @@
                 var reqUrl = "/" + params.statusId + "/likes";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;

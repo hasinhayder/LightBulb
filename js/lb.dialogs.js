@@ -62,7 +62,7 @@
                     redirect_uri: params.redirectUrl
                 };
                 FB.ui(data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -125,7 +125,7 @@
                 };
                 LightBulb.post("/" + params.to + "/feed",data,callback);
                 /*FB.api("/" + to + "/feed", "post", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 })*/
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -160,7 +160,7 @@
                     data: params.data
                 };
                 FB.ui(data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -202,7 +202,7 @@
                     data: params.data
                 };
                 FB.ui(data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -232,7 +232,7 @@
                     redirect_url: params.redirectUrl
                 };
                 FB.ui(data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -273,7 +273,7 @@
                     name: params.title
                 };
                 FB.ui(data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;

@@ -18,7 +18,7 @@
                     access_token: accessToken
                 };
                 FB.api("/" + params.applicationId + "/subscriptions", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;

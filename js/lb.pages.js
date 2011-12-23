@@ -26,7 +26,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                 };
                 FB.api("/" + params.userId + "/accounts", "get", data, function (response) {
                     LightBulb.pages.pages = response.data;
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -58,7 +58,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     reqUrl += "?fields=id,name,link,category,location,phone,checkins,picture";
                 FB.api(reqUrl, "get", data, function (response) {
                     LightBulb.pages.pages = response.data;
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -76,7 +76,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: accessToken
                 };
                 FB.api("/" + params.pageId + "/feeds", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -94,7 +94,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: LightBulb.pages.currentToken
                 };
                 FB.api("/" + params.pageId + "/settings", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -116,7 +116,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     value: params.settingsValue
                 };
                 FB.api("/" + params.pageId + "/settings", "post", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -134,7 +134,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: accessToken
                 };
                 FB.api("/" + params.pageId + "/links", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -152,7 +152,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: accessToken
                 };
                 FB.api("/" + params.pageId + "/photos", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -170,7 +170,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: accessToken
                 };
                 FB.api("/" + params.pageId + "/groups", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -188,7 +188,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: accessToken
                 };
                 FB.api("/" + params.pageId + "/albums", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -206,7 +206,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: accessToken
                 };
                 FB.api("/" + params.pageId + "/statuses", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -224,7 +224,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: accessToken
                 };
                 FB.api("/" + params.pageId + "/videos", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -242,7 +242,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: accessToken
                 };
                 FB.api("/" + params.pageId + "/notes", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -260,7 +260,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: accessToken
                 };
                 FB.api("/" + params.pageId + "/posts", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -278,7 +278,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: accessToken
                 };
                 FB.api("/" + params.pageId + "/events", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -296,7 +296,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: LightBulb.pages.currentToken
                 };
                 FB.api("/" + params.pageId + "/admins", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -314,7 +314,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: LightBulb.pages.currentToken
                 };
                 FB.api("/" + params.pageId + "/blocked", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -334,7 +334,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     app_id: params.applicationId
                 };
                 FB.api("/" + params.pageId + "/tabs/" + params.applicationId, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -352,7 +352,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: LightBulb.pages.currentToken
                 };
                 FB.api("/" + params.pageId + "/tabs", "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -372,7 +372,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     app_id: params.applicationId
                 };
                 FB.api("/" + params.pageId + "/tabs", "post", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -397,7 +397,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                 if (params.customName) data.custom_name = params.customName;
                 if (params.isDefault) data.is_non_connection_landing_tab = true;
                 FB.api("/" + params.pageId + "/tabs/" + params.tabId, "post", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -416,7 +416,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: LightBulb.pages.currentToken
                 };
                 FB.api("/" + params.pageId + "/tabs/" + params.tabId, "delete", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -435,7 +435,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: LightBulb.pages.currentToken
                 };
                 FB.api("/" + params.pageId + "/admins/" + params.userId, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -454,7 +454,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     access_token: LightBulb.pages.currentToken
                 };
                 FB.api("/" + params.pageId + "/blocked/" + params.userId, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -474,7 +474,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     uid: params.users.join(",")
                 };
                 FB.api("/" + params.pageId + "/blocked/", "post", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;
@@ -494,7 +494,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                     uid: userId
                 };
                 FB.api("/" + params.pageId + "/blocked/", "delete", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_PAGE_TOKEN;

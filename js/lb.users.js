@@ -26,7 +26,7 @@
                 reqUrl += "?fields=id,name,first_name,middle_name,last_name,gender,locale,languages,link,username,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,video_upload_limits,website,work";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -46,7 +46,7 @@
                 var reqUrl = "/" + params.user + "/accounts";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -66,7 +66,7 @@
                 var reqUrl = "/" + params.user + "/achievements";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -86,7 +86,7 @@
                 var reqUrl = "/" + params.user + "/activities";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -106,7 +106,7 @@
                 var reqUrl = "/" + params.user + "/albums";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -126,7 +126,7 @@
                 var reqUrl = "/" + params.user + "/apprequests";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -146,7 +146,7 @@
                 var reqUrl = "/" + params.user + "/books";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -166,7 +166,7 @@
                 var reqUrl = "/" + params.user + "/checkins";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -186,7 +186,7 @@
                 var reqUrl = "/" + params.user + "/events";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -206,7 +206,7 @@
                 var reqUrl = "/" + params.user + "/family";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -227,7 +227,7 @@
                 var reqUrl = "/" + params.user + '/feed?'+"limit="+params.limit;
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -247,7 +247,7 @@
                 var reqUrl = "/" + params.user + "/friendlists";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -268,7 +268,7 @@
                 var reqUrl = "/" + params.user + '/friendrequests?limit='+params.limit;
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -289,7 +289,7 @@
                 var reqUrl = "/" + params.user + '/friends?limit='+params.limit;
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -310,7 +310,7 @@
                 var reqUrl = "/" + params.user1 + '/friends/' + params.user2;
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -330,7 +330,7 @@
                 var reqUrl = "/" + params.user + "/games";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -350,7 +350,7 @@
                 var reqUrl = "/" + params.user + "/groups";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -370,7 +370,7 @@
                 var reqUrl = "/" + params.user + "/home";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -390,7 +390,7 @@
                 var reqUrl = "/" + params.user + "/inbox";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -410,7 +410,7 @@
                 var reqUrl = "/" + params.user + "/interests";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -431,7 +431,7 @@
                 var reqUrl = "/" + params.user + "/likes";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -453,7 +453,7 @@
                 var reqUrl = "/" + params.user + '/likes/' + params.pageId;
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -473,7 +473,7 @@
                 var reqUrl = "/" + params.user + "/links";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -493,7 +493,7 @@
                 var reqUrl = "/" + params.user + "/movies";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -513,7 +513,7 @@
                 var reqUrl = "/" + params.user + "/music";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -534,7 +534,7 @@
                 var reqUrl = "/" + params.user + '/mutualfriends/' + params.friendsId;
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -554,7 +554,7 @@
                 var reqUrl = "/" + params.user + "/notes";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -578,7 +578,7 @@
                     reqUrl += '?include_read=1';
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -598,7 +598,7 @@
                 var reqUrl = "/" + params.user + "/outbox";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -618,7 +618,7 @@
                 var reqUrl = "/" + params.user + "/permissions";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -638,7 +638,7 @@
                 var reqUrl = "/" + params.user + "/photos";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -658,7 +658,7 @@
                 var reqUrl = "/" + params.user + "/pokes";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -678,7 +678,7 @@
                 var reqUrl = "/" + params.user + "/posts";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -698,7 +698,7 @@
                 var reqUrl = "/" + params.user + "/scores";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -718,7 +718,7 @@
                 var reqUrl = "/" + params.user + "/statuses";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -738,7 +738,7 @@
                 var reqUrl = "/" + params.user + "/tagged";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -758,7 +758,7 @@
                 var reqUrl = "/" + params.user + "/television";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -779,7 +779,7 @@
                 var reqUrl = "/" + params.user + "/updates";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
@@ -799,7 +799,7 @@
                 var reqUrl = "/" + params.user + "/videos";
 
                 FB.api(reqUrl, "get", data, function (response) {
-                    if ($.isFunction(callback)) callback.call(this, response);
+                    if (jQuery.isFunction(callback)) callback.call(this, response);
                 });
             } else {
                 throw LIGHTBULB_NO_TOKEN;
