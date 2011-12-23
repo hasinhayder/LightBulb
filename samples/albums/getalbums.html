@@ -48,10 +48,13 @@
                 permissions:"user_photos",
                 forcedPermission:true,
                 callback:function (data) {
+
                 }
             });
         },
         getAlbums: function(){
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
             LightBulb.albums.getAlbums({user:'me'},function(response) {
                         var html = '<ul>';
                         for(var i in response.data){
