@@ -20,8 +20,8 @@
 </style>
 <h2>Example of albums</h2>
 <p>
-    Ask for permission <input type="button" value="Get permission" onclick="newPermission();"/>
-    Get album <input type="button" value="Get Albums" onclick="getAlbums();"/>
+    Ask for permission <input type="button" value="Get permission" onclick="LightBulb.Examples.newPermission();"/>
+    Get album <input type="button" value="Get Albums" onclick="LightBulb.Examples.getAlbums();"/>
 </p>
 
 <pre class="js">
@@ -41,29 +41,30 @@
 </div>
 
 <script type="text/javascript">
-    function newPermission() {
-        LightBulb({
-            apikey:"288048857874241",
-            permissions:"user_photos",
-            forcedPermission:true,
-            callback:function (data) {
-            }
-        });
-    }
+    LightBulb.Examples = {
+        newPermission: function(){
+            LightBulb({
+                apikey:"288048857874241",
+                permissions:"user_photos",
+                forcedPermission:true,
+                callback:function (data) {
 
-    function getAlbums() {
-        var userData = $.LightBulb._getFacebookData();
-        var accessToken = userData.accessToken;
-
-        LightBulb.albums.getAlbums({user:'me'},function(response) {
-                    var html = '<ul>';
-                    for(var i in response.data){
-                        var album = response.data[i];
-                        html += '<li><a href="'+ album.link +'"><img src="https://graph.facebook.com/'+ album.id +'/picture?type=album&access_token='+ accessToken +'" alt="image"/><span>'+ album.name +'</span></a></li>';
-                    }
-                    html += '</ul>';
-                    $('#result').html(html);
                 }
-        );
-    }
+            });
+        },
+        getAlbums: function(){
+            var userData = LightBulb._getFacebookData();
+            var accessToken = userData.accessToken;
+            LightBulb.albums.getAlbums({user:'me'},function(response) {
+                        var html = '<ul>';
+                        for(var i in response.data){
+                            var album = response.data[i];
+                            html += '<li><a href="'+ album.link +'"><img src="https://graph.facebook.com/'+ album.id +'/picture?type=album&access_token='+ accessToken +'" alt="image"/><span>'+ album.name +'</span></a></li>';
+                        }
+                        html += '</ul>';
+                        $('#result').html(html);
+                    }
+            );
+        }
+    };
 </script>

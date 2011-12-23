@@ -1,0 +1,54 @@
+<h2>Example of inviting to an event</h2>
+<p>
+    Ask for permission <input type="button" value="Get permission" onclick="LightBulb.Examples.newPermission();"/>
+    Invite to event <input type="button" value="Invite" onclick="LightBulb.Examples.invite();"/>
+    <!--Get friends <input type="button" value="Get Friends" onclick="LightBulb.Examples.getFriends();"/>-->
+</p>
+
+<pre class="js">
+LightBulb.events.invite({
+    eventId: 'eventId',
+    friends: 'friends'
+    },
+    function (response) {
+        alert('Invitation sent');
+    }
+);
+</pre>
+
+<script type="text/javascript">
+    LightBulb.Examples = {
+        /*getFriends: function(){
+            LightBulb.users.getFriends({user:'me', limit: '400'}, function(response){
+                if(response.error){
+                    alert(response.error.message)
+                }else{
+                    console.log(response);
+                }
+            });
+        },*/
+        newPermission: function(){
+            LightBulb({
+                apikey:"288048857874241",
+                permissions:"create_event, read_friendlists",
+                forcedPermission:true,
+                callback:function (data) {
+                }
+            });
+        },
+        invite: function(){
+            LightBulb.events.invite({
+                        eventId: '327139013971803',
+                        friends: '1454543922'
+                    },
+                    function(response) {
+                        if(response.error){
+                            alert('Error: ' + response.error.message);
+                        }else{
+                            alert('Invitation sent');
+                        }
+                    }
+            );
+        }
+    }
+</script>
