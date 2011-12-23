@@ -1,0 +1,35 @@
+<h2>Get Comments</h2>
+<p>
+    <!--Ask permission<input type="button" value="Get permission" onclick="permission();"/><br/><br/>-->
+    Get Comments<input type="button" value="Get Comments" onclick="fetch();"/><br/><br/>
+<pre class="js">
+LightBulb.statuses.getComments({
+        statusId: Status Id,
+        }, function(response) {
+
+});
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+        LightBulb.statuses.getComments({
+            statusId: 265120316880776
+        },function(response) {
+            console.log(response);
+            jQuery.each(response, function(index, data){
+                if(index === 'data'){
+                    jQuery.each(data, function(x, val){
+                        jQuery.each(val, function(y, message){
+                            if(y === 'message'){
+                                $("#result").append(message+"<br/>");
+                            }
+                        });
+                    });
+                }
+
+            });
+
+
+        });
+    }
+</script>

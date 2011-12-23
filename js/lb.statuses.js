@@ -53,7 +53,7 @@
                 statusId: ""
             };
             var params = $.extend(defaults, parameters);
-            var accessToken = LightBulb.statuse.getToken();
+            var accessToken = LightBulb.statuses.getToken();
             if (accessToken) {
                 var data = {
                     access_token: accessToken
@@ -72,7 +72,7 @@
                 statusId: ""
             };
             var params = $.extend(defaults, parameters);
-            var accessToken = LightBulb.statuse.getToken();
+            var accessToken = LightBulb.statuses.getToken();
             if (accessToken) {
                 var data = {
                     access_token: accessToken
@@ -91,7 +91,7 @@
                 statusId: ""
             };
             var params = $.extend(defaults, parameters);
-            var accessToken = LightBulb.statuse.getToken();
+            var accessToken = LightBulb.statuses.getToken();
             if (accessToken) {
                 var data = {
                     access_token: accessToken
