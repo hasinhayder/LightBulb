@@ -1,0 +1,45 @@
+<h2>Get Statuses By Id</h2>
+<p>
+    Ask permission<input type="button" value="Get permission" onclick="permission();"/><br/><br/>
+    Get Statuses<input type="button" value="Get Statuses" onclick="fetch();"/><br/><br/>
+<pre class="js">
+LightBulb.statuses.getStatuses({
+        userId: FRIEND ID,
+        }, function(response) {
+
+});
+</pre>
+</p>
+<script type="text/javascript">
+
+function permission(){
+    LightBulb({
+        apikey:"288048857874241",
+        permissions:"friends_status",
+        forcedPermission:true,
+        callback:function(data) {
+        }
+    });
+}
+    function fetch() {
+        LightBulb.statuses.getStatuses({
+            userId: 100001484289609
+        },function(response) {
+            console.log(response);
+            jQuery.each(response, function(index, data){
+                if(index === 'data'){
+                    jQuery.each(data, function(x, val){
+                        jQuery.each(val, function(y, message){
+                                if(y === 'message'){
+                                    $("#result").append(message+"<br/>");
+                                }
+                        });
+                    });
+                }
+
+            });
+
+
+        });
+    }
+</script>
