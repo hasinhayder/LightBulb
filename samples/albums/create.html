@@ -1,7 +1,7 @@
 <h2>Example of creating an album</h2>
 <p>
-    Ask for permission <input type="button" value="Get permission" onclick="newPermission();"/>
-    Create album <input type="button" value="Create album" onclick="create();"/>
+    Ask for permission <input type="button" value="Get permission" onclick="LightBulb.Example.newPermission();"/>
+    Create album <input type="button" value="Create album" onclick="LightBulb.Example.create();"/>
 </p>
 
 <pre class="js">
@@ -18,25 +18,33 @@ LightBulb.albums.createAlbum({
 
 
 <script type="text/javascript">
-    function newPermission() {
-        LightBulb({
-            apikey:"288048857874241",
-            permissions:"user_photos",
-            forcedPermission:true,
-            callback:function (data) {
-            }
-        });
+    LightBulb.Example = {
+        newPermission: function(){
+            LightBulb({
+                apikey:"288048857874241",
+                permissions:"user_photos",
+                forcedPermission:true,
+                callback:function (data) {
+                }
+            });
+        },
+        create: function(){
+            LightBulb.albums.createAlbum(
+                    {
+                        user: 'me',
+                        creator: 'LightBulb',
+                        name: 'LightBulb',
+                        description: 'This album is created by you via project LightBulb :)'
+                    },
+                    function(response) {
+                        if(response.error){
+                            alert(response.error.message);
+                        }else{
+                            alert('Album created with the following id: ' + response.id);
+                        }
+                    }
+            );
+        }
     }
 
-    function create() {
-        LightBulb.albums.createAlbum({
-                    creator: 'me',
-                    name: 'LightBulb',
-                    description: 'LightBulb testing testing... hello this your boss :)'
-                },
-                function(response) {
-                    alert('Album created with the following id: ' + response.id);
-                }
-        );
-    }
 </script>
