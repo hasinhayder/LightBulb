@@ -1,0 +1,59 @@
+<h2>Get Photo</h2>
+<p>
+    Get Photo Comments<input type="button" value="Get Photo Comments" onclick="fetch();"/><br/><br/>
+<pre class="js">
+LightBulb.photos.getComments({
+        photoId: "Picture_ID"
+        }, function(response) {
+
+});
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+
+        var userData = LightBulb._getFacebookData();
+        var userId = userData.facebookUserId;
+
+        LightBulb.users.getPhotos({
+            user:userId
+        }, function (response) {
+            var picId = response.data[0].id;
+
+
+            alert("Picture Id = "+picId);
+
+
+            LightBulb.photos.getPhoto({
+                photoId: picId
+            }, function (response) {
+                console.log(response);
+                $("#result").html("<h2>Result  - 1st Page</h2>")
+                var picUrl = response.picture;
+                $("#result").append('<img src='+ picUrl+'  altr="My Facebook Image" title="My Facebook Image" />');
+
+
+                LightBulb.photos.getComments({
+                    photoId: picId
+                },function(result){
+                    console.log(result);
+                    jQuery.each(result, function(index, data){
+                        if(index === 'data'){
+                            jQuery.each(data, function(x, val){
+                                jQuery.each(val, function(y, message){
+                                    if(y === 'message'){
+                                        $("#result").append("<br/>"+message+"<br/>");
+                                    }
+                                });
+                            });
+                        }
+
+                    });
+                });
+
+
+            });
+
+        });
+    }
+</script>
