@@ -1,0 +1,30 @@
+<h2>Create post</h2>
+<p>
+    Create post<input type="button" value="Create post" onclick="fetch();"/><br/><br/>
+<pre class="js">
+LightBulb.posts.create({
+            link:'http://projectligtbulb.net/',
+            description:'Project LightBulb is a wrapper on top of'+
+                            +'Facebooks own JS-SDK and Graph API'+
+                            +'to simplify developing applications using Graph API.'
+        }, function(response) {
+
+});
+</pre>
+</p>
+<script type="text/javascript">
+    function fetch() {
+
+        var userData = LightBulb._getFacebookData();
+        var userId = userData.facebookUserId;
+
+        LightBulb.posts.create({
+            link: 'http://projectligtbulb.net/',
+            description: 'Project LightBulb is a wrapper on top of Facebooks own JS-SDK and Graph API to simplify developing applications using Graph API.'
+        }, function(response){
+            console.log(response);
+            alert('Post Id = '+ response.id);
+            $("#result").append("<br/>Just Check your wall<br/>");
+        });
+    }
+</script>
