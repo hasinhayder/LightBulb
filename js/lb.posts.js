@@ -63,7 +63,7 @@
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    access_token: accessTokens
+                    access_token: accessToken
                 };
             } else {
                 throw LIGHTBULB_NO_TOKEN;
