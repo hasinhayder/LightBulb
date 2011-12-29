@@ -1,0 +1,46 @@
+<h2>Get post</h2>
+<p>
+    Ask permission<input type="button" value="Get permission" onclick="permission();"/><br/><br/>
+    Get post<input type="button" value="Get Post" onclick="fetch();"/><br/><br/>
+<pre class="js">
+LightBulb.posts.get({
+            postId: POST_ID
+        }, function(response) {
+
+});
+</pre>
+</p>
+<script type="text/javascript">
+    function permission(){
+        LightBulb({
+            apikey:"288048857874241",
+            permissions:"read_stream",
+            forcedPermission:true,
+            callback:function(data) {
+            }
+        });
+    }
+
+    function fetch() {
+
+        var userData = LightBulb._getFacebookData();
+        var userId = userData.facebookUserId;
+
+        LightBulb.users.getStatuses({
+            user: userId
+        }, function(response){
+//            console.log(response);
+            var postId = response.data[0].id;
+            alert('Post Id = '+ postId);
+
+
+            LightBulb.posts.get({
+                postId: postId
+            }, function(response){
+                console.log(response);
+                $("#result").append("<br/>"+ response.message+"<br/>");
+            });
+        });
+
+    }
+</script>
