@@ -4,25 +4,25 @@
  */
  
 $(function(){
+    
+    var FB_API_KEY = "288048857874241";
+    
     module("Module LightBulb Core");
     
-    function lightBulbInit(cb) {
-        $.LightBulb({
-            apikey:"288048857874241",
-            permissions:'publish_stream, email',
-            callback:cb
-        });
-    }
-    
-    test("LightBulb Initialization", function() {
+    test("Initialization", function() {
         stop();
-        
-        lightBulbInit(function(data) {
-            // console.log(data);
-            ok(data.hasOwnProperty('facebookUserId'), 'Logged in successfully with default configuration');
-            start();
+        LightBulb({apikey: FB_API_KEY, permissions: "publish_stream",
+            callback: function(data) {
+                ok(data, "Got response via callback");
+                start();
+            }
         });
-        
+    });
+    
+    test("Methods", function() {
+        ok(!$.isEmptyObject(LightBulb._getOptions()), "“LightBulb.getOptions()” returned an object");
+        ok(!$.isEmptyObject(LightBulb._getFacebookData()), "“LightBulb.getFacebookData()” returned an object");
+        ok(LightBulb.isLoggedIn(), "“LightBulb.isLoggedIn()” returned true");
     });
     
 });
