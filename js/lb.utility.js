@@ -35,6 +35,7 @@
             };
             var params = $.extend(defaults, parameters);
             var accessToken = LightBulb.utility.getToken();
+            //alert(accessToken+"\n"+params.fql);
             if (accessToken && params.fql) {
                 var data = {
                     access_token:accessToken,

@@ -1,20 +1,21 @@
-<h2>Get user details</h2>
+<h2>Get user details using FQL</h2>
 <p>
     Fetch user details by FQL <input type="button" value="Fetch Details" onclick="fetch();"/><br/><br/>
-    <pre class="js">
-LightBulb.users.getUser({user:"me"}, function(response) {
-    console.log(response);
-    $("#result").html("&lt;h2>Result&lt;/h2>")
-    for(i in response){
-        $("#result").append("&lt;b>"+i+":&lt;/b> "+response[i]+"&lt;br/>");
-    }
-})
+<pre class="js">
+LightBulb.utility.runFQL({fql:"select name from user where uid=me()"},
+    function(data){
+        console.log(data);
+});
 </pre>
 </p>
 <script type="text/javascript">
     function fetch() {
-        LightBulb.utility.runFQL("select name from users where uid=me()",function(data){
-            console.log(data);
+        LightBulb.utility.runFQL({fql:"select name, sex from user where uid=me()"}, function (response) {
+            $("#result").html("<h2>Result</h2>");
+                console.log(response);
+            for (i in response.data[0]) {
+                $("#result").append("<b>" + i + ":</b> " + response.data[0][i] + "<br/>");
+            }
         });
     }
 </script>
