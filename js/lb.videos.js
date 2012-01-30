@@ -48,7 +48,7 @@
                 throw LIGHTBULB_NO_TOKEN;
             }
         },
-        getVideo: function (parameters) {
+        getVideo: function (parameters, callback) {
             var defaults = {
                 videoId: ""
             };

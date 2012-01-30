@@ -29,7 +29,7 @@
             if (LightBulb.utility.currentToken) token = LightBulb.utility.currentToken;
             return token;
         },
-        runFQL:function (parameters) {
+        runFQL:function (parameters, callback) {
             var defaults = {
                 fql:""
             };
