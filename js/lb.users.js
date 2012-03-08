@@ -358,7 +358,8 @@
         },
         getHome: function (parameters, callback) {
             var defaults = {
-                user: ""
+                user: "",
+                filter:""
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
@@ -368,6 +369,8 @@
                     access_token: accessToken
                 };
                 var reqUrl = "/" + params.user + "/home";
+                if(params.filter!="")
+                    reqUrl+="?filter="+params.filter;
 
                 FB.api(reqUrl, "get", data, function (response) {
                     if (jQuery.isFunction(callback)) callback.call(this, response);
