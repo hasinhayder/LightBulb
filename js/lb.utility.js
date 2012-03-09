@@ -47,6 +47,17 @@
             } else {
                 throw LIGHTBULB_NO_TOKEN;
             }
+        },
+        getLatestPhotos: function(parameters, callback){
+            var defaults = {
+                user:"me()",
+                limit:50,
+                offset:0
+            };
+            var params = $.extend(defaults, parameters);
+            if (params.user=="me") params.user = "me()";
+            var fql = "SELECT pid, aid, owner, src_small, src_big, src, link, caption, created FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner= "+params.user+" ORDER BY modified_major DESC) ORDER BY created DESC LIMIT "+params.limit+" OFFSET "+params.offset;
+            LightBulb.utility.runFQL(fql,callback);
         }
     };
 })(jQuery);
