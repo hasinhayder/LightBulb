@@ -360,14 +360,16 @@
             var defaults = {
                 user:"",
                 filter:"",
-                fields:""
+                fields:"",
+                limit:50
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
             var accessToken = userData.accessToken;
             if (accessToken) {
                 var data = {
-                    access_token:accessToken
+                    access_token:accessToken,
+                    limit:params.limit
                 };
                 var reqUrl = "/" + params.user + "/home?";
                 if (params.filter != "")
