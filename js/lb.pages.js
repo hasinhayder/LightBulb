@@ -42,7 +42,7 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
         getPage: function (parameters, callback) {
             var defaults = {
                 pageId: "",
-                returnToken: ""
+                returnToken: "" //true or false
             };
             var params = $.extend(defaults, parameters);
             var userData = LightBulb._getFacebookData();
@@ -53,9 +53,9 @@ var PAGE_SETTINGS_USERS_CAN_POST_VIDEOS = "USERS_CAN_POST_VIDEOS";
                 };
                 var reqUrl = "/" + params.pageId;
                 if (params.returnToken)
-                    reqUrl += "?fields=id,name,link,category,location,phone,checkins,access_token,picture";
+                    reqUrl += "?fields=id,name,link,category,location,phone,checkins,access_token,picture,cover";
                 else
-                    reqUrl += "?fields=id,name,link,category,location,phone,checkins,picture";
+                    reqUrl += "?fields=id,name,link,category,location,phone,checkins,picture,cover";
                 FB.api(reqUrl, "get", data, function (response) {
                     LightBulb.pages.pages = response.data;
                     if (jQuery.isFunction(callback)) callback.call(this, response);
