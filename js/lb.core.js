@@ -10,55 +10,55 @@ var LightBulb = (function ($) {
         fbdata = {},
         deferred = $.Deferred(),
 
-    LightBulb = function (options) {
-        var defaults = {
-            apikey: "",
-            secret: "",
-            login: true,
-            permissions: "",
-            cookie: true,
-            xfbml: true,
-            forcedPermission: false,
-            callback: function () {
-            },
-            authResponseChange: function () {
-            }
-        };
-        opts = $.extend(defaults, options);
-        //if (!$("#fb-root")) $("<div/>").attr("id", "fb-root").appendTo("body");
-        FB.init({appId: opts.apikey, status: true, cookie: opts.cookie, xfbml: opts.xfbml});
-        FB.Event.subscribe("auth.authResponseChange", function (response) {
-            if (response.authResponse) {
-                var session = response.authResponse;
-                fbdata.accessToken = session.accessToken;
-                fbdata.facebookUserId = session.userID;
-                if (jQuery.isFunction(opts.authResponseChange)) {
-                    opts.authResponseChange.call(LightBulb, fbdata);
+        LightBulb = function (options) {
+            var defaults = {
+                apikey:"",
+                secret:"",
+                login:true,
+                permissions:"",
+                cookie:true,
+                xfbml:true,
+                forcedPermission:false,
+                callback:function () {
+                },
+                authResponseChange:function () {
                 }
-                deferred.resolve(session, fbdata);
-            }
-        });
-
-        FB.getLoginStatus(function (response) {
-            if (opts.forcedPermission) {
-                LightBulb.login();
-
-            } else if (response.authResponse) {
-                var session = response.authResponse;
-                fbdata.accessToken = session.accessToken;
-                fbdata.facebookUserId = session.userID;
-                if (jQuery.isFunction(opts.callback)) {
-                    opts.callback.call(LightBulb, fbdata);
+            };
+            opts = $.extend(defaults, options);
+            //if (!$("#fb-root")) $("<div/>").attr("id", "fb-root").appendTo("body");
+            FB.init({appId:opts.apikey, status:true, cookie:opts.cookie, xfbml:opts.xfbml});
+            FB.Event.subscribe("auth.authResponseChange", function (response) {
+                if (response.authResponse) {
+                    var session = response.authResponse;
+                    fbdata.accessToken = session.accessToken;
+                    fbdata.facebookUserId = session.userID;
+                    if (jQuery.isFunction(opts.authResponseChange)) {
+                        opts.authResponseChange.call(LightBulb, fbdata);
+                    }
+                    deferred.resolve(session, fbdata);
                 }
-                deferred.resolve(session, fbdata);
+            });
 
-            } else {
-                if (opts.login) {
+            FB.getLoginStatus(function (response) {
+                if (opts.forcedPermission) {
                     LightBulb.login();
+
+                } else if (response.authResponse) {
+                    var session = response.authResponse;
+                    fbdata.accessToken = session.accessToken;
+                    fbdata.facebookUserId = session.userID;
+                    if (jQuery.isFunction(opts.callback)) {
+                        opts.callback.call(LightBulb, fbdata);
+                    }
+                    deferred.resolve(session, fbdata);
+
+                } else {
+                    if (opts.login) {
+                        LightBulb.login();
+                    }
                 }
-            }
-        });
-    };
+            });
+        };
 
     /**
      * @author Hasin Hayder
@@ -75,7 +75,7 @@ var LightBulb = (function ($) {
                     opts.callback.call(LightBulb, fbdata);
                 }
             }
-        }, {scope: opts.permissions});
+        }, {scope:opts.permissions});
 
         return deferred.promise();
     };
@@ -117,6 +117,15 @@ var LightBulb = (function ($) {
         return fbdata;
     };
 
+    LightBulb._getLoggedInUser = function () {
+        return fbdata.facebookUserId;
+    }
+
+    LightBulb._getLoggedInUsersToken = function () {
+        return fbdata.accessToken;
+    }
+
+
     /**
      * @author Hasin Hayder
      * Return true if there is currently any active user logged in with this application
@@ -152,11 +161,11 @@ var LightBulb = (function ($) {
     };
 
     /**
-    * writes to console if console is enabled
-    *
-    * @author M A Hossain Tonu
-    *
-    **/
+     * writes to console if console is enabled
+     *
+     * @author M A Hossain Tonu
+     *
+     **/
     LightBulb.log = function () {
         var msg = arguments;
         if (window.console && window.console.log) {
@@ -171,7 +180,7 @@ var LightBulb = (function ($) {
 
 (function () {
     jQuery.extend({
-        LightBulb: function (options) {
+        LightBulb:function (options) {
             return LightBulb(options);
         }
     });
